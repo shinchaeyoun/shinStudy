@@ -1,7 +1,6 @@
 프로젝트 만드는 방싱
 1.  Vue CLI로 vue 프로젝트 생성하기
 
-
 2. 원하는 위치로 이동 후 Vue 프로젝트 생성(vue init <템플릿 이름> <프로젝트 이름>, ex) vue init webpack frontend)
 
 
