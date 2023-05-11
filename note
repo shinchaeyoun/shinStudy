@@ -1,6 +1,48 @@
 프로젝트 만드는 방싱
-1.  cmd에서 > vue create 생성할프로젝트명
+1.  Vue CLI로 vue 프로젝트 생성하기
+
+
 2. 원하는 위치로 이동 후 Vue 프로젝트 생성(vue init <템플릿 이름> <프로젝트 이름>, ex) vue init webpack frontend)
+
+
+1-1. Default 옵션으로 프로젝트 설치
+Default (Vue 3)
+----------
+vue 프로젝트 실행
+// 프로젝트 폴더로 이동
+cd vue-project
+// 프로젝트 실행
+$ npm run serve
+
+1-2. manually select features 옵션으로 프로젝트 설치
+
+- $ vue create (Project name)
+
+- Manually select features
+    Babel: ES5 버전 이상이나 타입스크립트로 코딩하면 범용적인 ES5 버전으로 자동 전환 지원합니다.
+    TypeScript: 타입스크립트 지원
+    vue create vue-project-manually: 웹앱 개발 지원
+    Router: 라우터 처리를 위한 Vue-Roter
+    Vuex: Vue에서 상태 관리를 위한 패키지인 Vuex
+    Css Pre-processors: Sass, Less 등 css 작성을 위한 css 전처리기
+    Linter / Formatter: 자바스크립트 코딩 컨벤션
+    unit Testing: 단위 테스트를 위한 플러그인
+    E2E Testing: E2E 테스트 플러그인
+
+- vue 버전 3.x 선택
+
+- Vue-Router history 선택 : Y
+
+- ESLint + Standard config 선택
+
+- Lint on save 선택: Lint 적용을 저장 시점에 하기
+
+- In package.json : ESLint + Standard config를 별도 파일로 만들지 package.json으로 만들지 선택
+
+- 'Y' 입력 : 나중에 해당 옵션을 선택할 수 있도록 설정
+
+- vue basic 입력
+
 
 2-1.
 # 프로젝트 이름
@@ -47,3 +89,13 @@
 - Yes, use NPM
 - Yes, use Yarn
 - No, I will handle that myself 
+
+====================
+// 프로젝트 폴더로 이동
+cd frontend
+
+// 프로젝트 의존성 모듈 설치
+npm install
+
+// 프로젝트 실행
+npm run dev
