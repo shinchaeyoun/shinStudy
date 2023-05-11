@@ -6,96 +6,95 @@
 
 
 1-1. Default 옵션으로 프로젝트 설치
-Default (Vue 3)
-----------
-vue 프로젝트 실행
-// 프로젝트 폴더로 이동
-cd vue-project
-// 프로젝트 실행
-$ npm run serve
+    Default (Vue 3)
+    ----------
+    vue 프로젝트 실행
+    // 프로젝트 폴더로 이동
+    cd vue-project
+    // 프로젝트 실행
+    $ npm run serve
 
 1-2. manually select features 옵션으로 프로젝트 설치
+    - $ vue create (Project name)
 
-- $ vue create (Project name)
+    - Manually select features
+        Babel: ES5 버전 이상이나 타입스크립트로 코딩하면 범용적인 ES5 버전으로 자동 전환 지원합니다.
+        TypeScript: 타입스크립트 지원
+        vue create vue-project-manually: 웹앱 개발 지원
+        Router: 라우터 처리를 위한 Vue-Roter
+        Vuex: Vue에서 상태 관리를 위한 패키지인 Vuex
+        Css Pre-processors: Sass, Less 등 css 작성을 위한 css 전처리기
+        Linter / Formatter: 자바스크립트 코딩 컨벤션
+        unit Testing: 단위 테스트를 위한 플러그인
+        E2E Testing: E2E 테스트 플러그인
 
-- Manually select features
-    Babel: ES5 버전 이상이나 타입스크립트로 코딩하면 범용적인 ES5 버전으로 자동 전환 지원합니다.
-    TypeScript: 타입스크립트 지원
-    vue create vue-project-manually: 웹앱 개발 지원
-    Router: 라우터 처리를 위한 Vue-Roter
-    Vuex: Vue에서 상태 관리를 위한 패키지인 Vuex
-    Css Pre-processors: Sass, Less 등 css 작성을 위한 css 전처리기
-    Linter / Formatter: 자바스크립트 코딩 컨벤션
-    unit Testing: 단위 테스트를 위한 플러그인
-    E2E Testing: E2E 테스트 플러그인
+    - vue 버전 3.x 선택
 
-- vue 버전 3.x 선택
+    - Vue-Router history 선택 : Y
 
-- Vue-Router history 선택 : Y
+    - ESLint + Standard config 선택
 
-- ESLint + Standard config 선택
+    - Lint on save 선택: Lint 적용을 저장 시점에 하기
 
-- Lint on save 선택: Lint 적용을 저장 시점에 하기
+    - In package.json : ESLint + Standard config를 별도 파일로 만들지 package.json으로 만들지 선택
 
-- In package.json : ESLint + Standard config를 별도 파일로 만들지 package.json으로 만들지 선택
+    - 'Y' 입력 : 나중에 해당 옵션을 선택할 수 있도록 설정
 
-- 'Y' 입력 : 나중에 해당 옵션을 선택할 수 있도록 설정
-
-- vue basic 입력
+    - vue basic 입력
 
 
 2-1.
-# 프로젝트 이름
-? Project name (vue-example-project):
+    # 프로젝트 이름
+    ? Project name (vue-example-project):
 
-# 프로젝트 설명
-? Project description (A Vue.js project):
+    # 프로젝트 설명
+    ? Project description (A Vue.js project):
 
-# 작성자
-? Author (MangKyu <whalsrb1226@gmail.com>):
+    # 작성자
+    ? Author (MangKyu <whalsrb1226@gmail.com>):
 
-# Vue 빌드 선택, 기본 선택은 Runtime + Compiler로 대부분 사용자에게 권장
-? Vue build
+    # Vue 빌드 선택, 기본 선택은 Runtime + Compiler로 대부분 사용자에게 권장
+    ? Vue build
 
-# vue-router사용여부, 사용 시 자동으로 설정 
-? Install vue-router? (Y/n)
+    # vue-router사용여부, 사용 시 자동으로 설정 
+    ? Install vue-router? (Y/n)
 
-# ESLint 적용여부, 사용 시  코드작성 스타일을 강제화함 
-? Use ESLint to lint your code? (Y/n)
+    # ESLint 적용여부, 사용 시  코드작성 스타일을 강제화함 
+    ? Use ESLint to lint your code? (Y/n)
 
-# ESLint 적용하면 나오는 질문으로, 어떤 스타일을 사용할 것인지 물어봄 
-? Pick an ESLint preset 
+    # ESLint 적용하면 나오는 질문으로, 어떤 스타일을 사용할 것인지 물어봄 
+    ? Pick an ESLint preset 
 
-# 3개의 선택지가 나오며 기본은 Standard로 설정 되어 있음
-- Standard (https://github.com/feross/standard) 
-- Airbnb (https://github.com/airbnb/javascript) 
-- none (configure it yourself) 
+    # 3개의 선택지가 나오며 기본은 Standard로 설정 되어 있음
+    - Standard (https://github.com/feross/standard) 
+    - Airbnb (https://github.com/airbnb/javascript) 
+    - none (configure it yourself) 
 
-# Unit Test 사용여부
-? Set up unit tests (Y/n)
+    # Unit Test 사용여부
+    ? Set up unit tests (Y/n)
 
-# Unit Test에 대해 3개의 선택지가 나옴
-- Jest
-- Karma and Mocha
-- none (configure it yourself) 
+    # Unit Test에 대해 3개의 선택지가 나옴
+    - Jest
+    - Karma and Mocha
+    - none (configure it yourself) 
 
-# Test Runner를 선택해야 함
-? Pick a test runner
+    # Test Runner를 선택해야 함
+    ? Pick a test runner
 
-# UI테스트 툴 Nightwatch 적용 여부 
-? Setup e2e tests with Nightwatch? (Y/n)
+    # UI테스트 툴 Nightwatch 적용 여부 
+    ? Setup e2e tests with Nightwatch? (Y/n)
 
-# Should we run `npm install` for you after the project has been created? (recommended) (Use arrow keys)
-- Yes, use NPM
-- Yes, use Yarn
-- No, I will handle that myself 
+    # Should we run `npm install` for you after the project has been created? (recommended) (Use arrow keys)
+    - Yes, use NPM
+    - Yes, use Yarn
+    - No, I will handle that myself 
 
-====================
-// 프로젝트 폴더로 이동
-cd frontend
+    ====================
+    // 프로젝트 폴더로 이동
+    cd frontend
 
-// 프로젝트 의존성 모듈 설치
-npm install
+    // 프로젝트 의존성 모듈 설치
+    npm install
 
-// 프로젝트 실행
-npm run dev
+    // 프로젝트 실행
+    npm run dev
