@@ -1,3 +1,49 @@
 프로젝트 만드는 방싱
 1.  cmd에서 > vue create 생성할프로젝트명
 2. 원하는 위치로 이동 후 Vue 프로젝트 생성(vue init <템플릿 이름> <프로젝트 이름>, ex) vue init webpack frontend)
+
+2-1.
+# 프로젝트 이름
+? Project name (vue-example-project):
+
+# 프로젝트 설명
+? Project description (A Vue.js project):
+
+# 작성자
+? Author (MangKyu <whalsrb1226@gmail.com>):
+
+# Vue 빌드 선택, 기본 선택은 Runtime + Compiler로 대부분 사용자에게 권장
+? Vue build
+
+# vue-router사용여부, 사용 시 자동으로 설정 
+? Install vue-router? (Y/n)
+
+# ESLint 적용여부, 사용 시  코드작성 스타일을 강제화함 
+? Use ESLint to lint your code? (Y/n)
+
+# ESLint 적용하면 나오는 질문으로, 어떤 스타일을 사용할 것인지 물어봄 
+? Pick an ESLint preset 
+
+# 3개의 선택지가 나오며 기본은 Standard로 설정 되어 있음
+- Standard (https://github.com/feross/standard) 
+- Airbnb (https://github.com/airbnb/javascript) 
+- none (configure it yourself) 
+
+# Unit Test 사용여부
+? Set up unit tests (Y/n)
+
+# Unit Test에 대해 3개의 선택지가 나옴
+- Jest
+- Karma and Mocha
+- none (configure it yourself) 
+
+# Test Runner를 선택해야 함
+? Pick a test runner
+
+# UI테스트 툴 Nightwatch 적용 여부 
+? Setup e2e tests with Nightwatch? (Y/n)
+
+# Should we run `npm install` for you after the project has been created? (recommended) (Use arrow keys)
+- Yes, use NPM
+- Yes, use Yarn
+- No, I will handle that myself 
