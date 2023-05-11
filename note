@@ -1,0 +1,3 @@
+프로젝트 만드는 방싱
+1.  cmd에서 > vue create 생성할프로젝트명
+2. 원하는 위치로 이동 후 Vue 프로젝트 생성(vue init <템플릿 이름> <프로젝트 이름>, ex) vue init webpack frontend)
