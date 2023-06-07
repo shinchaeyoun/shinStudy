@@ -1,6 +1,5 @@
 <template>
-  <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title"
-    :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName">
+  <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" @item-bookmark="addBookmark(item.id)">
   </tem-item>
 </template>
 
@@ -31,9 +30,19 @@ export default {
   computed: {
     itemFilter () {
       const thislink = this.nowLink
-      return this.$store.state.Items.filter(function (item) {
-        return item.tag === thislink
-      })
+
+      if (thislink === '' || thislink === undefined || thislink === 'all') {
+        return this.$store.state.Items
+      } else {
+        return this.$store.state.Items.filter(function (item) {
+          return item.tag === thislink
+        })
+      }
+    }
+  },
+  methods: {
+    addBookmark (itemId) {
+      console.log(itemId)
     }
   }
 }

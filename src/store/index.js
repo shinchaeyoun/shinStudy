@@ -5,43 +5,36 @@ export default createStore({
   state: {
     account: null,
     isAdmin: null,
-    item: 'hi test',
     nav: [
       {
         id: uniqueId('nav'),
         link: '/',
-        title: 'all',
-        isFilter: true
+        title: 'all'
       },
       {
         id: uniqueId('nav'),
         link: 'nocode',
-        title: 'nocode',
-        isFilter: false
+        title: 'nocode'
       },
       {
         id: uniqueId('nav'),
         link: 'productivity',
-        title: 'productivity',
-        isFilter: false
+        title: 'productivity'
       },
       {
         id: uniqueId('nav'),
         link: 'developer-tools',
-        title: 'developer tools',
-        isFilter: false
+        title: 'developer tools'
       },
       {
         id: uniqueId('nav'),
         link: 'education',
-        title: 'education',
-        isFilter: false
+        title: 'education'
       },
       {
         id: uniqueId('nav'),
         link: 'entertainment',
-        title: 'entertainment',
-        isFilter: false
+        title: 'entertainment'
       }
     ],
     Items: [
