@@ -9,32 +9,39 @@ export default createStore({
     nav: [
       {
         id: uniqueId('nav'),
-        title: 'all'
+        link: '/',
+        title: 'all',
+        isFilter: true
       },
       {
         id: uniqueId('nav'),
         link: 'nocode',
-        title: 'nocode'
+        title: 'nocode',
+        isFilter: false
       },
       {
         id: uniqueId('nav'),
         link: 'productivity',
-        title: 'productivity'
+        title: 'productivity',
+        isFilter: false
       },
       {
         id: uniqueId('nav'),
         link: 'developer-tools',
-        title: 'developer tools'
+        title: 'developer tools',
+        isFilter: false
       },
       {
         id: uniqueId('nav'),
         link: 'education',
-        title: 'education'
+        title: 'education',
+        isFilter: false
       },
       {
         id: uniqueId('nav'),
         link: 'entertainment',
-        title: 'entertainment'
+        title: 'entertainment',
+        isFilter: false
       }
     ],
     Items: [

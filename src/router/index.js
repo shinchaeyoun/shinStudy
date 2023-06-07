@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
+// import NocodePage from '../views/NocodePage.vue'
+import NocodePage from '../views/NocodePage.vue'
+import ProductivityPage from '../views/ProductivityPage.vue'
+import DeveloperToolsPage from '../views/DeveloperToolsPage.vue'
+import EducationPage from '../views/EducationPage.vue'
+import EntertainmentPage from '../views/EntertainmentPage.vue'
 
 const routes = [
   {
@@ -28,8 +33,24 @@ const routes = [
     component: () => import('../views/ToolsView.vue'),
     children: [
       {
-        path: 'test',
-        component: () => import('../components/ChidrenPage.vue')
+        path: 'nocode',
+        component: NocodePage
+      },
+      {
+        path: 'productivity',
+        component: ProductivityPage
+      },
+      {
+        path: 'developer-tools',
+        component: DeveloperToolsPage
+      },
+      {
+        path: 'education',
+        component: EducationPage
+      },
+      {
+        path: 'entertainment',
+        component: EntertainmentPage
       }
     ]
   },

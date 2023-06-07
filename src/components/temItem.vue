@@ -61,7 +61,7 @@
 export default {
   data () {
     return {
-      isHover: true,
+      isHover: false,
       isBookmark: false,
       snackbar: false,
       text: 'My timeout is set to 2000.',
