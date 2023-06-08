@@ -1,4 +1,7 @@
 import { createStore } from 'vuex'
+// import pathify from '@/plugins/vuex-pathify'
+import createPersistedState from 'vuex-persistedstate'
+// import modules from './modules'
 import uniqueId from 'lodash.uniqueid'
 
 export default createStore({
@@ -192,5 +195,11 @@ export default createStore({
   actions: {
   },
   modules: {
-  }
+  },
+  plugins: [
+    createPersistedState({
+      // paths: ['noticeStore']
+      paths: ['Items']
+    })
+  ]
 })
