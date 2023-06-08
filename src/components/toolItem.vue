@@ -1,6 +1,8 @@
 <template>
   <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" @item-bookmark="$store.commit('setBookmark',item.id)">
   </tem-item>
+
+  <div class="testBox box">box</div>
 </template>
 
 <script>
@@ -39,12 +41,6 @@ export default {
         })
       }
     }
-  // },
-  // methods: {
-  //   addBookmark (itemId) {
-  //     const item = this.$store.state.Items.find(el => el.id === itemId)
-  //     console.log(item.isBookmark)
-  //   }
   }
 }
 </script>

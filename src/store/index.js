@@ -1,7 +1,5 @@
 import { createStore } from 'vuex'
-// import pathify from '@/plugins/vuex-pathify'
 import createPersistedState from 'vuex-persistedstate'
-// import modules from './modules'
 import uniqueId from 'lodash.uniqueid'
 
 export default createStore({
@@ -189,7 +187,6 @@ export default createStore({
       } else {
         item.isBookmark = false
       }
-      console.log('mutations', item.isBookmark)
     }
   },
   actions: {
@@ -198,7 +195,6 @@ export default createStore({
   },
   plugins: [
     createPersistedState({
-      // paths: ['noticeStore']
       paths: ['Items']
     })
   ]

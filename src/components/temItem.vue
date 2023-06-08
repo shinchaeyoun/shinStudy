@@ -1,8 +1,8 @@
 <template>
   <div @mouseenter="hoverIn" @mouseleave="hoverOut" :id="id" class="itemBox box box-shadow">
     <transition name="fade">
-      <div v-if="isHover" class="hover_icon">
-        <div class="bookmark box box-shadow" @click="addBookmark">
+      <div v-if="isHover" class="hover_icon posa flex jcsb">
+        <div class="bookmark box box-shadow flex aic" @click="addBookmark">
           <span v-if="isBookTag">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20">
               <path
@@ -26,14 +26,14 @@
     </transition>
 
     <div class="img"></div>
-    <div class="shopicon box-shadow"></div>
+    <div class="shopicon box-shadow posa bdrs-50"></div>
 
-    <div class="textBox">
-      <div class="title">{{ title }}</div>
-      <div class="subTitle gray">{{ subTitle }}</div>
+    <div class="textBox posr ttc">
+      <div class="title fwb">{{ title }}</div>
+      <div class="subTitle gray ttn">{{ subTitle }}</div>
 
-      <div class="bottomBox">
-        <div class="tag">{{ tag }}</div>
+      <div class="bottomBox flex jcsb aic">
+        <div class="tag ttl bdrs-8">{{ tag }}</div>
         <div class="byName gray">{{ byName }}</div>
       </div>
     </div>
@@ -44,11 +44,13 @@
 export default {
   data () {
     const _item = this.$store.state.Items.find(el => el.id === this.id)
-
     return {
-      item: this.$store.state.Items.find(el => el.id === this.id),
+      itemId: this.$store.state.Items.find(el => el.id === this.id),
       isHover: false,
-      isBookTag: _item.isBookmark
+      isBookTag: _item.isBookmark,
+      snackbar: false,
+      text: 'My timeout is set to 2000',
+      timeout: 300
     }
   },
   props: {
@@ -67,8 +69,7 @@ export default {
     },
     addBookmark () {
       this.$emit('item-bookmark')
-      this.isBookTag = this.item.isBookmark
-      // console.log(this.item.isBookmark)
+      this.isBookTag = this.itemId.isBookmark
     }
   }
 }

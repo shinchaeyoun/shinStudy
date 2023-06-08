@@ -1,6 +1,6 @@
 <template>
-  <div :id="id" class="navItem">
-    <div class="icon"></div>
+  <div :id="id" class="navItem flex aic">
+    <div class="icon bdrs-50"></div>
     <div class="title">{{title}}</div>
   </div>
 </template>

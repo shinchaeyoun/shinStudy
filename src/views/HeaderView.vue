@@ -48,8 +48,8 @@
         <router-link to="/submit" id="submit" class="submitBtn nav_box">
           <span>submit</span>
         </router-link>
-        <router-link to="/bookmarks" id="bookmarks" class="bookmarksBtn nav_box">
-          <span>{{ bookList }} bookmarks</span>
+        <router-link to="/bookmarks" id="bookmarks" class="bookmarksBtn nav_box jcsb">
+          <span>{{ bookList }}</span> <span>bookmarks</span>
         </router-link>
       </div>
     </div>
@@ -101,7 +101,6 @@ export default {
   computed: {
     bookList () {
       const numberAddBookmark = this.$store.state.Items.filter((item) => item.isBookmark).length
-      console.log(numberAddBookmark)
       return numberAddBookmark
     }
   }
