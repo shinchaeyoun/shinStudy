@@ -1,2 +1,8 @@
 temItem.vue
 snackbar https://vuetifyjs.com/en/components/snackbars/
+
+북마크 카운팅은 되고있음. 스넥바 올라오는거랑 북마크 페이지에서 저장한 북마크 아이템 보아보기 필요
+
+
+
+tools의 차일드 페이지 자동으로 넣을 수 없는지 찾아보기
