@@ -43,125 +43,151 @@ export default createStore({
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'productivity',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'productivity',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'productivity',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'developer tools',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'developer tools',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'entertainment',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'entertainment',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       },
       {
         id: uniqueId('item'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'entertainment',
-        byName: 'jsustin matthews'
+        byName: 'jsustin matthews',
+        isBookmark: false
       }
     ]
   },
   getters: {
   },
   mutations: {
+    setBookmark (state, itemId) {
+      const item = state.Items.find(el => el.id === itemId)
+      if (item.isBookmark === false) {
+        item.isBookmark = true
+      } else {
+        item.isBookmark = false
+      }
+      console.log('mutations', item.isBookmark)
+    }
   },
   actions: {
   },
