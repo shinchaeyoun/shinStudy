@@ -187,6 +187,11 @@ export default createStore({
       } else {
         item.isBookmark = false
       }
+    },
+    clearBookmark (state) {
+      for (let i = 0; i < state.Items.length; i++) {
+        state.Items[i].isBookmark = false
+      }
     }
   },
   actions: {
