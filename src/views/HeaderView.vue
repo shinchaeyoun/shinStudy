@@ -5,7 +5,7 @@
         <span ref="btn" @click="logoActive">#</span>
       </router-link>
 
-      <div class="title">
+      <div class="title ttn">
         <span>appydev</span>
       </div>
 

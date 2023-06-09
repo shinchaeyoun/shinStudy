@@ -1,6 +1,21 @@
 <template>
   <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" @item-bookmark="$store.commit('setBookmark',item.id)">
   </tem-item>
+
+  <template>
+    <div class="text-center ma-2">
+      <v-btn @click="snackbar = true"> Open Snackbar </v-btn>
+      <v-snackbar v-model="snackbar" :timeout="200">
+        {{ text }}
+
+        <template v-slot:actions>
+          <v-btn color="pink" variant="text" @click="snackbar = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+  </template>
 </template>
 
 <script>

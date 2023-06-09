@@ -34,6 +34,12 @@
       </div>
     </div>
   </div>
+
+  <div class="actions">
+    ...
+    <slot name="actions"/>
+  </div>
+
 </template>
 
 <script>
@@ -42,7 +48,7 @@ export default {
     const _item = this.$store.state.Items.find(el => el.id === this.id)
     return {
       itemId: this.$store.state.Items.find(el => el.id === this.id),
-      isHover: true,
+      isHover: false,
       isBookTag: _item.isBookmark,
       snackbar: false,
       text: 'My timeout is set to 2000',
@@ -61,7 +67,7 @@ export default {
       this.isHover = true
     },
     hoverOut () {
-      this.isHover = true
+      this.isHover = false
     },
     addBookmark () {
       this.$emit('item-bookmark')
