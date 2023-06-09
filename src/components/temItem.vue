@@ -34,12 +34,6 @@
       </div>
     </div>
   </div>
-
-  <div class="actions">
-    ...
-    <slot name="actions"/>
-  </div>
-
 </template>
 
 <script>
