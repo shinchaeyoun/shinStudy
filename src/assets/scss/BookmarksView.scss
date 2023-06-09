@@ -28,4 +28,14 @@
       }
     }
   }
+
+  .empty-bookmark {
+    margin: 100px 0;
+    color: #4a5568;
+    font-size: 20px;
+    > svg {
+      width: 68px;
+      margin-bottom: 30px;
+    }
+  }
 }

@@ -15,9 +15,6 @@
     </section>
 
     <section v-else>
-      <!-- <tem-item v-for="item in this.$store.state.Items" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title"
-        :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName">
-      </tem-item> -->
       <toolItem></toolItem>
     </section>
 
