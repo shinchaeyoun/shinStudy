@@ -192,6 +192,13 @@ export default createStore({
       for (let i = 0; i < state.Items.length; i++) {
         state.Items[i].isBookmark = false
       }
+    },
+    deleteBookmarkItem (state, deleteId) {
+      const delIdx = state.Items.find(el => el.id === deleteId)
+      delIdx.isBookmark = false
+
+      // const bookmarkListArr = state.Items.filter((item) => item.isBookmark)
+      // console.log('test1', deleteId, bookmarkListArr.length)
     }
   },
   actions: {

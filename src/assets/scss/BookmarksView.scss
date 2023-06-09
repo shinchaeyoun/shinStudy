@@ -4,13 +4,16 @@
 
   .page-title {font-size: 32px;}
 
-  .all-clear-btn {
-    right: 0; top: 50px;
-    padding: 7px 20px;
-    svg {width: 24px; color: #e53e3e; }
-  }
+  
   .bookMark-wrap {
     margin-top: 40px;
+
+    .all-clear-btn {
+      right: 0; top: 50px;
+      padding: 7px 20px;
+      svg {width: 24px; color: #e53e3e; }
+    }
+    
     .bookmark_list_item {
       padding: 30px;
       border-bottom: 3px solid #000;
