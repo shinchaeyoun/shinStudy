@@ -14,4 +14,4 @@ tools의 차일드 페이지 자동으로 넣을 수 없는지 찾아보기
 툴 페이지에서 스토어 클릭 시 스토어 상세 페이지
 
 북마크 스넥바
-https://webisfree.com/2021-07-27/[vuejs]-v-slot%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EC%97%90-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%B6%94%EA%B0%80%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EA%B3%BC-slot-exist-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0
+프로젝트 생성 시에 vuetify 설치 안해둬서 지금 뷰티파이 사용 못함
