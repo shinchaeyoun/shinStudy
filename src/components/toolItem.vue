@@ -2,12 +2,20 @@
   <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" @item-bookmark="$store.commit('setBookmark',item.id)">
   </tem-item>
 
-  <v-snackbar v-model="snackbar" :timeout="200">
-    {{ nowItem }}
-    <v-btn color="pink" variant="text" @click="snackbar = false">
-      Close
-    </v-btn>
-  </v-snackbar>
+  <div class="test-snackbar_wrap">
+    <div class="snackbar added" @snackbar-bookmark="snackbarTest()">
+      test1
+      <span>close</span>
+    </div>
+    <div class="snackbar added">
+      test2 {{ this.$store.state.Items[0].tag }}
+      <span>close</span>
+    </div>
+    <div class="snackbar remove">
+      test3 {{ this.$store.state.Items[8].tag }}
+      <span>close</span>
+    </div>
+  </div>
 
 </template>
 
@@ -46,6 +54,16 @@ export default {
           return item.tag === thislink
         })
       }
+    },
+    bookmarkStateMsg () {
+      const testMsg = 'test hi'
+      console.log(testMsg, 'added or remove')
+      return testMsg
+    }
+  },
+  methods: {
+    snackbarTest () {
+      console.log('snackbarTest tool')
     }
   }
 }

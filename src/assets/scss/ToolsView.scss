@@ -130,3 +130,39 @@
     }
   }
 }
+
+.test-snackbar_wrap {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .snackbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    width: 270px; height: 40px;
+    line-height: 38px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+
+    &.added {
+      background-color: #353535;
+    }
+    &.remove {
+      background-color: #f44236;
+      > span {display: none;}
+    }
+    > span {      
+      color: #a9bddf;
+      font-weight: 600;
+    }
+  }
+  
+}
