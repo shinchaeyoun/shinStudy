@@ -23,4 +23,21 @@ tools의 차일드 페이지 자동으로 넣을 수 없는지 찾아보기
 state에 새로운 값을 추가?
 
 store에 deleteBookmarkItem 부분에서 delIdx의 인덱스 값을 찾아야해
-북마크배열을 만들어서 아이템을 하나씩 쌓으면
+
+--해결
+store/index.js
+스테이트에서 북마크배열을 선언하고
+mutations에서 북마크배열을 수정하는 구문 작성
+
+setBookmark
+-> toolsPage 에서 추가, 해제 토글
+-> isBookmark boolean 은 toolpage에서 토글 아이콘을 위해 사용
+isBookmark값은 기본 false. isBookmark가 false일 경우 true로 값 변경 후 북마크배열에 현재 아이템 추가, true일 경우 false로 변경 후 배열에서 현재 값 삭제
+
+clearBookmark
+-> bookmarksPage에서 북마크 전체 삭제
+-> 반복문으로 모든 isBookmark 값 false로 변경, 북마크배열 초기화
+
+deleteBookmarkItem
+-> bookmarksPage에서 아이템씩 삭제
+-> 북마크배열에서 삭제할 아이템 아이디 받아온 후 북마크배열의 인덱스 구한 후 북마크배열에서 삭제, isBookmark boolean 값 false로 변경

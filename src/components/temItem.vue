@@ -70,7 +70,6 @@ export default {
       this.isBookTag = this.itemId.isBookmark
     },
     snackbar () {
-      // console.log('snackbar')
       this.$emit('snackbar-bookmark')
     }
   }

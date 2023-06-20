@@ -203,9 +203,9 @@ export default createStore({
     },
     deleteBookmarkItem (state, deleteId) {
       const delItem = state.bookmarkArr.find(el => el.id === deleteId)
-      const deleIdx = state.bookmarkArr.indexOf(delItem)
-
-      state.bookmarkArr.splice(deleIdx, 1)
+      const delIdx = state.bookmarkArr.indexOf(delItem)
+      delItem.isBookmark = false
+      state.bookmarkArr.splice(delIdx, 1)
     }
   },
   actions: {
