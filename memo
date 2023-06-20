@@ -49,3 +49,6 @@ communities 먼저해야징
 - icon 구현
 store에는 string으로 저장하고 (number로 저장해도 될 것같은데 아이콘이 많아지면 헷갈릴겨)
 1= slack, 2= partreon, 3= github
+
+sns icon 나오게 하는거 부모컴포넌트에서 자식컴포넌트 v-for를 돌릴 수 있는지 찾아보기
+https://sjs2215.tistory.com/166

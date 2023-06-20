@@ -11,8 +11,7 @@
         <div class="name">{{name}}</div>
       </div>
       <div class="title-icon posa flex jcfe">
-        <p v-for="snsIcon in snsIcon" :key="snsIcon"></p>
-        <p></p><p></p>
+        <p v-for="icon in snsIconFn" :key="icon"></p>
       </div>
     </div>
   </div>
@@ -25,8 +24,13 @@ export default {
     describe: { type: String, required: true },
     name: { type: String, required: true }
   },
+  data () {
+    return {
+    }
+  },
   computed: {
-    snsIcon () {
+    snsIconFn () {
+      console.log(this.$store.state.communities)
       return this.$store.state.communities.snsIcon
     }
   }
