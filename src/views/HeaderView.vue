@@ -100,7 +100,8 @@ export default {
   },
   computed: {
     bookList () {
-      const numberAddBookmark = this.$store.state.Items.filter((item) => item.isBookmark).length
+      const numberAddBookmark = this.$store.state.bookmarkArr.length
+      // const numberAddBookmark = this.$store.state.Items.filter((item) => item.isBookmark).length
       return numberAddBookmark
     }
   }

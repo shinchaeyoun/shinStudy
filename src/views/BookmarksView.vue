@@ -37,7 +37,8 @@ export default {
   },
   data () {
     let bookmarkBool = false
-    const bookmarkListArr = this.$store.state.Items.filter((item) => item.isBookmark)
+    const bookmarkListArr = this.$store.state.bookmarkArr
+    // const bookmarkListArr = this.$store.state.Items.filter((item) => item.isBookmark)
 
     bookmarkListArr.length > 0 ? bookmarkBool = true : bookmarkBool = false
 
@@ -47,9 +48,11 @@ export default {
   },
   computed: {
     bookList () {
-      const bookmarkListArr = this.$store.state.Items.filter((item) => item.isBookmark)
+      // const bookmarkListArr = this.$store.state.Items.filter((item) => item.isBookmark)
 
-      return bookmarkListArr
+      const bookmarkArr = this.$store.state.bookmarkArr
+      // return bookmarkListArr
+      return bookmarkArr
     }
   },
   methods: {
@@ -57,7 +60,8 @@ export default {
       this.hasBookmark = false
     },
     bookmarkArr () {
-      const bookmarkListArr = this.$store.state.Items.filter((item) => item.isBookmark)
+      const bookmarkListArr = this.$store.state.bookmarkArr
+      // const bookmarkListArr = this.$store.state.Items.filter((item) => item.isBookmark)
 
       if (bookmarkListArr.length <= 0) {
         this.hasBookmark = false

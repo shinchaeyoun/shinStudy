@@ -57,7 +57,7 @@ export default {
     snackbarTest (tit) {
       this.snackbarBookmark = true
       this.bookmarkMsg = tit
-      console.log('snackbarTest tool', tit)
+      // console.log('snackbarTest tool', tit)
       setTimeout(() => {
         this.snackbarBookmark = false
       }, 2000)

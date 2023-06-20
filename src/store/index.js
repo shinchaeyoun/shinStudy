@@ -175,27 +175,37 @@ export default createStore({
         byName: 'jsustin matthews',
         isBookmark: false
       }
-    ]
+    ],
+    bookmarkArr: []
   },
   getters: {
   },
   mutations: {
     setBookmark (state, itemId) {
       const item = state.Items.find(el => el.id === itemId)
+      const testitem = state.bookmarkArr.find(el => el.id === itemId)
+      const deleIdx = state.bookmarkArr.indexOf(testitem)
+
       if (item.isBookmark === false) {
         item.isBookmark = true
+        state.bookmarkArr.push(item)
       } else {
         item.isBookmark = false
+        state.bookmarkArr.splice(deleIdx, 1)
       }
     },
     clearBookmark (state) {
       for (let i = 0; i < state.Items.length; i++) {
         state.Items[i].isBookmark = false
       }
+
+      state.bookmarkArr = []
     },
     deleteBookmarkItem (state, deleteId) {
-      const delIdx = state.Items.find(el => el.id === deleteId)
-      delIdx.isBookmark = false
+      const delItem = state.bookmarkArr.find(el => el.id === deleteId)
+      const deleIdx = state.bookmarkArr.indexOf(delItem)
+
+      state.bookmarkArr.splice(deleIdx, 1)
     }
   },
   actions: {
@@ -204,7 +214,7 @@ export default createStore({
   },
   plugins: [
     createPersistedState({
-      paths: ['Items']
+      paths: ['Items', 'bookmarkArr']
     })
   ]
 })
