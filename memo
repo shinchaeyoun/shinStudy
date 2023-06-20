@@ -1,9 +1,6 @@
-temItem.vue
-snackbar https://vuetifyjs.com/en/components/snackbars/
+vue에선 color onoff 가 좀 더 쉽겠네
 
 북마크 카운팅은 되고있음. 스넥바 올라오는거랑 북마크 페이지에서 저장한 북마크 아이템 보아보기 필요
-
-
 
 tools의 차일드 페이지 자동으로 넣을 수 없는지 찾아보기
 
@@ -42,7 +39,6 @@ deleteBookmarkItem
 -> bookmarksPage에서 아이템씩 삭제
 -> 북마크배열에서 삭제할 아이템 아이디 받아온 후 북마크배열의 인덱스 구한 후 북마크배열에서 삭제, isBookmark boolean 값 false로 변경
 
-state 
 
 =====남은 것들
 submit 페이지에 전송 폼
@@ -53,5 +49,3 @@ communities 먼저해야징
 - icon 구현
 store에는 string으로 저장하고 (number로 저장해도 될 것같은데 아이콘이 많아지면 헷갈릴겨)
 1= slack, 2= partreon, 3= github
-
-템플릿 판매 사이트? ramadanmakers.com

@@ -23,12 +23,10 @@ export default {
   props: {
     title: { type: String, required: true },
     describe: { type: String, required: true },
-    icon: { type: String, required: true },
     name: { type: String, required: true }
   },
   computed: {
     snsIcon () {
-      console.log(this.$store.state.communities.snsIcon)
       return this.$store.state.communities.snsIcon
     }
   }
