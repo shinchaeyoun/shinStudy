@@ -8,7 +8,26 @@
     <!-- store 에서 아이템 정보 받아오기 -->
     <div class="item-wrap flex jcsb">
       <div class="item-wrap">
-        <CommunitieItem v-for="card in communities" :key="card.title" :title="card.title" :describe="card.describe" :name="card.name" :snsicon="card.snsIcon"></CommunitieItem>
+        <!-- <CommunitieItem v-for="card in communities" :key="card.title" :title="card.title" :describe="card.describe" :name="card.name" :snsicon="card.snsIcon"></CommunitieItem> -->
+
+        <!-- test -->
+        <div v-for="card in communities" :key="card.title" class="communitie-box box-shadow">
+          <div class="img-area"></div>
+
+          <div class="text-area posr">
+            <div class="title">{{ card.title }}</div>
+            <div class="describe">{{ card.describe }}</div>
+
+            <div class="item-info flex aic">
+              <div class="icon bdrs-50 tac box-shadow"></div>
+              <div class="name">{{ card.name }}</div>
+            </div>
+            <div class="title-icon posa flex jcfe">
+              <p v-for="icon in card.snsIcon" :key="icon">{{ icon }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- test -->
       </div>
 
       <div class="newsletter shadow b-gray">
@@ -28,12 +47,12 @@
 </template>
 
 <script>
-import CommunitieItem from '../components/CommunitieItem.vue'
+// import CommunitieItem from '../components/CommunitieItem.vue'
 
 export default {
-  components: {
-    CommunitieItem
-  },
+  // components: {
+  //   CommunitieItem
+  // },
   computed: {
     communities () {
       // return this.$store.state.communities
