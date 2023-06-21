@@ -19,6 +19,10 @@
     .img-area {
       width: 100%; height: 420px;
       background-color: rgb(185, 209, 224);
+      
+      img {
+        height: 100%;
+      }
     }
 
     .text-area {
@@ -50,10 +54,15 @@
           line-height: 30px;
           background-color: #ddd;
           border-radius: 50px;
+
+          background-size: 80%;
+          background-repeat: no-repeat;
+          background-position: center;
           &:last-child {margin-right: 0;}
           
           &.github {background-color: #ffbebe;}
           &.slack {background-color: #c0e9be;}
+          &.slack {background-image: url(../svg/slack.svg);}
           &.partreon {background-color: #bee0ff;}
           &.linkedin {background-color: #ff7cb3;}
           &.dev-to {background-color: #bf9afa;}

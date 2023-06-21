@@ -8,14 +8,16 @@
     <div class="item-wrap flex jcsb">
       <div class="item-wrap">
         <div v-for="card in communities" :key="card.title" class="communitie-box box-shadow">
-          <div class="img-area"></div>
+          <div class="img-area">
+            <img :src="card.titleImg" :alt="card.name">
+          </div>
 
           <div class="text-area posr">
             <div class="title">{{ card.title }}</div>
             <div class="describe">{{ card.describe }}</div>
 
             <div class="item-info flex aic">
-              <div class="icon bdrs-50 tac box-shadow"></div>
+              <img :src="card.profileImg" :alt="card.name" class="icon bdrs-50 tac box-shadow">
               <div class="name">{{ card.name }}</div>
             </div>
             <div class="title-icon posa flex jcfe">

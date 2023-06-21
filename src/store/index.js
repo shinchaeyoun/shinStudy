@@ -178,32 +178,42 @@ export default createStore({
     ],
     communities: [
       {
+        titleImg: require('@/assets/images/Larachat.jpg'),
         title: 'Code Newbie',
         describe: 'The most supportive community of programmers and people learning to code',
+        profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'fonuded by saron yitbarek',
         snsIcon: ['github', 'slack', 'partreon']
       },
       {
+        titleImg: require('@/assets/images/Larachat.jpg'),
         title: 'FEDs on Slack',
         describe: 'A Community of Top-notch Front End Developers on Slack',
+        profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by Yogev Ahuvia',
         snsIcon: ['github']
       },
       {
+        titleImg: require('@/assets/images/Larachat.jpg'),
         title: 'Free code camp',
         describe: 'Learn to code. Build projects. Earn certifications.Since 2015, 40,000 graduates have gotten jobs at tech companies including Google, Apple, Amazon, and Microsoft.',
+        profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by Quincy Larson',
         snsIcon: ['slack', 'github']
       },
       {
+        titleImg: require('@/assets/images/Larachat.jpg'),
         title: 'indie hackers',
         describe: 'Connect with developers who are sharing the strategies and revenue numbers behind their companies and side projects.',
+        profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by courtland allen',
         snsIcon: ['partreon', 'github']
       },
       {
+        titleImg: require('@/assets/images/Larachat.jpg'),
         title: 'Larachat',
         describe: "THE SLACK COMMUNITY FOR LARAVEL DEVELOPERS & MORE. Chat and share with over 31,800 worldwide members. We have live discussions. We're building the biggest PHP virtual user group in the world. Come join the fun.",
+        profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by shawn mayzes',
         snsIcon: ['linkedin', 'dev-to']
       }

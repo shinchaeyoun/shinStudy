@@ -62,3 +62,8 @@ css로?
 개쉬움
 걍 클래스 바인딩에 클래스 이름 포문에서 사용한 아이템 값 넣었음
 <p v-for="icon in card.snsIcon" :key="icon" ref="test" class="snsIcon" :class="icon">{{ icon }}</p>
+
+페이지 아이콘 있다는 가정하에 구현->
+어차피 아이콘 정보는 sotre에 저장할 것
+이미지 링크를 어떻게 넣어야하나
+이미지 태그를 사용해서? 이미지 태그를 어케 바인딩하지
