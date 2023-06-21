@@ -43,7 +43,7 @@
       .title-icon {
         top: 30px; right: 30px;
         
-        p {
+        .snsIcon {
           margin-right: 10px;
           width: 30px; height: 30px;
           font-size: 12px;
@@ -51,6 +51,12 @@
           background-color: #ddd;
           border-radius: 50px;
           &:last-child {margin-right: 0;}
+          
+          &.github {background-color: #ffbebe;}
+          &.slack {background-color: #c0e9be;}
+          &.partreon {background-color: #bee0ff;}
+          &.linkedin {background-color: #ff7cb3;}
+          &.dev-to {background-color: #bf9afa;}
         }
       }
     }

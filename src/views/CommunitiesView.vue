@@ -19,7 +19,7 @@
               <div class="name">{{ card.name }}</div>
             </div>
             <div class="title-icon posa flex jcfe">
-              <p v-for="icon in card.snsIcon" :key="icon">{{ icon }}</p>
+              <p v-for="icon in card.snsIcon" :key="icon" ref="test" class="snsIcon" :class="icon">{{ icon }}</p>
             </div>
           </div>
         </div>
