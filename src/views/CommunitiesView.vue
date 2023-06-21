@@ -8,16 +8,18 @@
     <!-- store 에서 아이템 정보 받아오기 -->
     <div class="item-wrap flex jcsb">
       <div class="item-wrap">
-        <CommunitieItem v-for="card in communities" :key="card.title" :title="card.title" :describe="card.describe" :name="card.name"></CommunitieItem>
+        <CommunitieItem v-for="card in communities" :key="card.title" :title="card.title" :describe="card.describe" :name="card.name" :snsicon="card.snsIcon"></CommunitieItem>
       </div>
 
-      <div class="newsletter box-shadow">
+      <div class="newsletter shadow b-gray">
         <div class="title">newsletter</div>
         <p>a curated list of handpicked products delivered to your email every week</p>
 
-        <div class="input-wrap">
-          <input type="text">
-          <button></button>
+        <div class="input-wrap flex jcsb">
+          <input type="text" placeholder="Enter your email address">
+          <div>
+            <button class="b-gray">Join</button>
+          </div>
         </div>
       </div>
     </div>
@@ -34,8 +36,23 @@ export default {
   },
   computed: {
     communities () {
-      return this.$store.state.communities
+      // return this.$store.state.communities
+      return this.$store.state.communities.filter(function (index) {
+        // console.log(index.snsIcon)
+        return index
+      })
+    },
+    snsIcon () {
+      let element
+      for (let i = 0; i < this.$store.state.communities.length; i++) {
+        element = this.$store.state.communities[i].snsIcon
+        console.log(element)
+      }
+      return element
     }
+  },
+  mounted () {
+
   }
 }
 </script>

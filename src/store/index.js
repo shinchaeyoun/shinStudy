@@ -181,7 +181,7 @@ export default createStore({
         title: 'Code Newbie',
         describe: 'The most supportive community of programmers and people learning to code',
         name: 'fonuded by saron yitbarek',
-        snsIcon: ['slack', 'partreon', 'github']
+        snsIcon: ['first', 'array', 'element']
       },
       {
         title: 'FEDs on Slack',
@@ -205,7 +205,7 @@ export default createStore({
         title: 'Larachat',
         describe: "THE SLACK COMMUNITY FOR LARAVEL DEVELOPERS & MORE. Chat and share with over 31,800 worldwide members. We have live discussions. We're building the biggest PHP virtual user group in the world. Come join the fun.",
         name: 'Founded by shawn mayzes',
-        snsIcon: ['slack', 'partreon']
+        snsIcon: ['last', 'element']
       }
     ],
     bookmarkArr: []
