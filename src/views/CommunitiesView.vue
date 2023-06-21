@@ -5,12 +5,8 @@
       <p>A list of communities helping each other make awesome things, teach beginners and solving problems, get jobs & get better at whetever they are doing.</p>
     </div>
 
-    <!-- store 에서 아이템 정보 받아오기 -->
     <div class="item-wrap flex jcsb">
       <div class="item-wrap">
-        <!-- <CommunitieItem v-for="card in communities" :key="card.title" :title="card.title" :describe="card.describe" :name="card.name" :snsicon="card.snsIcon"></CommunitieItem> -->
-
-        <!-- test -->
         <div v-for="card in communities" :key="card.title" class="communitie-box box-shadow">
           <div class="img-area"></div>
 
@@ -27,7 +23,6 @@
             </div>
           </div>
         </div>
-        <!-- test -->
       </div>
 
       <div class="newsletter shadow b-gray">
@@ -47,31 +42,11 @@
 </template>
 
 <script>
-// import CommunitieItem from '../components/CommunitieItem.vue'
-
 export default {
-  // components: {
-  //   CommunitieItem
-  // },
   computed: {
     communities () {
-      // return this.$store.state.communities
-      return this.$store.state.communities.filter(function (index) {
-        // console.log(index.snsIcon)
-        return index
-      })
-    },
-    snsIcon () {
-      let element
-      for (let i = 0; i < this.$store.state.communities.length; i++) {
-        element = this.$store.state.communities[i].snsIcon
-        console.log(element)
-      }
-      return element
+      return this.$store.state.communities
     }
-  },
-  mounted () {
-
   }
 }
 </script>
