@@ -26,7 +26,9 @@
       </div>
     </transition>
 
-    <div class="img"></div>
+    <div class="img">
+      {{ shopIcon }}
+    </div>
     <div class="shopicon box-shadow posa bdrs-50"></div>
 
     <div class="textBox posr ttc">
@@ -57,7 +59,8 @@ export default {
     title: { type: String, required: true },
     subTitle: { type: String, required: true },
     tag: { type: String, required: true },
-    byName: { type: String, required: true }
+    byName: { type: String, required: true },
+    shopIcon: { type: String, required: true }
   },
   methods: {
     hoverIn () {

@@ -41,6 +41,7 @@ export default createStore({
     Items: [
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
@@ -49,6 +50,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
@@ -57,6 +59,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
@@ -65,6 +68,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'nocode',
@@ -73,6 +77,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'productivity',
@@ -81,6 +86,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'productivity',
@@ -89,6 +95,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'productivity',
@@ -97,6 +104,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'developer tools',
@@ -105,6 +113,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'developer tools',
@@ -113,6 +122,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
@@ -121,6 +131,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
@@ -129,6 +140,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
@@ -137,6 +149,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
@@ -145,6 +158,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'education',
@@ -153,6 +167,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'entertainment',
@@ -161,6 +176,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'entertainment',
@@ -169,6 +185,7 @@ export default createStore({
       },
       {
         id: uniqueId('item'),
+        shopIcon: require('@/assets/images/toolsimg.jpg'),
         title: 'item Title',
         subTitle: 'The only trivia game that takes what you say ans puts it into action',
         tag: 'entertainment',

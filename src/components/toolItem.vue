@@ -1,5 +1,5 @@
 <template>
-  <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" @item-bookmark="$store.commit('setBookmark',item.id),snackbarTest(item.tag)">
+  <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" :shopIcon="item.shopIcon" @item-bookmark="$store.commit('setBookmark',item.id),snackbarTest(item.tag)">
   </tem-item>
 
   <div v-if="snackbarBookmark" class="test-snackbar_wrap">
