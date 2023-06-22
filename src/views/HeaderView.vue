@@ -9,7 +9,7 @@
         <span>appydev</span>
       </div>
 
-      <div class="searchBox nav_box">
+      <div class="searchBox flex jcsv aic posr">
         <div class="icon">
           <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
             stroke="currentColor" class="w-5 h-5">
@@ -17,7 +17,9 @@
           </svg>
         </div>
         <div class="input">
-          <input id="searchInput" type="text" placeholder="Search Tools, Cerators & Communities">
+          <!-- <input id="searchInput" type="text" placeholder="Search Tools, Cerators & Communities"> -->
+          <!-- <input v-bind:type="type" :value="inputData" id="searchInput" placeholder="Search Tools, Cerators & Communities"> -->
+          <input v-model="inputText" v-on:input="searchInput" type="search" id="searchInput" placeholder="Search Tools, Cerators & Communities">
         </div>
       </div>
 
@@ -98,10 +100,25 @@ export default {
 
     return { btn, menu, downMenu, state, click, logoActive }
   },
+  data () {
+    return {
+      inputText: ''
+    }
+  },
   computed: {
     bookList () {
       const numberAddBookmark = this.$store.state.bookmarkArr.length
       return numberAddBookmark
+    }
+  },
+  methods: {
+    searchInput: function (e) {
+      const updatedText = e.target.value
+      if (updatedText.length > 0) {
+        e.target.classList.add('focus')
+      } else {
+        e.target.classList.remove('focus')
+      }
     }
   }
 }

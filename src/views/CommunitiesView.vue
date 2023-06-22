@@ -32,7 +32,7 @@
         <p>a curated list of handpicked products delivered to your email every week</p>
 
         <div class="input-wrap flex jcsb">
-          <input type="text" placeholder="Enter your email address">
+          <input type="email" placeholder="Enter your email address">
           <div>
             <button class="b-gray">Join</button>
           </div>

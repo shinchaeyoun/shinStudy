@@ -1,17 +1,17 @@
 <template>
-  <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName" :shopIcon="item.shopIcon" @item-bookmark="$store.commit('setBookmark',item.id),snackbarTest(item.tag)">
+  <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title"
+    :shopImg="item.shopImg" :shopIcon="item.shopIcon" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName"
+    @item-bookmark="$store.commit('setBookmark', item.id), snackbarTest(item.tag)">
   </tem-item>
 
   <div v-if="snackbarBookmark" class="test-snackbar_wrap">
     <div class="snackbar added">
-      {{'added'+' '+ bookmarkMsg}}
-
-        <router-link to="/bookmarks" class="toBookmark">
-          <span>view</span>
-        </router-link>
+      {{ 'added' + ' ' + bookmarkMsg }}
+      <router-link to="/bookmarks" class="toBookmark">
+        <span>view</span>
+      </router-link>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -57,7 +57,7 @@ export default {
     snackbarTest (tit) {
       this.snackbarBookmark = true
       this.bookmarkMsg = tit
-      // console.log('snackbarTest tool', tit)
+
       setTimeout(() => {
         this.snackbarBookmark = false
       }, 2000)
