@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import NocodePage from '../views/NocodePage.vue'
 import NocodePage from '../views/NocodePage.vue'
 import ProductivityPage from '../views/ProductivityPage.vue'
 import DeveloperToolsPage from '../views/DeveloperToolsPage.vue'

@@ -217,7 +217,8 @@ export default createStore({
         describe: 'The most supportive community of programmers and people learning to code',
         profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'fonuded by saron yitbarek',
-        snsIcon: ['github', 'slack', 'partreon']
+        snsIcon: ['github', 'slack', 'partreon'],
+        isBookmark: false
       },
       {
         titleImg: require('@/assets/images/Larachat.jpg'),
@@ -225,7 +226,8 @@ export default createStore({
         describe: 'A Community of Top-notch Front End Developers on Slack',
         profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by Yogev Ahuvia',
-        snsIcon: ['github']
+        snsIcon: ['github'],
+        isBookmark: false
       },
       {
         titleImg: require('@/assets/images/Larachat.jpg'),
@@ -233,7 +235,8 @@ export default createStore({
         describe: 'Learn to code. Build projects. Earn certifications.Since 2015, 40,000 graduates have gotten jobs at tech companies including Google, Apple, Amazon, and Microsoft.',
         profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by Quincy Larson',
-        snsIcon: ['slack', 'github']
+        snsIcon: ['slack', 'github'],
+        isBookmark: false
       },
       {
         titleImg: require('@/assets/images/Larachat.jpg'),
@@ -241,7 +244,8 @@ export default createStore({
         describe: 'Connect with developers who are sharing the strategies and revenue numbers behind their companies and side projects.',
         profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by courtland allen',
-        snsIcon: ['partreon', 'github']
+        snsIcon: ['partreon', 'github'],
+        isBookmark: false
       },
       {
         titleImg: require('@/assets/images/Larachat.jpg'),
@@ -249,7 +253,8 @@ export default createStore({
         describe: "THE SLACK COMMUNITY FOR LARAVEL DEVELOPERS & MORE. Chat and share with over 31,800 worldwide members. We have live discussions. We're building the biggest PHP virtual user group in the world. Come join the fun.",
         profileImg: require('@/assets/images/Larachat.jpg'),
         name: 'Founded by shawn mayzes',
-        snsIcon: ['linkedin', 'dev-to']
+        snsIcon: ['linkedin', 'dev-to'],
+        isBookmark: false
       }
     ],
     bookmarkArr: []
@@ -259,8 +264,8 @@ export default createStore({
   mutations: {
     setBookmark (state, itemId) {
       const item = state.Items.find(el => el.id === itemId)
-      const testitem = state.bookmarkArr.find(el => el.id === itemId)
-      const deleIdx = state.bookmarkArr.indexOf(testitem)
+      const hasItem = state.bookmarkArr.find(el => el.id === itemId)
+      const deleIdx = state.bookmarkArr.indexOf(hasItem)
 
       if (item.isBookmark === false) {
         item.isBookmark = true
@@ -274,7 +279,9 @@ export default createStore({
       for (let i = 0; i < state.Items.length; i++) {
         state.Items[i].isBookmark = false
       }
-
+      for (let i = 0; i < state.communities.length; i++) {
+        state.communities[i].isBookmark = false
+      }
       state.bookmarkArr = []
     },
     deleteBookmarkItem (state, deleteId) {
@@ -282,6 +289,19 @@ export default createStore({
       const delIdx = state.bookmarkArr.indexOf(delItem)
       delItem.isBookmark = false
       state.bookmarkArr.splice(delIdx, 1)
+    },
+    addBookmarkArr (state, item) {
+      const addMark = state.communities.find(el => el === item)
+      const hasItem = state.bookmarkArr.find(el => el === item)
+      const deleIdx = state.bookmarkArr.indexOf(hasItem)
+
+      if (addMark.isBookmark === false) {
+        item.isBookmark = true
+        state.bookmarkArr.push(addMark)
+      } else {
+        item.isBookmark = false
+        state.bookmarkArr.splice(deleIdx, 1)
+      }
     }
   },
   actions: {
@@ -290,7 +310,7 @@ export default createStore({
   },
   plugins: [
     createPersistedState({
-      paths: ['Items', 'bookmarkArr']
+      paths: ['Items', 'communities', 'bookmarkArr']
     })
   ]
 })
