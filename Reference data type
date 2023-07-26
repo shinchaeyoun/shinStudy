@@ -51,3 +51,193 @@ var name1 = { name : 'Kim' };
 var name2 = name1; // 이름2에 이름1의 화살표를 복사한 것
 
 그래서 array, object 함부로 복사하면 클남~
+그럼 복사하고 싶으면 어케?
+- object 복사 기계 --다음에
+
+var name1 = { name : 'Kim' };
+var name2 = { name : 'park' };
+
+--
+reference data type 다루기 예시2
+
+var name1 = { name : 'Kim' };
+var name2 = { name : 'Kim' };
+
+name1 == name2; // false
+오브젝트가 저장된게 아니라 화살표를 저장한거라 false
+각각 다른 자료를 가르키는 화살표라서~
+
+오브젝트를 변경해주는 함수
+function 변경 (obj){
+  obj.name = 'Park';
+};
+변경(name1); // Park
+
+// 오브젝트를 재할당해주는 함수
+function 변경 (obj){
+  obj = {name: 'park'}
+};
+변경(name1); // Park
+- 실패.. 안바뀜
+레퍼런스와 파라미터의 합작이라 바뀌지 않음
+파라미터는 변수생성&할당과 똑같음
+변경 (var obj = 이름1); 과 동일한 것
+
+이름1에 저장된 것은 화살표
+똑같은 위치를 가르키는 화살표
+
+새로운 오브젝트 할당
+var name1 = {name : 'kim'};
+function 변경(obj) {
+  obj = { name : 'park' }
+};
+변경(name1);
+
+파라미터 변수에 ={} 해봤자 원래 name1 오브젝트는 변화가 없다.
+
+============
+13. constructor
+Object 생성기계인 constructor
+ 
+constructor 문법의 용도
+- Object를 마구 복사하고 싶을 때 사용
+- 비슷한 object 여러개 만들 때
+
+예시: 학생 출석부를 만들어보자
+
+var 학생1 = { name: 'Kim', age: 15 }
+
+// 대문자로 적음 ex)Student
+function 기계(){
+  this.name = 'Kim';
+  this.age = 15;
+};
+
+new 기계();
+
+constructor 안에서 쓰는 this는 새로생성되는 object를 뜻함
+새로생성되는 오브젝트들의 에이지에는 15를 넣어주세요 라는 뜻
+새로생성되는 오브젝트에 값 부여가능
+
+var 학생1 = new 기계();
+var 학생2 = new 기계();
+console.log(학생1, 학생2)
+반복문 사용 가능. 오브젝트 안에 내용이 많을 경우 편리
+
+Q.기계로 생성과는 모든 학생 오브젝트에 sayHi()함수 추가
+
+var 학생1 = {
+  name: 'Kim',
+  age : 15,
+  sayHi: function (){
+    console.log('안녕하세요 '+this.name+'입니다.')
+  }
+};
+
+function 기계(){
+  this.name = 'Kim';
+  this.age = 15;
+  this.sayHi = function(){
+    console.log('안녕하세요 '+this.name+'입니다.')
+  };
+};
+
+학생1.sayHi(); // 안녕하세요 Kim입니다.
+학생2.sayHi(); // 안녕하세요 Kim입니다.
+
+문자나 함수나 별걸 다 넣어서 오브젝트 생성 기계를 만들 수 있음
+
+Q. 기계로 학생을 뽑을 때 name을 다르게 설정해주고 싶어요
+
+function 기계(이름){
+  this.name = 이름;
+  this.age = 15;
+  this.sayHi = function(){
+    console.log('안녕하세요 '+this.name+'입니다.')
+  };
+};
+
+기계('lee');
+
+var 학생1 = new 기계('Park')
+var 학생2 = new 기계('Lee')
+
+
+ this: 기계에서 새로생성되는 Object (instance)
+ 기계: object생성기계(constructor, 생성자)
+
+=====
+연습문제
+쇼핑몰에 쓸 상품데이터를 오브젝트로 여러개 만들고 싶습니다. 
+
+Q1. 위처럼 생긴 상품오브젝트들을 뽑아낼 수 있는 constructor를 제작해보세요.
+그리고 실제 상품 두개를 뽑아보십시오.
+
+function 기계 (name, price){
+  this.name = name;
+  this.price = price;
+};
+
+var product1 = new 기계('shirts', 50000)
+var product2 = new 기계('pants', 60000)
+
+console.log(product1,product2);
+
+Q2. 상품마다 부가세() 라는 내부 함수를 실행하면 콘솔창에 상품가격 * 10% 만큼의 부가세금액이 출력되도록 하고 싶으면
+constructor를 어떻게 수정해야할까요?
+
+function 기계 (name, price){
+  this.name = name;
+  this.price = price;
+  this.부가세 = function (){
+    return price / 10
+  }
+};
+
+var product1 = new 기계('shirts', 50000)
+var product2 = new 기계('pants', 60000)
+
+console.log(product1.부가세());
+
+
+function Product(상품명, 가격){
+  this.name = 상품명;
+  this.price = 가격;
+  this.부가세 = function(){
+    console.log(this.price * 0.1)
+  }
+}
+
+var product1 = new Product('shirts', 50000);
+var product2 = new Product('pants', 60000);
+
+==================
+14. prototype
+
+constructor = 상속이라고 함
+상속을 받은 것임 기계로부터. 기계가 가지고 있는 속성들을 물려받음
+
+상속을 구현할 수 있는 또 하나의 문법 prototype
+prototype은 유전자
+prototype에 값을 추가하면 모든 자식들이 물려받기 가능
+
+기계(constructor)를 만들면 prototype이라는 공간이 자동으로 생김
+기계는 일종의 오브젝트라 console창에 .prototype
+
+
+function 기계(이름){
+  this.name = 이름;
+  this.age = 15;
+  this.sayHi = function(){
+    console.log('안녕하세요 '+this.name+'입니다.')
+  };
+};
+
+기계.prototype.gender = 'male'; // 키와 벨류 추가
+
+var 학생1 = new 기계('Park');
+
+----
+prototype의 동작원리
+:내장함수는 어떻게 동작하는가
+
