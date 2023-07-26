@@ -1,21 +1,12 @@
 <script>
 
-글자세기('aacbbb');
-// { a : 2, b : 3, c : 1 }
+var name1 = { name : 'Kim' };
+var name2 = name1;
 
-function 글자세기(txt){
+name1.name = 'park'
 
-var 결과 = {};
-[...txt].forEach(function(i){
-  if(결과[i] > 0){
-    결과[i] = 결과[i] + 1;
-  } else {
-    결과[i] = 1;
-  }
-});
-
-console.log(결과)
-};
+console.log(name1); // 'park'
+console.log(name2); // 'park'
 
 
 

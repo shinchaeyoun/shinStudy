@@ -1,0 +1,53 @@
+12. Primitive/Reference data types
+프리미티브/레퍼런스 데이터 타입
+
+그냥 문자와 숫자는 프리미티브 데이터 타입
+var 변수 = 'dddd';
+- 변수에 값이 그대로 저장됨
+- array
+var array = [1,2,3];
+
+array, Object는 변수에 값이 저장이 안된다.
+변수에 reference가 저장된다. //[1,2,3]이 저기에 있다는 화살표
+
+reference data type
+var obj = {name : 'kim'};
+
+--------------
+reference data type 다루기 : 복사
+레퍼런스 데이터 타입은 이름1에 데이터가 전달밖는 것
+
+--------
+Primitive data type 다루기 : 복사
+
+var name1 = 'Kim';
+var name2 = name1; // copy
+
+name2를 출력하면? 'kim'
+name1를 출력하면? 'kim'
+
+name1 = 'park';
+
+console.log('name1',name1); // 'kim'
+console.log('name2',name2); // 'park'
+
+--
+reference data type 다루기 : 복사
+
+var name1 = { name : 'Kim' };
+var name2 = name1;
+
+name1.name = 'park'
+
+console.log(name1); // 'park'
+console.log(name2); // 'park'
+
+
+오브젝트나 어레이는 레퍼런스 데이터 타입이라
+변수에 저장되는게 아니라 pc 메모리의 화살표가 저장 됨
+var name1 = name:김 저기 저장됨; 이라는 뜻
+
+var name1 = { name : 'Kim' };
+var name2 = name1; // 이름2에 이름1의 화살표를 복사한 것
+
+그래서 array, object 함부로 복사하면 클남~
