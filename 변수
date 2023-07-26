@@ -1,0 +1,11 @@
+변수의 hoisting 현상
+변수의 선언을 변수 범위 맨위로 끌고오는 현상
+
+var age;
+age = 25;
+------
+console.log(age) -> undefined (선언만 하고 할당하지 않은 자료형)
+var age = 25;
+console.log(age) -> 25
+
+======
