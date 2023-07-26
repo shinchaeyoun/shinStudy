@@ -1,11 +1,156 @@
+// var 이름 = 'Kim';
+
+  /*
+  var   재선언O 재할당O 범위function
+  let   재선언X 재할당O 범위{}
+  const 재선언X 재할당X 범위{}
+   */
+
+  // const로 오브젝트를 만들었을 때
+  // const 사람 = { 이름: 'Kim'}
+  // 사람.이름='park'
+  // 오브젝트 내부 값 변경은 자유
+
+  // freeze 수정불가능한 오브젝트를 만들고 싶으면
+  /* Object.freeze(사람);
+  사람.이름='lee' */
+
+  // 변수의 존재 범위
+
+
+  ========================================
 변수의 hoisting 현상
 변수의 선언을 변수 범위 맨위로 끌고오는 현상
 
 var age;
 age = 25;
 ------
-console.log(age) -> undefined (선언만 하고 할당하지 않은 자료형)
+console.log(age) -> undefined (선언만 하고 할당하지 않은 자료형, 정해지지않은 값)
 var age = 25;
 console.log(age) -> 25
 
 ======
+변수 동시에 여러개 만들기
+
+var name, age;
+var name='shin', age = 20;
+======
+전역변수 : 모든 곳에서 쓸 수 있는 변수
+
+var 나이 = 20; <- 바깥에 있는 변수는 함수 안에서도 사용 가능
+
+function 함수(){
+  나이; -> 20이 나옴 <-안
+  var 이름 = 'Kim'; <- 지역변수 함수 안에서만 사용할 수 있음
+};
+함수();
+
+window로 전역변수 만들기
+window.이름 = 'kim;
+
+window는 자바스크립트 기본 함수를 담은 {오브젝트}
+
+console.log(이름) -> kim
+console.log(window.이름) -> kim
+
+window.name = function (){}
+
+전역변수를 만들 때 window.이름 <- better
+함수도 마찬가지
+
+함수선언도 호이스팅 현상이 일어난다
+
+======
+연습문제
+
+if(true){
+  let a = 1;
+  var b = 2;
+  if(true){
+    let b = 3;
+    let의 생존 범위는 해당 중괄호. 해당 영역에서만 살고 죽음
+  }
+  console.log(b)
+}
+
+b의 값은 무엇이 출력될까?
+- 2
+
+--------- 문제 : 다음 코드의 콘솔창 출력결과는 무엇일까요?
+문제1)
+함수();
+function 함수() {
+  console.log(안녕);
+  let 안녕 = 'Hello!';
+}
+== undefined
+
+문제2)
+함수();
+var 함수 = function() {
+  console.log(안녕);
+  var 안녕 = 'Hello!';
+} 
+== undefined
+
+문제3)
+let a = 1;
+var 함수 = function() {
+  a = 2;
+}
+console.log(a);
+== 2
+
+문제4)
+let a = 1;
+var b = 2;
+window.a = 3;
+window.b = 4;
+
+console.log(a + b);
+== 5
+var로 선언한 b는 window.b 에서 값이재할당 됨
+
+문제5)
+for (var i = 1; i < 6; i++) { 
+  setTimeout(function() { console.log(i); }, i*1000 ); 
+}
+  논리적으로 완벽한 for 반복문입니다. 
+  그런데 반복문으로 축약하자마자 제대로 작동하지 않습니다. 
+  계속 5라는 숫자가 1초마다 출력되네요. 
+Q. 위 코드는 왜 의도대로 동작하지 않는 것이죠? 설명해보십시오.
+그리고 해결할 방법은 무엇일까요?
+
+== 설명
+var로 선언해서 그런 것같은데 왜인진 모르겠음
+
+== 해결
+for (let i = 1; i < 6; i++) {
+  setTimeout(function() { console.log(i); }, i*1000);
+}
+
+문제6)
+<script> 
+var 버튼들 = document.querySelectorAll('button');
+var 모달창들 = document.querySelectorAll('div');
+
+for (var i = 0; i < 3; i++){
+  버튼들[i].addEventListener('click', function(){
+    모달창들[i].style.display = 'block';
+  });
+}
+</script>
+  이렇게 반복문으로 반복적인 코드를 축약가능합니다. 
+  그런데 문법에 맞게 쓰긴 했는데 모달창이 제대로 작동하지않고 있습니다. 
+
+Q. 위 코드는 왜 의도대로 동작하지 않는 것이죠? 설명해보십시오.
+그리고 해결할 방법은 무엇일까요?
+
+== 설명
+let 으로 변수 선언
+== 해결
+for (let i = 0; i < 3; i++) {
+  버튼들[i].addEventListener('click', function (){
+    모달창들[i].style.display = 'block';
+  })
+};
