@@ -83,7 +83,15 @@ function 함수() {
   console.log(안녕);
   let 안녕 = 'Hello!';
 }
-== undefined
+== undefined // 에러
+
+함수실행을 함수선언 전에 사용해도 호이스팅되어서 문제 없음.
+let 안녕 은 호이스팅이 된다.
+하지만 let, const는 hoisting시 언디파인드로 자동으로 할당이 안된다.
+실수를 방지해주는 변수(let, const)
+var 변수는 호이스팅시 언디파인드 할당 됨
+let, const 는 호이스팅시 언디파인드 할당되지 않음
+
 
 문제2)
 함수();
@@ -91,7 +99,15 @@ var 함수 = function() {
   console.log(안녕);
   var 안녕 = 'Hello!';
 } 
-== undefined
+== undefined // 함수가 아니라는 에러
+
+함수 표현식을 사용 전에 실행 가능. 호이스팅 되어서.
+차이점
+function 함수(){} : 전부 호이스팅됨
+var 함수 = function(){} : 선언 부분만 호이스팅
+
+선언만 호이스팅된거라 함수 실행되지 않은 에러
+
 
 문제3)
 let a = 1;
@@ -99,7 +115,8 @@ var 함수 = function() {
   a = 2;
 }
 console.log(a);
-== 2
+== 2 // 함수를 실행하지 않았으므로 a 값은 1
+
 
 문제4)
 let a = 1;
@@ -110,6 +127,10 @@ window.b = 4;
 console.log(a + b);
 == 5
 var로 선언한 b는 window.b 에서 값이재할당 됨
+
+전역변수로 만든 var b, window.b는 동일
+let a, 전역변수로 만든 window.a는 다르다
+
 
 문제5)
 for (var i = 1; i < 6; i++) { 
@@ -129,6 +150,17 @@ for (let i = 1; i < 6; i++) {
   setTimeout(function() { console.log(i); }, i*1000);
 }
 
+해석-
+실행시점이 달라서.
+셋타임아웃에 있는 콘솔로그는 1초후, 조건에 따라서 실행되는 코드.
+
+i값은 반복문이 다 실행되고 전역변수로 남아있음
+반복문이 다 돌았으니까 전역변수 i값은 5
+
+let 변수는 중괄호 범위에서 생성됨.
+for {} 안에 있는 let i 사용가능
+
+
 문제6)
 <script> 
 var 버튼들 = document.querySelectorAll('button');
@@ -138,7 +170,7 @@ for (var i = 0; i < 3; i++){
   버튼들[i].addEventListener('click', function(){
     모달창들[i].style.display = 'block';
   });
-}
+};
 </script>
   이렇게 반복문으로 반복적인 코드를 축약가능합니다. 
   그런데 문법에 맞게 쓰긴 했는데 모달창이 제대로 작동하지않고 있습니다. 
@@ -152,5 +184,14 @@ let 으로 변수 선언
 for (let i = 0; i < 3; i++) {
   버튼들[i].addEventListener('click', function (){
     모달창들[i].style.display = 'block';
-  })
+  });
 };
+
+-해석
+for 문에 var로 선언하면 전역변수로 선언된 var 에 for문이 다 돈 후의 값이 저장되어있어서 
+반복문이 도는 시점과 선언되는 시점이 다른 문제.
+
+반복문 내 코드 3번 돌림
+근데 이벤트리스너 내부 코드는 나중에 실행함 -클릭될 때
+버튼을 클릭하면 내부 코드 실행됨
+안에 있는 i값을 실제 숫자로 채우려고 봤더니 반복문이 다 돌고 남은 전역변수는 3
