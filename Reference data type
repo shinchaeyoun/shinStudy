@@ -241,3 +241,12 @@ var 학생1 = new 기계('Park');
 prototype의 동작원리
 :내장함수는 어떻게 동작하는가
 
+내가 만든 array에 arr.toString() 이렇게 붙일 수 있는 이유는 
+
+내가 만든 array의 부모 유전자가 toString()을 가지고 있기 때문입니다. (혹은 부모의 부모요)
+
+Q. 그럼 prototype으로 상속시키는거랑 constructor로 상속시키는거랑 차이가 뭐죠?
+
+A. 자식들이 값을 직접 소유하게 만들고 싶으면 constructor로 상속시키시면 되고
+부모만 가지고 있고 그걸 참조해서 쓰게 만들고 싶으면 prototype으로 상속시키면 되겠쥬?
+보통은 그래서 상속할 수 있는 함수 같은 것들은 prototype으로 많이 만들어놓습니다. 
