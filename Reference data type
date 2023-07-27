@@ -250,3 +250,166 @@ Q. 그럼 prototype으로 상속시키는거랑 constructor로 상속시키는�
 A. 자식들이 값을 직접 소유하게 만들고 싶으면 constructor로 상속시키시면 되고
 부모만 가지고 있고 그걸 참조해서 쓰게 만들고 싶으면 prototype으로 상속시키면 되겠쥬?
 보통은 그래서 상속할 수 있는 함수 같은 것들은 prototype으로 많이 만들어놓습니다. 
+
+==================
+15. prototype2
+
+1. prototype은 함수에만 몰래 생성됨
+2. 내 부모 유전자(부모의 prototype)를 검사하고 싶다면 __proto__
+3. __proto__를 이용해 부모 강제 등록하기
+4. 콘솔창에서 알려주는 prototype chain
+
+
+3. -> 프로토는 이런 역할을 한다 예시
+var 부모 = {name: 'kim'};
+var 자식 = {};
+자식.__proto__ = 부모;
+자식.name;
+
+===============
+constructor, prototype 연습문제 4개
+
+0. 오브젝트 자료 여러개를 만들고 싶습니다.
+var 학생1 = { name : 'Kim', age : 20 }
+var 학생2 = { name : 'Park', age : 21 }
+var 학생3 = { name : 'Lee', age : 22 }
+
+constructor문법을 사용해서 위의 오브젝트와 똑같은 오브젝트 3개를 한번 뽑아보십시오. 
+
++ 여기에 학생1.sayHi()라고 사용하면 "안녕 나는 Kim이야" 라는 글자가 콘솔창에 나오도록 sayHi()라는 함수도 constructor 안에 추가해보세요.
+
+==
+function Student ($name, $age){
+  this.name = $name;
+  this.age = $age;
+  this.sayHi = function (){
+    console.log('hi my name is ' + this.name);
+  }
+};
+
+var 학생1 = new Student('Kim',20);
+var 학생2 = new Student('Park', 21);
+var 학생3 = new Student('Lee', 22);
+
+학생1.sayHi();
+
+
+1. 다음 코드의 출력 결과는 무엇일까요?
+function Parent(){
+  this.name = 'Kim';
+};
+var a = new Parent();
+
+a.__proto__.name = 'Park';
+console.log(a.name)
+
+==해설
+첫 4줄에 의해서 a = { name : 'Kim' } 이 되고 
+a.__proto__.name = 'Park'; 이건 부모 prototype에 { name : 'Park' } 이걸 추가하라는 뜻입니다.
+그럼 이제 a.name 이라고 사용했을 때 
+내가 직접 가지고 있는 { name : 'Kim' } 이걸 우선 출력해줍니다.
+
+
+2. 함수가 안들어가요 엉엉
+
+위에 0번 문제에서 Student라는 부모에 sayHi라는 함수를 하나 추가하라고 했죠?
+그래서 sayHi()라고 사용하면 "안녕 나는 ~~이야" 라고 내 이름을 출력해주는 함수를 prototype에 추가했습니다. 
+하단처럼 만들었는데 의도한 대로 이름이 출력되지 않고 있습니다. 
+원인은 무엇일까요? 
+
+function Student(이름, 나이){
+  this.name = 이름;
+  this.age = 나이;
+}
+Student.prototype.sayHi = () => {
+    console.log('안녕 나는 ' + this.name + '이야');
+  }
+var 학생1 = new Student('Kim', 20);
+
+학생1.sayHi(); //왜 이 코드가 제대로 안나오죠?
+
+== 해설
+sayHi 함수를 만들 때 arrow function을 사용해서 내부에 있던 this라는 값이 이상해짐.
+sayHi 함수를 출력하면 this의 값은 window가 나옴.
+
+함수안에서 this 키워드의 뜻은 매번 재정의됨.
+object안에 들어있는 함수안에 있는 this는 함수를 부른 object가 됨.
+arrow function의 경우 함수 안에서 this 뜻이 재정의되지 않고 바깥에 있던 this를 사용한다.
+
+var 오브젝트 = {
+  sayHi: () => { console.log(this) }
+}
+그래서 위 코드의 this는 window가 출력된다.
+
+
+3. 모든 array에 적용할 수 있는 함수를 직접 새로 만들려면 어떻게 해야할까요?
+모든 array에 붙일 수 있는,
+array 내에 있는 3이라는 값을 제거해주는 유용한 함수를 하나 만들고 싶습니다. 
+
+var arr = [1,2,3,4];
+arr.remove3();
+
+console.log(arr); //[1,2]
+
+이렇게 array뒤에 붙이기만 하면 array 내의 3이라는 모든 숫자 자료들이 삭제됩니다. 
+멋있게 이름은 remove3() 이라고 하겠습니다. 
+remove3()함수는 어떻게, 어디에 만들어야 모든 array에 쓸 수 있을까요?
+
+== 해설
+Array.prototype.remove3 = function(){
+  for(var i = 0; i < this.length; i++){
+    if(this[i] === 3){
+      this.splice(i,1);
+    }
+  }
+}
+var arr = [1,2,3,4];
+arr.remove3();
+
+console.log(arr);
+
+모든 array 자료형은 부모가 Array로부터 new Array() 이런 식으로 만들어지기 때문에 Array라는 부모의 prototype에 있는 함수를 자유롭게 가져다 쓸 수 있다.
+
+그래서 Array의 prototype에 remove3라는 함수를 추가해줘야한다.
+
+
+===============
+16. ES5 : Object.create
+
+상속기능을 구현하는 다른 방법
+
+prototype
+function 기계(){}; 옛날문법임
+
+Object.create(); ES5문법
+
+// Object.create(프로토타입object);
+
+var 부모 = { name: 'Kim', age: 50 };
+
+var 자식 = Object.create(부모);
+
+  console.log(자식); // {}
+  console.log(자식.name); // Kim
+  console.log(자식.age); // 50
+
+  (1) 자식이 name을 직접 가지고 있는지? x
+  (2) 부모에 name이 있는지? o
+
+자식.age = 20;
+
+var 손자 = Object.create(자식);
+손자.name; // Kim
+손자.age; // 20
+
+- 함수 또한 넣을 수 있음
+
+=================
+17. ES6:class
+
+constructor 만드는 신문법
+class 부모 {
+  constructor(){
+    this.name = 'Kim';
+  }
+}

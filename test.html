@@ -1,19 +1,10 @@
 <script>
 
-function 기계(이름){
-  this.name = 이름;
-  this.age = 15;
-  this.sayHi = function(){
-    console.log('안녕하세요 '+this.name+'입니다.')
-  };
-};
-
-기계.prototype.gender = 'male'; // 키와 벨류 추가
-
-var 학생1 = new 기계('Park');
-
-학생1.toString();
-
+class 부모 {
+  constructor(){
+    this.name = 'Kim';
+  }
+}
 
 
 
