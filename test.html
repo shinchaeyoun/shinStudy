@@ -1,28 +1,11 @@
 <script>
 
-var data = {
-  odd : [],
-  even : [],
-  numSet: function (...num){
-    num.forEach((a)=>{
-      if ( a % 2 == 1 ) {
-        this.odd.push(a)  //홀수일때
-      } else {
-        this.even.push(a)  //짝수일때
-      }
-    });
-  },
-  getNum () {
-    return [...this.odd, ...this.even ].sort()
-  }
-}
+var arr = [2,3,4];
 
-data.numSet(1,2,3,4,5,6,7)
-
-console.log(data.odd);
-console.log(data.even);
+var [a,b,c] = [2,3,4];
 
 
+console.log(a);
 
 
 
