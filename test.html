@@ -1,34 +1,23 @@
+<button id="btn">button</button>
+
 <script>
+var btn = document.getElementById('btn')
 
-var arr = [2,3,4];
+var test = new Promise(function(resolve, reject){
+  btn.addEventListener('click', function(){
+    resolve();
+  }); // btn 클릭시 성공 실행시키기
+});
 
-var [a,b,c] = [2,3,4];
+async function clickButton (){
+  var result = await test;
+  console.log('done');
+};
 
-
-console.log(a);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+clickButton();
 </script>
+
+then을 쓰기 싫어서 awairt를 쓰는건가..?
+
+await는 promise.then()의 대체품.....
+then 보다 문법이 간단하다...
