@@ -1,23 +1,38 @@
-<button id="btn">button</button>
-
 <script>
-var btn = document.getElementById('btn')
+  var products = [
+    {
+      name1: 'chair',
+      price1: 7000,
+    },
+    {
+      name2: 'sofa',
+      price: 5000,
+    },
+    {
+      name1: 'desk',
+      price3: 9000,
+    },
+  ];
 
-var test = new Promise(function(resolve, reject){
-  btn.addEventListener('click', function(){
-    resolve();
-  }); // btn 클릭시 성공 실행시키기
-});
+  let newValue;
+  let newKey;
+  for (let item of products) {
+    for (let key in item) {
+      if (isNaN(parseInt(key.slice(-1))) == false) {
+        newValue = item[key];
+        newKey = key.slice(0, -1);
+        item[newKey] = newValue;
+        delete item[key];
+      }
+    }
+  }
 
-async function clickButton (){
-  var result = await test;
-  console.log('done');
-};
+  console.log(products);
 
-clickButton();
+
+
+
+
+
+
 </script>
-
-then을 쓰기 싫어서 awairt를 쓰는건가..?
-
-await는 promise.then()의 대체품.....
-then 보다 문법이 간단하다...

@@ -359,9 +359,11 @@ Promise를 를 쉽게 정의하자면 성공&실패 판정기계
   reject(); // 실패 판정 내리는 법 -> catch 실행
 });
 
+콜백함수 대신에 씀.
+
 #### Promise 예시
 성공시
-var 프로미스 = new Promise(function(resolve, reject){
+>var 프로미스 = new Promise(function(resolve, reject){
   var hard = 1 + 1;
   resolve();
 });
@@ -416,6 +418,11 @@ var 프로미스 = new Promise(function(성공, 실패){
 
 2. Promise는 동기를 비동기로 만들어주는 코드가 아닙니다. 
 일종의 디자인 패턴입니다. 비동기 실행을 지원하는 특수한 함수들 덕분에 가끔 비동기적 실행이 될 뿐.
+콜백함수 디자인의 대체품일 뿐
+
+Promise가 적용된 곳들
+>jQuery.ajax();
+fetch().then().catch();
 
 ====
 # ES6 Promise 간단 연습문제
@@ -434,9 +441,6 @@ Promise 문법의 then, catch 함수를 사용해 만들고 싶습니다. 어떻
 
 --
 let img = document.getElementById('test');
-
-img.addEventListener('load', function (){resolve});
-img.addEventListener('error', function (){reject});
 
 Promise를 이용해서 로딩성공시 .then() 실패시 .catch()를 실행하도록 코드
 var imgLoad = new Promise(function (resolve, reject){
@@ -534,6 +538,42 @@ Q3. Promise chaining
   }) 
 </script>
 
+함수로 싸매기
+>var 프로미스 = ajax해주는함수('https://codingapple1.github.io/hello.txt');<br/>
+프로미스.then(function (결과) {
+ console.log(결과);
+ return ajax해주는함수('https://codingapple1.github.io/hello2.txt');
+}).then(function (결과) {
+ console.log(결과);
+});<br/>
+function ajax해주는함수(URL){
+ return new Promise(function (resolve, rejcet) {
+   $.get(URL).done(function (결과) {
+     resolve(결과);
+    });
+ });
+}
+
+-- 
+var getUrl = setUrl('https://codingapple1.github.io/hello.txt');
+
+getUrl.then(function (val) {
+  console.log(val);
+
+  return setUrl('https://codingapple1.github.io/hello2.txt');
+}).then(function (val) {
+  console.log(val);
+});
+
+function setUrl(url){
+  return new Promise(function (resolve, reject) {
+    $.get(url).done(function (result) {
+      resolve(result);
+    });
+  });
+};
+
+
 ===========
 # 24.async/await
 
@@ -573,6 +613,8 @@ async function 더하기(){
 };
 
 #### await
+async 함수 안에서만 사용할 수 있는 await 키워드
+
 함수 안에서 Promise 쓰기
 await는 프로미스.then() 대체품으로 생각하면 됨
 하지만 then보다 문법이 훨씬 간단함.
@@ -615,6 +657,9 @@ resolve()함수 안에 있던 2라는 파라미터는 var 결과라는 변수에
 그럼 Promise의 연산 결과도 출력 가능
 
 *비동기식처리되는 코드를 담는다면 await 기다리는 동안 브라우저가 잠시 멈출 수 있음
+
+await을 쓰려면 async functinon 안에서만 쓸 수 있음
+await 프로미스; 코드를 async function을 하나 만들어서 감싸기
 
 #### await는 실패하면 에러가 나고 코드가 멈춤
 
@@ -714,3 +759,220 @@ var 결과 = await 프로미스();
 이 코드는 프로미스()가 0초만에 성공 판정이 내려져서 var 결과 = undefined와 동일한 뜻이 되어버림
 
 하지만 Promise로 만들어서 직접 성공(), 실패() 경우를 지정해준다면 await이 잘 기다려줍니다.
+
+============
+# 25. for in / for of
+
+반복문의 용도
+1. 코드 단순 반복
+2. 자료형에 담긴 자료들을 하나씩 꺼내고 싶을 때
+
+>그냥 for 반복문
+array 전용 forEach()
+Object 전용 for in
+iterable 전용 for of
+
+#### for in
+for in 반복문은 Object 자료형에 저장된 자료들을 하나씩 꺼내고 싶을 때 사용
+
+var Obj = { name : 'Kim', age : 30 };
+for (var key in Obj) {
+  console.log(Obj[key]);
+};
+
+##### for in 반복문의 특징
+1. enumerable한 것만 출력
+* enumerable을 번역하면 '셀수있는' 이라는 뜻
+
+Object 자료형을 만들 때
+{name:'Kim'} 이걸 저장하면 Kim이라는 자료만 저장되는 것이 아니라
+Kim과 함께 비밀스러운 속성들 3개가 저장된다.
+
+var 오브젝트 = { name : 'Kim', age : 30 };
+console.log( Object.getOwnPropertyDescriptor(오브젝트, 'name') ); 
+==> {value: "Kim", writable: true, enumerable: true, configurable: true} 
+위의 세가지가 Kim과 함께 저장되는 속성들이다. (그래서 Object 자료형이 좀 무거움)
+여기서 enumerable이라는 것이 있는데 이게 true인 자료들만 for in 반복문이 출력할 수 있다.
+이걸 강제로 false로 만들면 for in 반복문이 거르게 됨
+이런 동작원리를 가진게 for in 반복문임
+
+2. 부모의 prototype도 반복해준다.
+
+>class 부모 {}
+부모.prototyle.name = 'park';<br/>
+var obj = new 부모();
+for (var key in obj){
+   console.log(obj[key]);
+};
+park이라는 자료는 부모가 가지고 있는 것인데도 출력이 됨. 이게 단점임.
+부모가 가진 자료를 출력하지 않으려면 if문 추가
+
+>class 부모 {}
+부모.prototyle.name = 'park';<br/>
+var obj = new 부모();
+for (var key in obj){
+  obj.hasOwnProperty(key) // 내가 직접 가지고 있는 값만 반복시키고 싶으면.
+  if(obj.hasOwnProperty(key)){
+     console.log(obj[key]);
+  };
+};
+
+obj.hasOwnProperty() 함수는 오브젝트가 이 key값을 직접 가지고 있는지 물어보는 함수
+가지고 있다묜 true, 없다면 false를 뱉어줌
+내가 가진 것만 반복시키고 싶다면 obj.hasOwnProperty()를 써야함
+
+#### for of 반복문
+Array, 문자, argmen, NodeList, Map, Set 이라는 자료형에 적용할 수 있는 반복문
+
+>var arr = [1,2,3,4,5];
+for (var data of arr){
+  console.log(data);
+};
+<br/>
+for (var data of '문자도 쓸 수 있음'){
+  console.log(data);
+};
+
+##### for of 특징
+iterable인 자료형에만 적용 가능한 반복문
+
+iterable한 자료형은 [Symbol.iterator]() 이라는 일종의 메소드를 가지고 있는 자료형들을 뜻함
+반복문 출력을 도와주는 일종의 함수. 이걸 가지고 있으면 for of 반복문을 쓸 수 있구나~ 정도
+
+for of는 NodeList라는 곳에도 사용할 수 있는데
+우리가 흔히 document.getElementsByClassName()이나 document.querySelectorAll() 이런 셀렉터로 찾은 요소들이 [] 대괄호안에 담겨오는데 array는 아니고 NodeList라는 자료형이라고 부릅니다. 
+NodeList에 있는 HTML요소들을 하나씩 꺼내서 처리할 때 매우 자주 쓸 수 있는 반복문이라고 보시면 됩니다. (하지만 for of의 호환성 주의)
+
+-------
+Q1. for of 반복문을 이용해서 2단부터 9단까지의 구구단을 콘솔창에 한번 출력해보십시오.
+
+--
+>let data = [1, 2, 3, 4, 5, 6, 7, 8, 9]<br/>
+for (var i of data) {
+ for (var j of data) {
+   console.log(`${i} x ${j} = ${i*j}`)
+ }
+}
+
+----------
+var products = [
+  {
+    name1 : 'chair',
+    price1 : 7000,
+  },
+  {
+    name2 : 'sofa',
+    price : 5000,
+  },
+  {
+    name1 : 'desk',
+    price3 : 9000,
+  },
+]; 
+
+Q. 어떤 놈이 object자료의 key값에 오타를 섞어놨습니다.
+key값 마지막 문자에 한자릿수 숫자가 섞여있으면 그걸 다 제거하고 싶습니다. 
+어떻게 코드를 짜면 될까요? 
+마지막 글자가 숫자인지 판단하는 방법도 잘 찾아봐야겠군요.
+ 
+(예시)
+array안의 object안에 들어있는 
+name1 : 'chair' 이게
+name : 'chair' 이렇게 숫자만 깔끔하게 없어져야합니다.
+
+--
+let newValue;
+let newKey;
+
+for (let item of products) {
+ for (let key in item) {
+   if (isNaN(parseInt(체리 MX 1.1 TKLkey.slice(-1))) == false) {
+     newValue = item[key];
+     newKey = key.slice(0, -1);
+     item[newKey] = newValue;
+     delete item[key];
+   }
+ }
+}
+console.log(products);
+
+숫자가 붙은 key값을 찾아내서 slice로 숫자 제거
+newValue 변수에 기존의 아이템 값을 담고,
+newKey로 기존 키값에 숫자 제거 후 아이템 값 재설절 하고
+기존 값은 그냥 지워버림
+
+=============
+
+# 26. Symbol
+Symbol의 사용 목적은 객체의 고유한 프로퍼티 키를 만들기 위해 사용됩니다.
+
+자바스크립트에는 string, number, boolean, null, undefined, object 6개의 데이터 타입이 있었다. 그리고 es6에서 새로운 데이터 타입 Symbol이 추가 됨
+
+심볼은 변경 불가능한 원시 타입의 값이며, 다른 값과 중복되지 않는 고유한 값.
+충돌 위험이 없는 오브젝트의 유일한 프로퍼티 키를 만들기 위해 사용할 수 있다.
+하위호환성을 유지하면서 표준을 확장하거나 고유한 상수값을 만드는 데 사용할 수 있다.
+
+Symbol 값은 Symbol 함수를 호출하여 생성. Symbol 함수에 의해 동적으로 생성되며 다른 값과 중복되지 않는 고유한 값. 생성된 심볼 값은 외부로 노출되지 않아서 확인 할 수 없는 값.
+
+Symbol 자료형 만드는 법
+var 심볼 = Symbol('설명아무거나적기');
+
+오브젝트 안에 주석을 다는 것 / 주석 하나만 달랑 저장할 수 있는 자료형
+
+Symbol은 Object자료형에 비밀스러운 Key 값을 담을 때 사용
+
+오브젝트자료[심볼명] = 넣을자료;
+라는 식으로 Key값으로 입력 가능. Object자료형에 Symbol을 이름으로 가진 자료를 저장할 수 있다.
+
+> var person = { name : 'Kim' };
+person.weight = 100;
+<br/>
+var weight = Symbol('내 진짜 몸무게');
+person[weight] = 200;
+<br/>
+console.log(person);
+
+Symbol 자료형의 특징은 for문에 등장하지 않음.
+Symbol은 반복문에서 감지하지 못한다. 시크릿한 내용을 저장하고 싶을 때 Symbol을 이용해서 자료를 저장하면 된다~
+
+심볼을 직접 입력하려면 
+
+>var height = Symbol('내 키임');
+var person = { name : 'Kim', [height] : 160 };
+
+Object 자료형에 직접 입력하실 때는 저렇게 대괄호안에 심볼명을 담아주면 됨. 
+
+
+#### Symbol 특징
+1. Symbol('') 에 들어가는 설명이 동일해도 같은 symbol이 아님
+   var a = Symbol('hi');
+   var b = Symbol('hi');
+   console.log(a === b); / false
+
+   Symbol은 Symbol()이라고 사용할 때마다 각각 유니크한 Symbol이 생성됨
+
+2. 전역변수 같은 전역 Symbol
+   같은 값을 가지면 같은 변수로 취급해주는 전역 심볼을 만들어서 사용 가능
+   Symbol.for(), Symbol.keyFor()
+
+   var a = Symbol.for('hello');
+   var b = Symbol.for('hello');
+   console.log(a === b); / true
+
+   Symbol.for()로 새로운 Symbol을 만들 때 설명이 같으면 이미 그 설명을 가진 Symbol을 그 자리에 넣게 됨.
+   위 코드에선 b자리에 a가 들어간 것임. > var b = a;
+
+   Symbol.for 메서드는 인수로 전달받은 문자열을 키로 사용해서 전역 심볼 레지스트레 해당 키와 일치하는 심볼 값을 검색한다.
+   레지스트리에 이미 심볼이 있다면 해당 심볼을 반환하고, 없으면 새로 생성하여 반환한다.
+
+
+
+3. 기본 내장 Symbol들
+   Array, Object 자료형을 만들 때 몰래 붙어있는 기본 Symbol들도 있다.
+   
+   심볼을 몰래 자료를 저장할 때 쓰는 자료형이라 반복문을 써도 전혀 출력이 되지 않음~
+
+   Symbol.iterator라는 심볼은 for of를 쓸 수 있게 도와주는 Symbol이다.
+
+
+
