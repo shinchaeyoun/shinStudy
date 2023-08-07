@@ -1,38 +1,15 @@
 <script>
-  var products = [
-    {
-      name1: 'chair',
-      price1: 7000,
-    },
-    {
-      name2: 'sofa',
-      price: 5000,
-    },
-    {
-      name1: 'desk',
-      price3: 9000,
-    },
-  ];
-
-  let newValue;
-  let newKey;
-  for (let item of products) {
-    for (let key in item) {
-      if (isNaN(parseInt(key.slice(-1))) == false) {
-        newValue = item[key];
-        newKey = key.slice(0, -1);
-        item[newKey] = newValue;
-        delete item[key];
-      }
+  class hurdle {
+    constructor(xVal, yVal, speedVal, sizeVal) {
+      this.x = xVal;
+      this.y = yVal;
+      this.speed = speedVal;
+      this.size = sizeVal + 'px';
     }
-  }
+  };
 
-  console.log(products);
-
-
-
-
-
-
+  let hurdle1 = new hurdle(0, 0, 100, 10);
+  let hurdle2 = new hurdle(10, 10, 100, 10);
+  let hurdle3 = new hurdle(0, 0, 100, 20);
 
 </script>

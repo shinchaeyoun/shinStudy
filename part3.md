@@ -974,5 +974,310 @@ Object 자료형에 직접 입력하실 때는 저렇게 대괄호안에 심볼�
 
    Symbol.iterator라는 심볼은 for of를 쓸 수 있게 도와주는 Symbol이다.
 
+==========
+# 27. Map/Set
+
+#### Map 자료형
+매핑을 할 수 있는 Map 자료형
+Object 자료형과 똑같이 Key, value 형태로 자료를 저장할 수 있는 자료형.
+**자료들 간의 연관성을 표현하기 위해 사용하는 자료형.**
+
+> var person = new Map();
+  person.set('name', 'Kim');
+  person.set('age', 20);
+
+출력시
+> person
+  Map(2) { 'name' => 'Kim', 'age' => 20 }
+
+Map 자료형은 자료간의 연관성을 표현하기 위해 사용.
+그냥 key, value형식으로 저장하려면 Object를 사용하고
+name이 Kim과 연관되어있다~ 라고 저장할 때 Map 사용.
+
+#### Map 자료형은 key, value값에 모든 자료를 집어넣을 수 있다.
+
+key값란에 숫자와 어레이도 넣을 수 있다.
+자료의 이름으로 array도 되고 object도 된다.
+
+#### Map 다루는 법
+```
+var map = new Map();
+  map.set(key, value);
+
+  map.set(key, value) // 새로운 엔트리를 map에 추가
+  map.get(key) // 자료 꺼내는 법
+  map.has(key) // value가 존재하는지 true or false로 리턴
+  map.size // 자료가 몇개인지 알려줌
+  map.delete(key) // 자료 삭제하는 법
+  map.clear() // map에서 모든 엔트리를 삭제
+
+  // Map자료 반복문 돌리기
+  for (var key of map.keys()){
+    console.log(key)
+  }
+  for (var key of map.values()){
+    console.log(key)
+  }
+
+  // 자료를 직접 집어 넣을 때
+  var map2 = new Map([
+    ['name', 'park'],
+    ['age', 23]
+  ]);
+```
+
+Map 엔트리는 삽입된 순서로 Iterating 된다.
+for-each loop는 [key, value] 짝의 배열을 리턴
+'for...of' 연산자는 각각 keys, values, entries를 iterating 할 수 있다.
+
+1. map.keys() // keys로 iterating
+2. map.values() // values로 iterating
+3. map.entries() // entries로 iterating
+4. map // map entries를 iterating 하기 위해 객체 디스트럭쳐링 사용
+
+#### forEach()를 이용한 Map 타입의 filtering
+Map 타입을 필터링하려면 일단 Array.from() 메서드로 Map 타입을 배열로 가져와야함
+
+Map 타입을 Array.from() 메서드로 배열로 전환하는 법
+```
+const map1 = new Map([
+  ['num1', 1],
+  ['num2', 2],
+  ['num3', 3]
+]);
+console.log(Array.from(map1));
+
+const map1 = new Map([
+ ['num1', 1],
+ ['num2', 2],
+ ['num3', 3]
+]);
+
+map1.forEach((value, key) => {
+ if(value > 1){
+   map1.delete(key);
+ };
+});
+console.log(map1);
+```
+
+map1의 value 값이 1을 초과하는 엔트리를 map1.delete 함수로 삭제하는 코드.
+iterating을 위해 forEach() 메소드 사용.
+
+맵을 변환해서 배열의 filter 메서드를 사용하는 방법
+```
+const map2 = new Map([
+ ['num1',1],
+ ['num2',2],
+ ['num3',3]
+]);
+
+const filtered = new Map(
+ Array.from(map2).filter(([key, value]) => {
+   if(value > 1) {
+     return true;
+   }
+
+   return false;
+ })
+);
+
+console.log(filtered);
+```
+
+#### Object를 Map 타입으로 변환하기
+객체를 맵 타입으로 변환하기 위해서는 객체가 맵 타입처럼 key-value 형식의 관계를 맺고 있어야한다.
+
+Object.entries() 메서드를 쓰면 key-value 형식의 배열을 얻을 수 있는데 그거 Map() 컨스트럭터에 넣으면 된다.
+
+Object.entries 메서드는 객체의 항목을 key-value 항목으로 변환해서 배열로 리턴한다.
+```console.log(Object.entries({id: 456, name: 'name1'}));```
+
+위 코드처럼 Object.entries() 메서드를 거친 배열의 첫 번째 항목도 배열, 순차적으로 배열을 Map Constructor에 넣어서 Map 생성.
+```
+const obj = {
+ id: 123,
+ name: 'name2',
+};
+
+const map3 = new Map(Object.entries(obj));
+
+console.log(map3);
+```
+#### 반대로 Map 형식을 다시 Object 형식으로 변환하기
+다시 Object.fromEntries() 메서드 사용
+```
+console.log(
+ Object.fromEntries([
+   ['id', 123],
+   ['name', 'name1']
+ ])
+);
+```
+
+### Map 병합하기
+맵을 병합하기 위해서는 자바스크립트의 스프레트 연산자(...)를 써서 배열로 만들어서 합치고 그걸 다시 맵의 Constructor에 넣어서 다시 만들기.
+
+..https://mycodings.fly.dev/blog/2022-07-30-javascript-map-type-in-a-nutshell#%EB%A7%B5-iterating 참고.. 강의에서 다루지 않은 내용이 너무 많다
+
+#### Set 자료형
+자료를 일렬로 쭉 저장할 수 있다.
+
+```
+var name = new Set(['john', 'tom', 'andy', 'tom']);
+console.log(name); // Set(3) {'john', 'tom', 'andy'}
+```
+중괄호로 표현이 되지만 Array와 유사하게 생김
+
+**Set 자료형은 중복자료를 절대 허용하지 않음**
+중복 데이터를 방지하고 싶을 때 쓰는 자료형
+
+#### Set 자료형 다루기
+```
+let name2 = new Set([ 'john' , 'tom', 'andy', 'tom' ]);
+
+ name2.add('sally'); //자료더하기 
+ name2.has('tom'); //자료있는지 확인
+ name2.size;  //자료 몇갠지 세기
+```
+forEach 혹은 for of 반복문 사용가능
+
+#### 특히 Array의 데이터 중복제거할 때 많이 사용
+Array를 Set으로 바꾸는게 매우 쉽기 때문.
+```
+ let nameArr = ['john', 'tom', 'andy', 'tom'];
+ let nameArr2 = new Set(nameArr);
+
+ nameArr = [...nameArr2]
+ console.log(nameArr); // ['john', 'tom', 'andy']
+```
+
+nameArr이라는 Array 자료형을 Set으로 바꿨다가 다시 바로 Array로 바꾸는 예제.
+nameArr에 있던 중복자료들이 자동으로 제거가 된다~
+
+========
+# Web Component
+커스텀 html 태그
+
+React, Vue 처럼 컴포넌트 만들어서 사용하는 문법.
+```
+ class 클래스 extends HTMLElement {
+   connectedCallback() {
+     this.innerHTML = '<label>name input</label><input>' 
+   }
+ }
+ <br/>
+ customElements.define('custom-input', 클래스);
+ 
+ <!-- (index.html) -->
+ <custom-input></custom-input>
+ ```
+
+attribute로 파라미터처럼 코드 구현 가능
+```
+class 클래스 extends HTMLElement {
+   connectedCallback() {
+     let name = this.getAttribute('name');
+     this.innerHTML = '<label>${name}을 입력하쇼</label><input>'
+   }
+ }
+ 
+ customElements.define("custom-input", 클래스);
+
+ <!-- (index.html) -->
+ <custom-input name="이메일"></custom-input>
+ <custom-input name="비번"></custom-input>
+```
+
+===========
+# shadow Dom과 template으로 HTML 모듈화하기
+
+web Components와 
+HTML모듈화
+
+`<input type="range">`안에는 숨겨진 3개의 `<div>`가 있다.
+이런 형태를 shadow DOM이라고 하는데 '일반적으로 볼 수 없는 숨겨진 HTML'을 의미한다.
+
+#### shadow DOM 만드는 법
+>
+```
+<div class="mordor"></div>
+<script>
+  document.querySelector('mordor').attachShadow({mode : 'open'});
+  document.querySelector('mordor').shadowRoot.innerHTML = '<p>숨겨진 태그</p>'
+</script>
+```
+
+이러면 `<div>`안에 `<p>`를 숨길 수 있다.
+1. 우선 attachShadow()라는걸 써서 shadowRoot라는 공간을 하나 만들어준다.
+2. shadowRoot 여기에 원하는 html을 넣으면 숨겨진다.
+
+거의 모든 <태그>는 shadowRoot를 오픈할 수 있고, shadowRoot안에 넣은걸 전부 shadowDOM이라고 칭하는데,
+web component 문법과 합하면 진가를 발휘한다~~
+
+#### Web Component의 단점
+**스타일 오염**
+
+스타일까지 함께 컴포넌트화 하고 싶으면 컴포넌트에 `<style>`을 집어넣을 수 있음.
+근데 label 태그를 빨간색으로 스타일링 해두면 컴포넌트와 관계없는 label 태그까지 스타일이 지정된다.
+그럴 때 shadow DOM을 열어서 스타일을 집어넣으면 shadow DOM 밖에 있는 태그에는 영향을 끼치지 않게 된다.
+
+이러한 이유로 인해서
+Web Component를 만들 때 shadow DOM을 활용하게 된다.
+진정한 의미의 html 모듈화 개발이 가능하게 된다.
+다른 모듈들이 서로 영향을 끼치는 것을 막을 수 있게 된다.
+
+#### html 임시보관함 `<template>` 태그
+1. `<template>`은 특수한 태그. 여기에 적은 html은 렌더링되지 않음
+2. 여기에 html들을 잠시 보관하고,
+3. this.shadowRoot.append(template1.content.cloneNode(true)) 이런 식으로 사용
 
 
+#### 이벤트리스너를 부착하고 싶다면
+>
+```
+<custom-input></custom-input>
+<br/>
+  <template id="template1">
+    <label>이메일을 입력하쇼</label><input>
+    <style>label { color : red }</style>
+  </template>
+<br/>
+  <script>
+    class 클래스 extends HTMLElement {
+      connectedCallback() {
+        this.attachShadow({mode : 'open'});
+        this.shadowRoot.append(template1.content.cloneNode(true));
+        let el = this.shadowRoot.querySelector('label');
+        el.addEventListener('click', function(){
+          console.log('클릭함')
+        })
+      }
+    }
+    customElements.define("custom-input", 클래스);
+  </script>
+```
+
+
+========================
+# class로 만들어보는 간단한 2D 게임 1
+
+알고리즘
+1. 빨간 네모를 여러개 배치해서 사물을 만들고 초록 네모를 배치해서 내 캐릭터를 만듭니다.
+2. 그 다음에 방향키를 입력하면 네모가 어떻게 움직일지 코드짜고
+3. 네모끼리 충돌하는지 0.1초마다 (아니면 1프레임마다) 계속 체크해서 충돌시 원하는 작업을 해주면
+게임개발 끝임
+
+> 은근 비슷한 object가 많이 필요함
+장애물을 그리고 싶으면 우선 > 장애물이 어디서 생성될지 / 장애물의 사이즈는? / 어떤 속도로 움직이는지?
+이런 정보들을 object나 array에 저장해두기
+
+3. 충돌체크
+
+------
+Q. 점프 여러번 금지?
+Q. 공룡이 달리는 것처럼 보이게?
+Q. 배경 다가오는건?
+Q. 장애물이 나타나는 간격을 랜덤하게?
+Q. 점수표기는?
+Q. 시간 지날 때 점수도 오르는 기능은?

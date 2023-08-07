@@ -692,7 +692,8 @@ var 손자 = Object.create(자식);
 =================
 17. ES6:class
 
-// constructor 만드는 신문법
+#### constructor 만드는 신문법
+```
 class 부모 {
   constructor(){
     this.name = 'Kim';
@@ -700,18 +701,22 @@ class 부모 {
 }
 
 var 자식 = new 부모();
+```
 
 함수를 추가하고 싶으면
 1. 자식이 직접 함수를 가짐
-새로생성되는 자식은 sayHi() 함수를 직접 가지게 되며 자유롭게 쓸 수 있습니다
+  새로생성되는 자식은 sayHi() 함수를 직접 가지게 되며 자유롭게 쓸 수 있습니다
+```
 class 부모 {
   constructor(){
     this.name = 'Kim';
     this.sayHi = function (){console.log('hello')}
   }
 }
+```
 2. 부모.prototype에 추가됨
-부모의 prototype에 있던 sayHi() 함수를 쓸 수 있습니다.
+  부모의 prototype에 있던 sayHi() 함수를 쓸 수 있습니다.
+```
 class 부모 {
   constructor(){
     this.name = 'Kim';
@@ -720,14 +725,16 @@ class 부모 {
     console.log('hi')
   }
 }
+```
 
-차이점
+**차이점**
 2번은 물려받는게 아님. 자식 오브젝트에 추가되지않음 부모의 프로토타입에 추가됨
 
 자식.__proto__;
 Object.getPrototypeOf(자식); // 둘이 동일함
 
 // 함수를 더 추가하고 싶을 때
+```
 class 부모 {
   constructor(){
     this.name = 'Kim';
@@ -739,7 +746,10 @@ class 부모 {
     console.log('hello')
   }
 }
+```
+
 // 직접 추가도 가능
+```
 부모.prototype.sayHello = function(){}
 
 class의 콘스트럭트 안에 파라미터 추가
@@ -751,8 +761,10 @@ class 부모 {
     console.log('hi')
   }
 }
+```
 
 
+```
 class 부모 {
   constructor(이름, 나이){
     this.name = 이름;
@@ -765,20 +777,19 @@ class 부모 {
     console.log('안녕하세요');
   }
 }
-
+```
 var 자식 = new 부모('Park');
-// 여기에 부모의 에이지 파라미터를 안넣은건데 디폴트 파라미터를 쓸 수 있는건가? //가능하네
 
-
+**디폴트 파라미터도 사용가능**
 
 ============
-18. extends / super
+1.  extends / super
 
 extends == class 상속/복사
 
 class grandFather {
   constructor (name){
-    this.lastNaem = 'Kim';
+    this.lastName = 'Kim';
     this.firstName = name;
   }
 };
@@ -799,15 +810,15 @@ var father1 = new father('two');
 
 class grandFather {
   constructor (name, name2){
-    this.lastNaem = 'Kim';
+    this.lastName = 'Kim';
     this.firstName = name;
     this.firstName2 = name2;
   }
 };
 
 class father extends grandFather {
-  constructor(name, naem2){ // 잘 명시해주기
-    super(name, naem2);
+  constructor(name, name2){ // 잘 명시해주기
+    super(name, name2);
     this.age = 50;
   }
 };
@@ -817,7 +828,7 @@ super()의 또 다른 용도
 
 class grandFather {
   constructor (name){
-    this.lastNaem = 'Kim';
+    this.lastName = 'Kim';
     this.firstName = name;
   }
   sayHi(){
