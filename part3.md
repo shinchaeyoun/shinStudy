@@ -1329,3 +1329,4 @@ console.log(user ?? '로딩중')
 ```
 
 ?? 왼쪽이 null, undefined 일 경우 오른쪽을 보여달라는 뜻
+img 태그에 alt랑 비슷한듯?
