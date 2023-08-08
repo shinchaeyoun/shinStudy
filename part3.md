@@ -1279,5 +1279,53 @@ Q. 점프 여러번 금지?
 Q. 공룡이 달리는 것처럼 보이게?
 Q. 배경 다가오는건?
 Q. 장애물이 나타나는 간격을 랜덤하게?
-Q. 점수표기는?
-Q. 시간 지날 때 점수도 오르는 기능은?
+Q. 점수표기는? done
+Q. 시간 지날 때 점수도 오르는 기능은? done
+Q. 충돌 기회 3번 주기
+
+=============
+# ?. / ?? 연산자 (optional chaining)
+
+### ?. optional chaining
+object 자료에서 원하는 데이터를 꺼낼 때 마침표를 찍음.
+마침표와 똑같은 역할을 하는 ?. 문법
+```
+var user = {
+    name : 'kim',
+    age : 20
+}
+
+console.log(user.name);
+console.log(user?.name);
+```
+용도는 마침표와 똑같은데 정확한 기능은
+**?. 왼쪽에 있는게 null 혹은 undefined 인 경우 마침표 찍지 말고 undefined 남겨주세요**
+
+#### 사용예
+'중첩된 object 자료에서 에러없이 안전하게 데이터를 꺼낼 때'
+
+```
+var user = {
+    name : 'kim',
+    age : { value : 20 }
+}
+
+console.log(user.age.value);
+```
+object안에 object가 들어있는 경우에 마침표를 여러번 찍어야 안에 있는 자료를 꺼낼 수 있는데 자료를 잘못 찾는 경우 에러가 남.
+if문을 사용해도 되지만 ?. 사용하면 됨.
+"왼쪽에 있는게 null, undefined면 마침표찍지말고 undefined를 남겨주세요" 라는 뜻이라 에러가 나지 않음
+
+중첩된 object는 마침표를 2번 이상 찍으니까 ?.를 쓰면 안전할 수 있다.
+
+**?.이건 에러를 해결해주는 문법이 아니라 에러나지 않게 감추는 문법일 뿐**
+
+---------
+### ?? nullish coalescing operator
+
+```
+var user;
+console.log(user ?? '로딩중')
+```
+
+?? 왼쪽이 null, undefined 일 경우 오른쪽을 보여달라는 뜻
