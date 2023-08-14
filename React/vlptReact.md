@@ -669,3 +669,378 @@ export default InputSample;
 
 <code>onReset</code> 함수에서 input에 포커스를 하는 <code>focus()</code> DOM API를 호출하였다.
 
+------
+# 11. 배열 렌더링하기
+
+```
+const users = [
+  {
+    id: 1,
+    username: 'velopert',
+    email: 'public.velopert@gmail.com'
+  },
+  {
+    id: 2,
+    username: 'tester',
+    email: 'tester@example.com'
+  },
+  {
+    id: 3,
+    username: 'liz',
+    email: 'liz@example.com'
+  }
+];
+```
+이러한 배열이 있을 때 이 내용을 컴포넌트로 렌더링 한다면?
+
+**한 파일에 여러개의 컴포넌트를 선언할 수 있다.**
+
+UserList.js
+```
+import React from 'react';
+
+function User({ user }) {
+  return (
+    <div>
+      <b>{user.username}</b> <span>({user.email})</span>
+    </div>
+  );
+}
+
+function UserList() {
+  const users = [
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
+
+  return (
+    <div>
+      <User user={users[0]} />
+      <User user={users[1]} />
+      <User user={users[2]} />
+    </div>
+  );
+}
+
+export default UserList;
+```
+이런 방식은 배열이 고정적이라면 상관없지만 배열의 인덱스를 하나하나 조회해가며 렌더링하는 방법은 동적인 배열을 렌더링하지 못한다.
+
+동적인 배열을 렌더링해야 할 때에는 자바스크립트 배열의 내장함수 map()을 사용하여 일반 데이터 배열을 리액트 엘리먼트로 이루어진 배열로 변환해주면 된다.
+
+UserList.js
+```
+import React from 'react';
+
+function User({ user }) {
+  return (
+    <div>
+      <b>{user.username}</b> <span>({user.email})</span>
+    </div>
+  );
+}
+
+function UserList() {
+  const users = [
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
+
+  return (
+    <div>
+      {users.map(user => (
+        <User user={user} key={user.id} />
+      ))}
+    </div>
+  );
+}
+
+export default UserList;
+```
+리액트에서 배열을 렌더링 할 때에는 key라는 props를 설정해야한다. key 값은 각 원소들마다 가지고 있는 고유값으로 설정을 해야한다. 지금의 경우 id가 고유값을 가지고 있으므로 <code>key={user.id}</code> 로 설정 가능하다.
+
+만약 배열 안의 원소가 가지고 있는 고유한 값이 없다면 map() 함수를 사용할 때 설정하는 콜백함수의 두번째 파라미터 index를 key로 사용하면 된다.
+
+----
+# 12. useRef로 컴포넌트 안의 변수 만들기
+useRef Hook은 DOM을 선택하는 용도 외에도, 컴포넌트 안에서 조회 및 수정 할 수 있는 변수를 관리함
+
+useRef로 관리하는 변수의 값이 변하더라도 컴포넌트 안에서 리렌더링이 일어나지 않는다.
+리액트 컴포넌트에서의 상태는, 상태를 바꾸는 함수가 호출되고 나서 그 다음 렌더링 이후로 업데이트 된 상태를 조회할 수 있는 반면에, useRef로 관리하는 변수는 설정 후 바로 조회할 수 있다.
+
+이 변수를 사용하여 다음과 같은 값을 관리 할 수 있다
+  - setTimeout, setInterval을 통해 만들어진 id
+  - 외부 라이브러리를 사용하여 생성된 인스턴스
+  - scroll 위치
+
+useRef를 사용하여 변수를 관리하기 전에 해야할 작업
+> 지금은 UserList 컴포넌트 내부에서 배열을 직접 선언하고 사용하는데,  UserList에서 선언하고 사용하는 대신에, 이 배열을 App에서 선언하고 UserList에게 props로 전달하기.
+
+App.js
+```
+import React from 'react';
+import UserList from './UserList';
+
+function App() {
+  const users = [
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
+  return <UserList users={users} />;
+}
+
+export default App;
+```
+
+UserList.js
+```
+import React from 'react';
+
+function User({ user }) {
+  return (
+    <div>
+      <b>{user.username}</b> <span>({user.email})</span>
+    </div>
+  );
+}
+
+function UserList({ users }) {
+  return (
+    <div>
+      {users.map(user => (
+        <User user={user} key={user.id} />
+      ))}
+    </div>
+  );
+}
+
+export default UserList;
+```
+
+App에서 useRef() 를 사용하요 nextId라는 변수 만들기
+
+App.js
+```
+import React, { useRef } from 'react';
+import UserList from './UserList';
+
+function App() {
+  const users = [
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
+
+  const nextId = useRef(4);
+  const onCreate = () => {
+    // 나중에 구현 할 배열에 항목 추가하는 로직
+    // ...
+
+    nextId.current += 1;
+  };
+  return <UserList users={users} />;
+}
+
+export default App;
+```
+useRef() 를 사용할 때 파라미터를 넣어주면, 이 값이 .current 값의 기본값이 됩니다.
+
+그리고 이 값을 수정 할때에는 .current 값을 수정하면 되고 조회 할 때에는 .current 를 조회하면 됩니다.
+
+----
+# 13. 배열에 항목 추가하기
+배열에 새로운 항목 추가하는 방법
+
+input 두개와 button 하나로 이루어진 CreateUser.js 라는 컴포넌트 생성
+
+App.js
+```
+import React, { useRef, useState } from 'react';
+import UserList from './UserList';
+import CreateUser from './CreateUser';
+
+function App() {
+  const [inputs, setInputs] = useState({
+    username: '',
+    email: ''
+  });
+  const { username, email } = inputs;
+  const onChange = e => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value
+    });
+  };
+  const users = [
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ];
+
+  const nextId = useRef(4);
+  const onCreate = () => {
+    // 나중에 구현 할 배열에 항목 추가하는 로직
+    // ...
+
+    setInputs({
+      username: '',
+      email: ''
+    });
+    nextId.current += 1;
+  };
+  return (
+    <>
+      <CreateUser
+        username={username}
+        email={email}
+        onChange={onChange}
+        onCreate={onCreate}
+      />
+      <UserList users={users} />
+    </>
+  );
+}
+
+export default App;
+```
+
+배열에 변화를 줄 때에는 객체와 마찬가지로, 불변성을 지켜주어야한다. 그러므로 배열에 push, splice, sort 등의 함수는 사용하면 안되며, 사용하더라도 배열을 한번 복사한 후 사용해야한다.
+
+불변성을 지키면서 배열에 새 항목을 추가하는 방법은 두가지가 있다.
+
+1. spreed 연산자 사용
+
+App.js
+```
+import React, { useRef, useState } from 'react';
+import UserList from './UserList';
+import CreateUser from './CreateUser';
+
+function App() {
+  const [inputs, setInputs] = useState({
+    username: '',
+    email: ''
+  });
+  const { username, email } = inputs;
+  const onChange = e => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value
+    });
+  };
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: 'velopert',
+      email: 'public.velopert@gmail.com'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'liz',
+      email: 'liz@example.com'
+    }
+  ]);
+
+  const nextId = useRef(4);
+  const onCreate = () => {
+    const user = {
+      id: nextId.current,
+      username,
+      email
+    };
+    setUsers([...users, user]);
+
+    setInputs({
+      username: '',
+      email: ''
+    });
+    nextId.current += 1;
+  };
+  return (
+    <>
+      <CreateUser
+        username={username}
+        email={email}
+        onChange={onChange}
+        onCreate={onCreate}
+      />
+      <UserList users={users} />
+    </>
+  );
+}
+
+export default App;
+```
+
+2. concat 함수를 사용하는 것
+  > concat 함수는 기존의 배열을 수정하지 않고, 새로운 원소가 추가된 새로운 배열을 만들어준다.
