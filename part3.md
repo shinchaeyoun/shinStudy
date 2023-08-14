@@ -1091,7 +1091,9 @@ console.log(filtered);
 Object.entries() 메서드를 쓰면 key-value 형식의 배열을 얻을 수 있는데 그거 Map() 컨스트럭터에 넣으면 된다.
 
 Object.entries 메서드는 객체의 항목을 key-value 항목으로 변환해서 배열로 리턴한다.
-```console.log(Object.entries({id: 456, name: 'name1'}));```
+```
+console.log(Object.entries({id: 456, name: 'name1'}));
+```
 
 위 코드처럼 Object.entries() 메서드를 거친 배열의 첫 번째 항목도 배열, 순차적으로 배열을 Map Constructor에 넣어서 Map 생성.
 ```
@@ -1154,6 +1156,59 @@ Array를 Set으로 바꾸는게 매우 쉽기 때문.
 
 nameArr이라는 Array 자료형을 Set으로 바꿨다가 다시 바로 Array로 바꾸는 예제.
 nameArr에 있던 중복자료들이 자동으로 제거가 된다~
+
+----
+### map 벨로퍼트 설명
+
+map은 배열 안의 각 원소를 변환할 때 사용되며, 이 과정에서 새로운 배열이 만들어짐.
+
+const array = [1,2,3,4,5,6,7,8];
+다음과 같은 배열이 있고, 배열 안의 모든 숫자를 제곱해서 새로운 배열을 만들고 싶을 때
+
+for문
+```
+const array = [1,2,3,4,5,6,7,8];
+
+const squared = [];
+for (let i = 0; i < array.length; i++){
+  squared.push(array[i] * array[i]);
+};
+
+console.log(squared);
+```
+
+forEach문
+```
+const array = [1,2,3,4,5,6,7,8];
+
+const squared = [];
+array.forEach(n=>{
+  squared.push(n * n);
+});
+
+console.log(squared);
+```
+
+map 사용시
+```
+const array = [1,2,3,4,5,6,7,8];
+
+const square = n => n*n;
+const squared = array.map(square);
+
+console.log(squared);
+```
+
+map 함수의 파라미터로는 변화를 주는 함수를 전달한다. 이를 변화함수라고 부른다.
+변화함수 square는 파라미터 n을 받아와서 이를 제곱해준다.
+array.map 함수를 사용할 때 square를 변화함수로 사용함으로서, 내부의 모든 값에 대하여 제곱을 해서 새로운 배열을 생성함.
+
+변화함수를 꼭 이름을 붙여서 선언할 필요는 없다. 다음과 같이 작성해도 무방하다.
+```
+const squared = array.map(n => n * n);
+console.log(squared);
+```
+
 
 ========
 # Web Component
