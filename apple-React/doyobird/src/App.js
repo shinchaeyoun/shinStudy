@@ -66,8 +66,6 @@ function App() {
           onClick={addList}
           >Add list!</button>
       </div>
-      
-      <TodoList todoList={todoList} done={done} setDone={setDone}/>
 
       <div className='todolistWrap'>
         {
@@ -96,24 +94,6 @@ function App() {
       </div>
     </div>
   );
-}
-
-
-function TodoList (props) {
-  return (
-    <div className='todolistWrap'>
-      <div className='todoItem'>
-        <div className='checkbox'>
-          <input
-            type='checkbox'
-            onClick={()=>{props.setDone(!props.done)}}
-          ></input>
-          { props.todoList }
-        </div>
-        <span></span>
-      </div>
-    </div>
-  )
 }
 
 export default App;
