@@ -7,24 +7,27 @@ function App() {
   let year = today.getFullYear();
   let month = ('0' + (today.getMonth() + 1)).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
-  let hours = ('0' + today.getHours()).slice(-2);
-  let minutes = ('0' + today.getMinutes()).slice(-2);
-  let seconds = ('0' + today.getSeconds()).slice(-2);
+  
   
   let dateString = year + '-' + month + '-' + day;
-  let timeString = hours + ':' + minutes + ':' + seconds;
+  
 
   let [todoList, setTodolist] = useState(['hi']);
   let [inputVal, setInputVal] = useState('');
   let [done, setDone] = useState(false);
-  let [time, setTime] = useState(timeString);
+  let [time, setTime] = useState('00:00:00');
 
-  // getTime()
-  function getTime () {
-    setInterval(() => {
-      setTime(timeString);
-    }, 1000);
+  const currentTimer = () => {
+    let today = new Date(); 
+    let hours = ('0' + today.getHours()).slice(-2);
+    let minutes = ('0' + today.getMinutes()).slice(-2);
+    let seconds = ('0' + today.getSeconds()).slice(-2);
+    let timeString = hours + ':' + minutes + ':' + seconds;
+    setTime(timeString);
   };
+
+  const startTimer = () => setInterval(currentTimer,1000);
+  startTimer();
   
   function addList () {
     let txtCheck = inputVal.replace(/\s/g,'').length;
