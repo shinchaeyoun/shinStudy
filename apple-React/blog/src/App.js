@@ -1,129 +1,118 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-  let [postname, setPostname] = useState(['a-post', 'c-post', 'b-post']);
+  let [postName, setPostName] = useState(['b post', 'c post', 'a post']);
   let [like, setLike] = useState([0,0,0]);
+  let [date, setDate] = useState(['2월 17일','2월 18일', '2월 17일']);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
-  let [inputVal, setInputVal] = useState('');
-  let [date, setDate] = useState(['2월 17일', '2월 17일', '2월 17일'])
+  let [inputVal, setInpputVal] = useState('');
 
   let today = new Date();
   let month = today.getMonth() + 1;
-  let day = today.getDate();
-  let dateString = month + '월 ' + day + '일';
+  let days = today.getDate();
+  let prtDate = month + '월 ' + days + '일';
 
-  function updateLike(i) {
-    let copyLike = [...like];
-    copyLike[i] = copyLike[i] += 1;
-    setLike(copyLike);
-  }
-
-  function changeName () {
-    let copyName = [...postname];
-    copyName[0] = 'e-post';
-    setPostname(copyName);
-  }
 
   return (
     <div className="App">
-      <div className="black-nav">
-        <h4>blog</h4>
+      <div className='header'>
+        <h4>HEADER</h4>
       </div>
-    
-      <button onClick={()=>{
-        let copy = [...postname];
-        copy.sort();
-        setPostname(copy);
-      }}>list sort</button>
-      <button onClick={()=>{
-        let copy = [...postname];
-        copy[0] = 'post1-1'
-        setPostname(copy)
-      }}>post name change</button>
+
+      <button
+        style={{marginRight:'5px'}}
+        onClick={()=>{
+          let copyPost = [...postName];
+          copyPost[0] = 'a1-post';
+          setPostName(copyPost);
+        }}
+      >
+        change first post name</button>
+      <button
+        onClick={()=>{
+          let copyPost = [...postName];
+          let copyLike = [...like];
+          let copyDate = [...date];
+          copyPost.sort();
+          setPostName(copyPost);
+        }}
+      >
+        a-z sort
+      </button>
 
       {
-        postname.map(function(post, idx){
+        postName.map((post, i)=>{
           return (
-            <div className="list" key={idx}>
-              <h4 onClick={()=>{
-                setModal (!modal)
-                setTitle(idx)
-                }}>{postname[idx]}
-                <span onClick={(e)=>{
+          <div className='list' key={i}>
+            <h4 onClick={()=>{
+              setModal(!modal);
+              setTitle(i);
+              console.log(title);
+            }}>
+              { postName[i] }
+              <span
+                className='likeBtn'
+                onClick={(e)=>{
                   e.stopPropagation();
-                  updateLike(idx)}}>👍</span>
-                { like[idx] } 
-              </h4>
-              <p>{ date[idx] } 발행</p>
-              <button onClick={()=>{
-                let copy = [...postname];
-                copy.splice(idx,1);
-                setPostname(copy)
-              }}>delete</button>
-            </div>
+                  let copyLike = [...like];
+                  copyLike[i] = copyLike[i] += 1;
+                  setLike(copyLike);
+
+                }}
+              > like </span>
+              { like[i] }
+            </h4>
+            <p>{ date[i] }</p>
+            <button className='delBtn'
+              onClick={()=>{
+                let copyPost = [...postName];
+                copyPost.splice(i, 1);
+                setPostName(copyPost);
+              }}
+            >
+              delete</button>
+          </div>
           )
         })
       }
 
-      <input onChange={(e)=>{
-        setInputVal(e.target.value)
-      }} />
-      <button onClick={(e)=> {
-        let copyPost = [...postname];
-        let copyLike = [...like];
-        let copyDate = [...date];
-        if(inputVal !== ''){
-          copyPost.unshift(inputVal);
-          setPostname(copyPost);
-          copyLike.unshift(0);
-          setLike(copyLike);
-          copyDate.unshift(dateString);
-          setDate(copyDate)
-        };
-      }}>등록</button>
-      
-      {
-        modal == true ? <Modal changeName={changeName} postname={postname} title={title} /> : null
-      }
+      <div className='inputWrap'>
+        <input onChange={(e)=>{
+          setInpputVal(e.target.value)
+        }}></input>
+        <button className='submitBtn'
+          onClick={()=>{
+            let copyPost = [...postName];
+            let copyLike = [...like];
+            let copyDate = [...date];
+            copyPost.unshift(inputVal);
+            copyLike.unshift(0);
+            copyDate.unshift(prtDate);
+            setPostName(copyPost);
+            setLike(copyLike);
+            setDate(copyDate);
+          }}
+        >submit</button>
+      </div>
 
-      <Modal2 />
+      {
+        modal == true ? <Modal postName={postName} title={title} like={like} date={date} /> : null
+      }
     </div>
   );
 }
 
-function Modal(props){
+const Modal = ( props ) => {
   return (
-    <div className="modal">
-      <h4>{ props.postname[props.title] }</h4>
-      <p>날짜</p>
-      <p>상세내용</p>
-      <button onClick={props.changeName}>post name change</button>
+    <div className='modal'>
+      <h4>{ props.postName[props.title] }</h4>
+      <p>{ props.like[props.title] }</p>
+      <p>{ props.date[props.title] }</p>
     </div>
   )
 }
-
-class Modal2 extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      name: 'Kim',
-      age: 20
-    }
-  }
-  render () {
-    return (
-      <div>
-        {this.state.name} {this.state.age}
-        <button onClick={()=>{
-          this.setState({age: 21})
-        }}>버튼</button>
-      </div>
-    )
-  }
-}
-
 
 export default App;
