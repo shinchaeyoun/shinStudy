@@ -19,7 +19,7 @@ function App() {
   let [done, setDone] = useState(false);
   let [time, setTime] = useState(timeString);
 
-  getTime()
+  // getTime()
   function getTime () {
     setInterval(() => {
       setTime(timeString);
