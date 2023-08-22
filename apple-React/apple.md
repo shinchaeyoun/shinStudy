@@ -101,21 +101,5 @@ input에 글 입력하고 엔터나 add 버튼 누르면 등록하기
 
 - list css 잡아야하고
   - add 한 날짜 시간 추가하기
+  - 메모를 추가할 수 있게 할까 화살표로 열어서 중요 체크하면 타이틀에도 중요표시 나오고, 열린 페이지에서 메모 추가하고 읽을 수 있도록
 
-
-
-let today = new Date();   
-
-let hours = today.getHours(); // 시
-let minutes = today.getMinutes();  // 분
-let seconds = today.getSeconds();  // 초
-let milliseconds = today.getMilliseconds(); // 밀리초
-
-document.write(hours + ':' + minutes + ':' + seconds + ':' + milliseconds);
-
-
-
-
-        setTimeout(() => {
-          { timeString }
-        }, 1000);
