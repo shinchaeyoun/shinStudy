@@ -87,3 +87,35 @@ class Modal2 extends React.Component {
 
 ====
 todo list page
+
+1. 실시간 현재 시간
+2. 현재 날씨
+3. 배경이미지, 문구 랜덤
+4. 사용자 이름 및 할일 목록 로컬스토리지에 저장
+to do list 기능 구현 (필터, 수정, 드래그앤 드롭-순서변경)
+
+to do 페이지 먼저
+input에 글 입력하고 엔터나 add 버튼 누르면 등록하기
+리스트 등록되면 input 내용 다 지워주기
+
+
+- list css 잡아야하고
+  - add 한 날짜 시간 추가하기
+
+
+
+let today = new Date();   
+
+let hours = today.getHours(); // 시
+let minutes = today.getMinutes();  // 분
+let seconds = today.getSeconds();  // 초
+let milliseconds = today.getMilliseconds(); // 밀리초
+
+document.write(hours + ':' + minutes + ':' + seconds + ':' + milliseconds);
+
+
+
+
+        setTimeout(() => {
+          { timeString }
+        }, 1000);

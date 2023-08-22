@@ -1,38 +1,41 @@
-.App {
+.wrap {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.addTodoList input {
+  margin-right: 5px;
+  padding: 5px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+.addTodoList button {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #000;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.todolistWrap {
+  margin-top: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todolistWrap .todoItem {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 500px;
+  height: 50px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
 }
-
-.App-link {
-  color: #61dafb;
+.todolistWrap .todoItem:hover {
+  background-color: #fff;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todolistWrap .todoItem .checkbox.active {
+  text-decoration: line-through;
+  color: #888;
 }
+.todolistWrap .todoItem .delBtn {
+  display: inline-block;
+  margin-left: 10px;
+}/*# sourceMappingURL=App.css.map */
