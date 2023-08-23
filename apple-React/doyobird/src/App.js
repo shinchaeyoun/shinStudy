@@ -3,20 +3,20 @@ import React, { useState } from 'react';
 import './App.scss';
 
 function App() {
+  let [todoList, setTodolist] = useState(['hi']);
+  let [inputVal, setInputVal] = useState('');
+  let [done, setDone] = useState([false]);
+  let [checkIcon, setCheckicon] = useState([]);
+  let [time, setTime] = useState('00:00:00');
+
+
   let today = new Date();
   let year = today.getFullYear();
   let month = ('0' + (today.getMonth() + 1)).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
-  
-  
+
   let dateString = year + '-' + month + '-' + day;
   
-
-  let [todoList, setTodolist] = useState(['hi']);
-  let [inputVal, setInputVal] = useState('');
-  let [done, setDone] = useState(false);
-  let [time, setTime] = useState('00:00:00');
-
   const currentTimer = () => {
     let today = new Date(); 
     let hours = ('0' + today.getHours()).slice(-2);
@@ -44,6 +44,7 @@ function App() {
     const inputTxt = e.target.value;
     setInputVal(inputTxt);
   };
+
 
   return (
     <div className='wrap'>
@@ -77,10 +78,15 @@ function App() {
               <div className='todoItem' key={i}>
                 <div
                   className={`${done == true ? 'active' : 'nonActive'} ${'checkbox'}`}>
-                  <input
-                    type='checkbox'
-                    onClick={()=>setDone(!done)}
-                    ></input>
+                  <div
+                    className='checkIcon'
+                    onClick={()=> {
+                      setDone(!done)
+
+                      console.log('done', done ,item);
+                    }}
+                    
+                    ></div>
                   { todoList[i] }
                 </div>
                 <span className='delBtn'
