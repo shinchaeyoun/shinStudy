@@ -288,3 +288,70 @@ React.memo는 props 변화에만 영향을 준다.
 
 // 19 이해안됨 다시 보셈
 
+# 20. useReducer 상태 업데이트 로직 분리하기
+지금까지는 주요 상태 업데이트 로식은 App 컴포넌트 내부에서 이루어졌음
+상태를 업데이트 할 때는 useState를 사용해서 새로운 상태를 설정했음
+상태 관리할 때 useState말고 useRedcer를 사용할 수 도 있음
+
+이 Hook 함수는 컴포넌트의 상태 업데이트 로직을 컴포넌트에서 분리 시킬 수 있음~
+상태 업데이트 로직도 컴포넌트 바깥에 작성할수 도 있고, 다른 파일에서 작성하고 불러와서 사용할 수 도 있음!!
+- 상태 업데이트 로직 분리 가능
+- 상태 업데이트 로직 컴포넌트 밖에 작성 가능
+- 다른 파일에 있는 상태 업데이트 로직 불러오기 가능!
+
+reducer 먼저 알아보기
+reducer는 현재 상태와 액션 객체를 파라미터로 받아와서 새로운 상태를 반환해주는 함수
+
+```
+function reducer(state, action) {
+  // 새로운 상태를 만드는 로직
+  // const nextState = ...
+  return nextState
+}
+```
+reducer에서 반환하는 상태는 곧 컴포넌트가 지닐 새로운 상태가 된다.
+
+action은 업데이트를 위한 정보를 가지고 있다. 주로 type 값을 지닌 객체 형태로 사용하지만 꼭 따라야 할 규칙은 없다.
+
+액션의 예시
+```
+// 카운터에 1을 더하는 액션
+{
+  type: 'INCREMENT'
+}
+// 카운터에 1을 빼는 액션
+{
+  type: 'DECREMENT'
+}
+// input 값을 바꾸는 액션
+{
+  type: 'CHANGE_INPUT',
+  key: 'email',
+  value: 'tester@react.com'
+}
+// 새 할 일을 등록하는 액션
+{
+  type: 'ADD_TODO',
+  todo: {
+    id: 1,
+    text: 'useReducer 배우기',
+    done: false,
+  }
+}
+```
+action 객체의 형태는 자유이다.
+
+type 값을 대문자와 _로 구성하는 관습이 있긴 함 근데 꼭 따를 필요도 없음
+
+**useReducer 사용법**
+const [state, dispatch] = useReducer(reducer, initialState);
+여기서 state는 앞으로 컴포넌트에서 사용 할 수 있는 상태를 가르키고 dispatch는 액션을 발생시키는 함수.
+이 함수는 dispatch({type: 'INCREMENT'})라고 사용한다
+-> const[사용 할 수 있는 상태, 액션 함수] = useReducer(reducer, initialState);
+
+// 아직 안써봐서 뭔지 이해가 잘 안가네
+
+useReducer에 넣는 첫번째 파라미터는 reducer 함수이고, 두번째 파라미터는 초기 상태
+-> const[사용 할 수 있는 상태, 액션 함수] = useReducer(reducer함수, 초기 상태);
+
+
