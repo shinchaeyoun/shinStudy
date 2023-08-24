@@ -286,3 +286,5 @@ export default React.memo(CreateUser);
 React.memo는 props 변화에만 영향을 준다.
 함수 컴포넌트 안에서 구현한 state나 context가 변할 때는 리렌더링 된다.
 
+// 19 이해안됨 다시 보셈
+
