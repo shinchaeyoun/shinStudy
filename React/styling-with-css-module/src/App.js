@@ -19,6 +19,7 @@ function App() {
         <b>check: </b>
         {check ? 'true' : 'false'}
       </p>
+      <span></span>
     </div>
   );
 }
