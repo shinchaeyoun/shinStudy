@@ -1,5 +1,4 @@
-import React, { useRef, useState, useMemo, useCallback } from 'react';
-import InputSample from './InputSample';
+import React, { useRef, useState, useMemo, useCallback, useReducer } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 
@@ -8,26 +7,12 @@ function countActiveUsers(users) {
   return users.filter(user => user.active).length;
 }
 
-function App(){
-  const [inputs, setInputs] = useState({
+const initialState = {
+  inputs: {
     username: '',
     email: ''
-  });
-
-  const { username, email } = inputs;
-
-  const onChange = useCallback(
-    e => {
-      const { name, value } = e.target;
-      setInputs({
-        ...inputs,
-        [name]: value
-      })
-    },
-    []
-  );
-
-  const [users, setUsers] = useState([
+  },
+  users: [
     {
       id: 1,
       username: 'velopert',
@@ -46,60 +31,21 @@ function App(){
       email: 'liz@example.com',
       active: false
     }
-  ])
+  ]
+};
 
-  const nextId = useRef(4);
+function reducer(state, action) {
+  return state;
+}
 
-  const onCreate = useCallback(() => {
-    const user = {
-      id: nextId.current,
-      username,
-      email
-    };
-    setUsers(users.concat(user));
-    
-    setInputs({
-      username: '',
-      email: ''
-    });
-    nextId.current += 1;
-  }, [username, email]);
-
-  const onRemove = useCallback(
-    id => {
-      setUsers(users.filter(user => user.id !== id));
-    }, [users]
-  );
-
-  const onToggle = useCallback(
-    id => {
-      setUsers(
-        users.map(user =>
-          user.id === id ? {...user, active: !user.active} : user
-        )
-      )
-    },
-    [users]
-  );
-
-  const count = useMemo(() => countActiveUsers(users), [users]);
-
+function App(){
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const 
   return (
     <>
-      <InputSample />
-      <br/>
-      <CreateUser
-        username={username}
-        email={email}
-        onChange={onChange}
-        onCreate={onCreate}
-      />
-      <UserList
-        users={users}
-        onRemove={onRemove}
-        onToggle={onToggle}
-      />
-      <div>활성 사용자 수 : {count}</div>
+      <CreateUser />
+      <UserList users={[]} />
+      <div>활성 사용자 수 : 0</div>
     </>
   )
 }

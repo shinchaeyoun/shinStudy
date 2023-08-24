@@ -354,4 +354,4 @@ const [state, dispatch] = useReducer(reducer, initialState);
 useReducer에 넣는 첫번째 파라미터는 reducer 함수이고, 두번째 파라미터는 초기 상태
 -> const[사용 할 수 있는 상태, 액션 함수] = useReducer(reducer함수, 초기 상태);
 
-
+20번도 먼 말인지 모르겠네
