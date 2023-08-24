@@ -77,16 +77,14 @@ function App() {
             return (
               <div className='todoItem' key={i}>
                 <div
-                  className={`${done == true ? 'active' : 'nonActive'} ${'checkbox'}`}>
+                  className='checkbox'>
                   <div
                     className='checkIcon'
                     onClick={()=> {
                       setDone(!done)
-
-                      console.log('done', done ,item);
+                      console.log('done', done ,i);
                     }}
-                    
-                    ></div>
+                  ></div>
                   { todoList[i] }
                 </div>
                 <span className='delBtn'

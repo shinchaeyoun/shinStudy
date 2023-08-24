@@ -1,16 +1,16 @@
 import React from 'react';
 
-function Hello({ color, name, isSpecial }){
+function Hello({color, name, isSpecial}){
   return (
     <div style={{ color }}>
       { isSpecial && <b>*</b> }
-      Begin react start {name}
+      안녕하세요 {name}
     </div>
-  );
+  )
 }
 
 Hello.defaultProps = {
-  name: "null name"
+  name: '이름없음'
 }
 
 export default Hello;

@@ -1,7 +1,8 @@
+/* eslint-disable */
 import React from 'react';
 
-function CreateUser ({username, email, onChange, onCreate}) {
-  return (
+function CreateUser({ username, email, onChange, onCreate }) {
+  return(
     <div>
       <input 
         name='username'
@@ -9,7 +10,7 @@ function CreateUser ({username, email, onChange, onCreate}) {
         onChange={onChange}
         value={username}
       />
-      <input
+      <input 
         name='email'
         placeholder='이메일'
         onChange={onChange}
@@ -18,6 +19,8 @@ function CreateUser ({username, email, onChange, onCreate}) {
       <button onClick={onCreate}>등록</button>
     </div>
   )
-};
+}
 
-export default CreateUser;
+
+export default React.memo(CreateUser);
+
