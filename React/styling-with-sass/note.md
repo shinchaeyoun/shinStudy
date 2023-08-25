@@ -136,3 +136,21 @@ input을 스타일링 하고 싶으면 styled.input
 
 style-components 부분은 이해가 안가네
 진짜 개모르겠다
+
+
+"react-create-file": {
+		"prefix": "react-create",
+		"body": [
+			"import React from 'react';",
+			"",
+			"function ${TM_FILENAME_BASE}() {",
+			"\treturn(",
+			"\t\t<>",
+			"",
+			"\t\t</>",
+			"\t)",
+			"}",
+			"",
+			"export default ${TM_FILENAME_BASE};"
+		]
+	}
