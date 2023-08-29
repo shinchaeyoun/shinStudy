@@ -1,9 +1,0 @@
-.gray-box {
-  background: gray;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  text-align: center;
-  border: 3px solid lightsalmon;
-  box-shadow: 3px 3px 3px 3px #ddd;
-}
