@@ -1,10 +1,9 @@
-/* esline-disable */
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import TodoTemplate from './components/TodoTemplate';
 import TodoHead from './components/TodoHead';
 import TodoList from './components/TodoList';
-import TodoItem from './components/TodoItem';
+import TodoCreate from './components/TodoCreate';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,12 +15,11 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <div>
-        <TodoTemplate>
-          <TodoHead />
-          <TodoList />
-        </TodoTemplate>
-      </div>
+      <TodoTemplate>
+        <TodoHead />
+        <TodoList />
+        <TodoCreate />
+      </TodoTemplate>
     </>
   );
 }
