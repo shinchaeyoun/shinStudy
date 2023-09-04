@@ -1,6 +1,6 @@
 <template>
   <tem-item v-for="item in itemFilter" :key="item.id" :id="item.id" :title="item.tag + ' ' + item.title" :shopImg="item.shopImg" :shopIcon="item.shopIcon" :subTitle="item.subTitle" :tag="item.tag" :byName="item.byName"
-    @item-bookmark="$store.commit('setBookmark', item.id), snackbarTest(item.tag)">
+    @item-bookmark="addBookmark(item), snackbarTest(item.tag)">
   </tem-item>
 
   <div v-if="snackbarBookmark" class="test-snackbar_wrap">
@@ -16,6 +16,8 @@
 <script>
 import temItem from '../components/temItem.vue'
 
+// eslint-disable-next-line no-unused-vars
+let nowState
 export default {
   name: 'app',
   components: {
@@ -60,6 +62,15 @@ export default {
       setTimeout(() => {
         this.snackbarBookmark = false
       }, 2000)
+    },
+    addBookmark (item) {
+      if (String(item.id).search('card') === 0) {
+        nowState = this.$store.state.communities
+      } else {
+        nowState = this.$store.state.Items
+      }
+
+      this.$store.commit('addBookmark', [item, nowState])
     }
   }
 }

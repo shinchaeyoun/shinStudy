@@ -3,7 +3,7 @@
     <div class="page-title fwb">bookmarks</div>
 
     <ul v-if="hasBookmark" class="bookMark-wrap box-bg m-auto">
-      <div class="all-clear-btn posa box-bg flex aic jcsb" @click="allClear(), $store.commit('clearBookmark')">
+      <div class="all-clear-btn posa box-bg flex aic jcsb" @click="allClear()">
         <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
           stroke="currentColor" class="h-6 w-6">
           <path
@@ -13,8 +13,8 @@
         clear
       </div>
 
-      <BookmarkList v-for="list in bookList" :key="list" :id="list.id" :title="list.title" :tag="list.tag"
-        @item-delete="bookmarkArr"></BookmarkList>
+      <BookmarkList v-for="list in bookList" :key="list" :id="list.id" :title="list.title" :shopIcon="list.shopIcon"
+        @item-delete="bookmarkArr(list)"></BookmarkList>
     </ul>
 
     <div v-else class="empty-bookmark tac ttn">
@@ -30,6 +30,8 @@
 
 <script>
 import BookmarkList from '../components/BookmarkList.vue'
+// eslint-disable-next-line no-unused-vars
+let nowState
 
 export default {
   components: {
@@ -47,14 +49,23 @@ export default {
   computed: {
     bookList () {
       const bookmarkArr = this.$store.state.bookmarkArr
+      console.log(bookmarkArr)
       return bookmarkArr
     }
   },
   methods: {
     allClear () {
       this.hasBookmark = false
+      this.$store.commit('clearBookmark')
     },
-    bookmarkArr () {
+    bookmarkArr (item) {
+      if (String(item.id).search('card') === 0) {
+        nowState = this.$store.state.communities
+      } else {
+        nowState = this.$store.state.Items
+      }
+
+      this.$store.commit('deleteBookmarkItem', [item, nowState])
       const bookmarkListArr = this.$store.state.bookmarkArr
 
       if (bookmarkListArr.length <= 0) {

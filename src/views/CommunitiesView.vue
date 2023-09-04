@@ -71,6 +71,8 @@
 <script>
 let getItem
 let _item
+// eslint-disable-next-line no-unused-vars
+let nowState
 const itemArr = []
 export default {
   data () {
@@ -88,7 +90,13 @@ export default {
       item.isHover = false
     },
     bookmarkFn (card) {
-      this.$store.commit('addBookmarkArr', card)
+      if (String(card.id).search('card') === 0) {
+        nowState = this.$store.state.communities
+      } else {
+        nowState = this.$store.state.Items
+      }
+
+      this.$store.commit('addBookmark', [card, nowState])
       card.isMark = card.isBookmark
 
       if (card.isMark) {
