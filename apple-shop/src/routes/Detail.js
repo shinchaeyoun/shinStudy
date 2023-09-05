@@ -18,7 +18,7 @@ let Title = styled.h4`
   color: ${ props => props.color };
   border-bottom: 2px dotted #000;
   border-color: ${ props => props.color }
-`
+`;
 
 function DetailCard ({shoes}) {
   let {id} = useParams();

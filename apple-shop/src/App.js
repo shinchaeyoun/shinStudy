@@ -10,9 +10,11 @@ import Col from 'react-bootstrap/Col';
 import Data from './component/Data';
 import Detail from './routes/Detail';
 import Test from './routes/test';
+import axios from 'axios';
 
 function App() {
   let [shoes, setShoes] = useState(Data);
+  let [moreNum, setMoreNum] = useState(0);
   let navigate = useNavigate();
 
   return (
@@ -52,6 +54,36 @@ function App() {
         </Route>
       </Routes>
 
+      {
+        moreNum < 4 ?
+        <button onClick={()=>{
+        setMoreNum(moreNum + 1);
+
+        if(moreNum == 0) {
+          axios.get('https://codingapple1.github.io/shop/data2.json')
+          .then((data)=>{
+            let copyShoes = [...shoes, ...data.data];
+            setShoes(copyShoes);
+          })
+          .catch(()=>{
+            console.log('lost');
+          });
+        } else if (moreNum == 1) {
+          axios.get('https://codingapple1.github.io/shop/data3.json')
+          .then((data)=>{
+            let copyShoes = [...shoes, ...data.data];
+            setShoes(copyShoes);
+          })
+          .catch(()=>{
+            console.log('lost');
+          });
+        } else if (moreNum > 1) {
+          console.log(`We don't hava any more item`);
+        }
+        
+      }}>more {moreNum}</button>
+      : null
+      }
     </div>
   );
 }
