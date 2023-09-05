@@ -64,3 +64,53 @@ let YellowBtn = styled.button`
   padding : 10px;
 `;
 ```
+
+----
+# useEffect()
+useEffect 안에 코드를 작성하면 html 화면을 우선 보여준 후 useEffect 안에 있는 반복문을 돌리기 때문에
+코드의 실행 시점을 조절 할 수 있어서 html 렌더링이 빨라진다.
+
+
+```
+useEffect(()=>{ }) // 1. 재렌더링마다 코드 실행
+useEffect(()=>{ }, []) // 2. mount시 1회 코드 실행
+useEffect(()=>{
+ return ()=>{}
+}) // 3. unmount시 1회 코드 실행
+
+useEffect(()=>{
+ return ()=>{}
+}) // 4. useEffect 실행 전에 뭔가 실행하려면 언제나 return ()=>{}
+```
+
+----
+ajax
+
+서버에 GET, POST 요청할 때 새로고침 없이 데이터를 주고받을  수 있게 도와주는 간단한 브라우저 기능
+새로고침 없이 데이터를 주고 받을 수 있음
+
+AJAX로 GET/POST 요청 3가지 방법
+1. XMLHttpRequest라는 옛날 문법.
+2. fetch() 최신 문법
+3. axios 외부 라이브러리
+
+axios 외부 라이브러리 사용 시
+```npm install axios```
+
+axios 사용
+1. axios를 상단에서 import 해오고
+2. axios.get(URL) <- 해당 URL로 GET 요청됨
+3. 데이터 가져온 결과는 결과.data 안에 들어있다.
+4. 서버 데이터 연결이 실패할 때에 실행할 코드는 .catch() 안에 작성
+
+
+--
+ajax 문제
+1. 버튼을 2번 누르면 7,8,9번 상품 가져와서 html로 보여주기
+   - 버튼을 몇번 눌렀는지 변수나 state에 기록해두기
+2. 버튼 3번 누르면 상품이 없다는 안내문 띄우기
+   1. 버튼을 숨기거나
+   2. 안내를 띄우거나
+3. 버튼을 누른 직후에 '로딩중입니다'라는 글자를 주변에 띄우기
+   1. 요청이 성공하거나 실패한 직후엔 '로딩중입니다' 글자 제거
+
