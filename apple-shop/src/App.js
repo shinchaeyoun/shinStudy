@@ -8,7 +8,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Data from './component/Data';
-import DetailPage from './routes/Detail';
+import Detail from './routes/Detail';
+import Test from './routes/test';
 
 function App() {
   let [shoes, setShoes] = useState(Data);
@@ -35,7 +36,10 @@ function App() {
       <Routes>
         <Route path="*" element={<div>404</div>} />
         <Route path="/" element={<MainPage shoes={shoes}/>} />
-        <Route path="/detail" element={<DetailPage shoes={shoes}/>} />
+
+        <Route path="/test" element={<Test/>} />
+        
+        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
 
         <Route path="/about" element={<About/>}>
           <Route path="member" element={<div>member</div>} />
@@ -53,7 +57,6 @@ function App() {
 }
 
 function Card ({shoes, idx}) {
-  console.log(idx);
   return (
     <Col md={4}>
       <img src={`/img/item${idx+1}.png`} alt={`item${idx+1}`} /> 
