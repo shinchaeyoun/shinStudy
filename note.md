@@ -114,3 +114,39 @@ ajax 문제
 3. 버튼을 누른 직후에 '로딩중입니다'라는 글자를 주변에 띄우기
    1. 요청이 성공하거나 실패한 직후엔 '로딩중입니다' 글자 제거
 
+---
+
+#### POST 요청하는 법
+
+axios.post('URL', {name: 'Kim'});
+-> 서버로 {name: 'Kim'}자료가 전송됨.
+axios.post('URL', {name: 'Kim'}).then()
+-> 완료시 특정 코드를 실행하고 싶을 때
+
+#### 동시에 AJAX 요청 여러개 날리려면
+Promise.all([axios.get('URL1'), axios.get('URL2')])
+둘 다 완료시 특정 코드를 실행하고 싶으면
+-> Promise.all([axios.get('URL1'), axios.get('URL2')]).then();
+
+#### 원래 서버와 문자자료만 주고받을 수 있음
+object, array같은 자료형은 주고받을 수 없는데
+object, array 자료에 따옴표를 쳐놓으면 됨
+"{'name': 'Kim'}"
+이걸 JSON 이라고 한다
+JSON은 문자 취급을 받기 때문에 서버와 자유롭게 주고 받을 수 있다.
+
+axios 라이브러리가 JSON -> object/array 변환작업을 자동으로 해줘서 출력해보면 object/array가 나옴
+
+자바스크립트 문법인 fetch()를 이용해도 GET/POST 요청 가능
+fetch()는 JSON -> object/array로 안바꿔줘서 직접 바꾸는 작업이 필요함.
+
+### ajax 데이터 html에서 에러
+1. ajax 요청으로 데이터 가져와서
+2. state에 저장하라는 코드
+3. state를 html에 넣어서 보여달라는 코드
+에서 에러가 나는 경우는
+ajax 요청보다 html 렌더링이 더 빨라서 그럴 수 있음.
+state 안에 내용이 있으면 보여달라는 조건을 추가하면 됨
+
+====
+# 탭 UI
