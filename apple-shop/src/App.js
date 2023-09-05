@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Data from './component/Data';
+import Tabs from './component/Tabs';
 import Detail from './routes/Detail';
 import Test from './routes/test';
 import axios from 'axios';
@@ -35,6 +36,8 @@ function App() {
         </Container>
       </Navbar>
 
+      <Tabs />
+      
       <Routes>
         <Route path="*" element={<div>404</div>} />
         <Route path="/" element={<MainPage shoes={shoes}/>} />
