@@ -44,3 +44,23 @@ let imgIdx = findItem.id + 1;
 <p>{findItem.content}</p>
 <p>{findItem.price}</p>
 ```
+
+----
+# styled-components
+npm install styled-components
+
+```
+var 변수명 = styled.div`
+    styling
+`;
+
+<변수명 />
+```
+
+```
+let YellowBtn = styled.button`
+  background : ${ props => props.bg };
+  color : ${ props => props.bg == 'blue' ? 'white' : 'black' };
+  padding : 10px;
+`;
+```
