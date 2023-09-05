@@ -38,7 +38,17 @@ function todoReducer(state, action) {
   }
 };
 
+const TodoStateContext = ceeateContext();
+const TodoDispatchContext = createContext();
+
+
 export function TodoProvider({children}) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  return children;
+  return (
+    <TodoStateContext.Provider value={state}>
+      <TodoDispatchContext.Provider value={dispatch}>
+        {children}
+      </TodoDispatchContext.Provider>
+    </TodoStateContext.Provider>
+  );
 }

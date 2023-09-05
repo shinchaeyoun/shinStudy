@@ -9,6 +9,16 @@ const TodoListBlock = styled.div`
   overflow-y: auto;
 `;
 
+
+const yoosa = {
+  0: 'a',
+  1: 'b',
+  2: 'c',
+  length: 3
+};
+
+console.log(yoosa);
+
 function TodoList() {
   return (
     <TodoListBlock>
