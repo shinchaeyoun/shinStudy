@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import { Routes, Route, Link , useNavigate, Outlet} from 'react-router-dom'
 import './App.css';
 import Container from 'react-bootstrap/Container';
@@ -11,12 +11,18 @@ import Data from './component/Data';
 import Tabs from './component/Tabs';
 import Detail from './routes/Detail';
 import Test from './routes/test';
+import Cart from './routes/Cart';
 import axios from 'axios';
+
+export let Context1 = createContext()
 
 function App() {
   let [shoes, setShoes] = useState(Data);
+  let [stock, setStock] = useState([10, 20, 30]);
   let [moreNum, setMoreNum] = useState(0);
   let navigate = useNavigate();
+
+
 
   return (
     <div className="App">  
@@ -36,15 +42,20 @@ function App() {
         </Container>
       </Navbar>
 
-      <Tabs />
-      
       <Routes>
         <Route path="*" element={<div>404</div>} />
         <Route path="/" element={<MainPage shoes={shoes}/>} />
 
         <Route path="/test" element={<Test/>} />
+
         
-        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+        <Route path="/detail/:id" element={
+          <Context1.Provider value={{ stock, shoes }}>
+            <Detail shoes={shoes} />
+          </Context1.Provider>
+        } />
+
+        <Route path="/cart" element={<Cart/>} />
 
         <Route path="/about" element={<About/>}>
           <Route path="member" element={<div>member</div>} />
