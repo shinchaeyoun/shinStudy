@@ -33,6 +33,7 @@ function App() {
             <Nav className="me-auto">
               <Link to='/'>Home</Link>
               <Link to='/detail'>Detail</Link>
+              <Nav.Link onClick={()=>{navigate('/cart')}}>Cart</Nav.Link>
               <Nav.Link onClick={()=>{navigate(-1)}}>prev</Nav.Link>
               <Nav.Link onClick={()=>{navigate(1)}}>next</Nav.Link>
               <Nav.Link onClick={()=>{navigate('/')}}>Home</Nav.Link>

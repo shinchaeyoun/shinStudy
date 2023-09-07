@@ -1,10 +1,12 @@
 /* eslint-disable */
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components'
 import Nav from 'react-bootstrap/Nav';
-
 import { Context1 } from './../App';
+import { addCount } from './../store.js';
+import { addItem } from './../store.js';
 
 let Box = styled.div`
   padding : 20px;
@@ -25,6 +27,7 @@ let Title = styled.h4`
 `;
 
 function DetailCard ({shoes}) {
+  let dispatch = useDispatch();
 
   let a = useContext(Context1);
   let {stock} = useContext(Context1);
@@ -66,7 +69,12 @@ function DetailCard ({shoes}) {
           <Title className="pt-5" color='gray'>{findItem.title}</Title>
           <p>{findItem.content}</p>
           <p>{findItem.price}</p>
-          <button className="btn btn-danger">주문하기</button> 
+          <button className="btn btn-danger"
+            onClick={()=>{
+              console.log('array push',findItem);
+              dispatch(addItem({id: findItem.id, name: findItem.title, count: 1}))
+            }}
+          >주문하기</button> 
         </div>
       </div>
 
