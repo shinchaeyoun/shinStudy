@@ -1,0 +1,7 @@
+@import './../../Styles/variables.scss';
+
+nav {
+  display: flex;
+  align-items: center; 
+  color: $mainColor;
+}
