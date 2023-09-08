@@ -1,5 +1,5 @@
 # appydev_clone
-
+#### vue project https://appydev.co/
 ## Project setup
 ```
 npm install
