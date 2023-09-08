@@ -11,3 +11,5 @@ ESLint, Prettier
   npm 패키지 설치
   npm install -D prettier eslint-config-prettier eslint-plugin-prettier
 
+styled-components 사용하기
+npm install styled-components
