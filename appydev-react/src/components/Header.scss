@@ -1,0 +1,38 @@
+.navbar {
+  font-family: 'Ubuntu', sans-serif;
+  
+  .container {
+    max-width:1024px;
+    
+  }
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .logo {
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.search-area {
+  width: 400px;
+  height: 50px;
+  border: 2px solid #000;
+  border-bottom-width: 4px;
+  border-radius: 8px;
+}
+
+.dropdown-menu[data-bs-popper] {
+  top: 200%;
+}
+
+.dropdown-menu {
+  border: 2px solid #000;
+}
+.dropdown-divider {
+  border: 1px solid #000;
+}
