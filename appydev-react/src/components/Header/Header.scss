@@ -1,5 +1,90 @@
 @import './../../styles/variables.scss';
 
-.navBtn {
-  // border: 1px solid #000;
+header {
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 1080px;
+    height: 80px;
+    font-family: $ubuntu;
+  }
+}
+
+.navItem {
+  .icon {
+    position: relative;
+    top: -1px;
+    > svg {
+      margin-right: 6px;
+      width: 23px; height: 23px;
+    }
+  }
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.searchArea {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 12px;
+  width: 400px;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid #000;
+
+  border: 2px solid #000;
+  border-bottom-width: 4px;
+  border-radius: 8px;
+
+  .icon {
+    margin-right: 10px;
+    >svg {
+      width: 23px; height: 23px;
+    }
+  }
+  
+  input {
+    width: 100%;
+    height: 100%;
+    // background-color: #eee;
+    border: none;
+    
+    &:focus {outline: none;}
+    &::placeholder {color: #ccc;}
+  }
+
+  .inputX {
+    width: 25px; height: 25px;
+  }
+}
+
+.dropdown {
+  .dropdown-menu {
+    padding: 3px 0;
+    border: 2px solid #222;
+    .dropdown-item {
+      padding: 0 48px 0 12px;
+    }
+    .dropdown-divider{
+      display: block;
+      margin: 3px 0;
+      border: 1px solid #222;
+    }
+  }
+
+  .dropdown-menu.show {
+    transform: translate(0px, 56px) !important;
+    // transform: translate(0px, 56px);
+  }
+}
+
+.bookmarkNum {
+  margin-right: 5px;
 }
