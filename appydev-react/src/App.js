@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { Routes, Route, Link } from 'react-router-dom';
 // import { addBookmark } from "./store.js"
 
-function App() {
+function App (){
   return (
-    <div>
+    <>
       <Header />
 
       <Routes>
@@ -19,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

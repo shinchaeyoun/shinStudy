@@ -13,3 +13,6 @@ ESLint, Prettier
 
 styled-components 사용하기
 npm install styled-components
+
+react-bootStrap
+npm install react-bootstrap bootstrap
