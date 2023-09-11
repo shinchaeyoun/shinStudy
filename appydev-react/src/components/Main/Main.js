@@ -1,14 +1,15 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import ItemTem from './ToolItem.js';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import './Main.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBookmark, removeBookmark } from './../../store';
-const MainBlock = styled.main`
+
+const MainBlock = styled.div`
+
 `
-
-
 
 function Main() {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ function Main() {
             }
             <li className='navItem'>Editors Choice</li>
           </ul>
+        </div>
+        <div>
+          <div className='actionBtn' wid={'100px'}>??</div>
+          <actionBtn wid={'100px'}>!</actionBtn>
+          <ItemTem />
         </div>
       </Container>
     </MainBlock>

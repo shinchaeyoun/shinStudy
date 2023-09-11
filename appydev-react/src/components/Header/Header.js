@@ -53,8 +53,6 @@ function Header () {
 
   return (
     <>
-      {/* <GlobalStyle/> */}
-
       <header>
         <Container>
           <NavItem title={'#'} wid={'50px'} fz={'30px'}>#</NavItem>

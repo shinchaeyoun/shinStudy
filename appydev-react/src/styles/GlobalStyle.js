@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   .navBtn {
-    width: ${props => props.wid || '50px'}; height: ${props => props.hei || '50px'};
+    width: ${props => props.wid || '50px'};
+    height: ${props => props.hei || '50px'};
     color: ${({theme}) => theme.colors.mainColor};
     text-align: center;
     line-height: ${props => props.hei || '50px'};
@@ -18,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .actionBtn {
+    width: ${props => props.wid || '50px'};
+    height: ${props => props.hei || '50px'};
     padding: 0px 4px;
     width: ${props => props.wid};
     height: ${props => props.hei || '50px'};
