@@ -6,9 +6,9 @@ const theme ={
     mainColor: '#c70000'
   },
   fonts: {
-    Outfit: ['Outfit'],
-    Poppins: ['Poppins'],
-    Ubuntu: ['Ubuntu']
+    Outfit: 'Outfit',
+    Poppins: 'Poppins',
+    Ubuntu: 'Ubuntu'
   }
 };
 
