@@ -109,7 +109,6 @@ function Header () {
 };
 
 function NavItem ({children, wid, hei, fz, bgc}) {
-  console.log(bgc);
   return (
     <NavBtn className='navItem' wid={wid} hei={hei} fz={fz} bgc={bgc}>
       <span>

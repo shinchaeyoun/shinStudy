@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .actionBtn {
+  .ActionBtn {
     width: ${props => props.wid || '50px'};
     height: ${props => props.hei || '50px'};
     padding: 0px 4px;

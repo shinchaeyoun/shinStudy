@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Header from './components/Header/Header.js';
+import Footer from './components/Footer/Footer.js';
 import Main from './components/Main/Main.js';
 import { useSelector } from "react-redux";
 import { Routes, Route, Link } from 'react-router-dom';
@@ -15,6 +16,8 @@ function App (){
         <Route path="/detail" element={ <div>detail</div> } />
         <Route path="/about" element={ <div>about</div> } />
       </Routes>
+
+      <Footer />
     </>
   );
 }
