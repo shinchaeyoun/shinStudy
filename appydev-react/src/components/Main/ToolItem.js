@@ -3,20 +3,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBookmark } from './../../store';
-import styled from 'styled-components';
 import './Main.scss';
 import { HiOutlineExternalLink, HiOutlineMinusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 
 function ToolItem() {
   let tools = useSelector((state) => state.tools);
-  let [tool, setTool] = useState(tools);
-
+  
   return(
     <>
       {
-        tool.map((item, idx) => { 
+        tools.map((item, idx) => { 
           return (
-            <Item item={item} key={idx} title={item.title} subTitle={item.subTitle}/>
+            <Item item={item} idx={idx} key={idx} title={item.title} subTitle={item.subTitle}/>
           )
         })
       }
@@ -24,26 +22,40 @@ function ToolItem() {
   )
 };
 
-function Item ({title,subTitle}) {
+function Item ({item, idx, title,subTitle}) {
   // let [itemHover, setHover] = useState(false);
-  let [bookMark, setBookmark] = useState(false);
+  
+  let tools = useSelector((state) => state.tools);
+  let [tool, setTool] = useState(tools);
+
+
+  // let [testMark, setTestmark] = useState([tools[idx]]);
+  // let [testMarkidx, setTestMarkidx] = useState([testMark.bookmark])
 
   let dispatch = useDispatch();
+
+  // dispatch(addMark(item.bookmark))
+
   return (
-    <ItemBox className='temItem'>
+    <div className='temItem'
+      onClick={()=>{
+
+      }}
+    >
       <div className='hoverIcon'>
         <div className='bookmark'
           onClick={()=>{
-            setBookmark(!bookMark)
-            dispatch(addBookmark(bookMark))
-            console.log(bookMark);
+            dispatch(addBookmark([idx, !tools[idx].bookmark]));
+            
+            let findIndex = tools.filter(e => e.bookmark === true);
+            console.log('toolitem bookmark length',findIndex, findIndex.length);  
           }}
         >
           <span>
             {
-              bookMark === true ?
-              <HiOutlineMinusCircle/>
-              : <HiOutlinePlusCircle/>
+              tools[idx].bookmark === false ?
+              <HiOutlinePlusCircle/>
+              : <HiOutlineMinusCircle/>
             }
           </span>
           bookmark
@@ -65,10 +77,8 @@ function Item ({title,subTitle}) {
           <div className='byName'>byName</div>
         </div>
       </div>
-    </ItemBox>
+    </div>
   )
 }
-
-const ItemBox = styled.div``
 
 export default ToolItem;

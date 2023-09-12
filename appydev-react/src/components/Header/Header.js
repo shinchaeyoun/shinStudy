@@ -29,7 +29,12 @@ const NavBtn = styled.div`
 `
 
 function Header () {
-  let mark = useSelector((state) => { return state.bookmark } );
+  let tools = useSelector((state) => { return state.tools } );
+
+  let findIndex = tools.filter(e => e.bookmark === true);
+  console.log('hearder bookmark length',findIndex, findIndex.length);  
+
+
   
   let [inputVal, setInputVal] = useState('');
   let [inputFocus, setInputFocus] = useState(false);
@@ -99,7 +104,7 @@ function Header () {
           </NavItem>
           <NavItem>
             <span className='icon'><BiBookmark/></span>
-            <span className='bookmarkNum'>{mark}</span>
+            <span className='bookmarkNum'>{findIndex.length}</span>
             Bookmark
           </NavItem>
         </Container>

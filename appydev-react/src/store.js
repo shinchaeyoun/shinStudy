@@ -1,141 +1,124 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { BiShoppingBag, BiPieChartAlt2, BiTable, BiAnchor, BiArchive, BiAt, BiBadge, BiBarChartSquare, BiBriefcase, BiBomb, BiBookmarkAlt, BiBookHeart, BiBot, BiBox, BiCake, BiCalendarEdit, BiCar, BiCartAlt, BiCategoryAlt, BiChalkboard, BiChart, BiCast, BiCarousel, BiCctv, BiCheese, BiChild, BiCloset, BiCoffeeTogo, BiCog } from "react-icons/bi";
 
-let bookmark = createSlice({
-  name: 'bookmark',
-  initialState: 0,
-  reducers: {
-    // addBookmark (state){
-    //   return (
-    //     state += 1
-    //   )
-    // },
-    // removeBookmark(state){
-    //   if(state>0){
-    //     state -= 1
-    //   }
-    //   return state
-    // }
-  }
-});
+// import { BiShoppingBag, BiPieChartAlt2, BiTable, BiAnchor, BiArchive, BiAt, BiBadge, BiBarChartSquare, BiBriefcase, BiBomb, BiBookmarkAlt, BiBookHeart, BiBot, BiBox, BiCake, BiCalendarEdit, BiCar, BiCartAlt, BiCategoryAlt, BiChalkboard, BiChart, BiCast, BiCarousel, BiCctv, BiCheese, BiChild, BiCloset, BiCoffeeTogo, BiCog } from "react-icons/bi";
 
 let toolNavs = createSlice({
   name: 'toolNavs',
   initialState: [
     {
       title: 'API',
-      icon: <BiShoppingBag/>
+      // icon: <BiShoppingBag/>
     },
     {
       title: 'Browser Extensions',
-      icon: <BiPieChartAlt2/>
+      // icon: <BiPieChartAlt2/>
     },
     {
       title: 'CSS Frameworks',
-      icon: <BiAnchor/>
+      // icon: <BiAnchor/>
     },
     {
       title: 'Career',
-      icon: <BiBriefcase/>
+      // icon: <BiBriefcase/>
     },
     {
       title: 'Cheatsheets',
-      icon: <BiTable/>
+      // icon: <BiTable/>
     },
     {
       title: 'Code Automation',
-      icon: <BiAt/>
+      // icon: <BiAt/>
     },
     {
       title: 'Content & Writing',
-      icon: <BiBadge/>
+      // icon: <BiBadge/>
     },
     {
       title: 'Design Mockup',
-      icon: <BiArchive/>
+      // icon: <BiArchive/>
     },
     {
       title: 'Design Tools',
-      icon: <BiBarChartSquare/>
+      // icon: <BiBarChartSquare/>
     },
     {
       title: 'Developer Productivity',
-      icon: <BiBomb/>
+      // icon: <BiBomb/>
     },
     {
       title: 'Developer Resources',
-      icon: <BiBookHeart/>
+      // icon: <BiBookHeart/>
     },
     {
       title: 'Developer Tools',
-      icon: <BiBot/>
+      // icon: <BiBot/>
     },
     {
       title: 'Education',
-      icon: <BiBox/>
+      // icon: <BiBox/>
     },
     {
       title: 'Email Builders',
-      icon: <BiCake/>
+      // icon: <BiCake/>
     },
     {
       title: 'Email Tools',
-      icon: <BiCalendarEdit/>
+      // icon: <BiCalendarEdit/>
     },{
       title: 'Entertainment',
-      icon: <BiCar/>
+      // icon: <BiCar/>
     },
     {
       title: 'Freebis',
-      icon: <BiCartAlt/>
+      // icon: <BiCartAlt/>
     },
     {
-      title: 'Icons',
-      icon: <BiCategoryAlt/>
+      // title: 'Icons',
+      // icon: <BiCategoryAlt/>
     },
     {
       title: 'Illustrations',
-      icon: <BiChalkboard/>
+      // icon: <BiChalkboard/>
     },
     {
       title: 'JS Plugins',
-      icon: <BiChart/>
+      // icon: <BiChart/>
     },
     {
       title: 'Loaders & Spinnners',
-      icon: <BiCast/>
+      // icon: <BiCast/>
     },
     {
       title: 'Marketing Resources',
-      icon: <BiCarousel/>
+      // icon: <BiCarousel/>
     },
     {
       title: 'Misc',
-      icon: <BiCctv/>
+      // icon: <BiCctv/>
     },
     {
       title: 'Nocode',
-      icon: <BiCheese/>
+      // icon: <BiCheese/>
     },
     {
       title: 'Productivity',
-      icon: <BiChild/>
+      // icon: <BiChild/>
     },
     {
       title: 'SEO',
-      icon: <BiCloset/>
+      // icon: <BiCloset/>
     },
     {
       title: 'Stock Assets',
-      icon: <BiCoffeeTogo/>
+      // icon: <BiCoffeeTogo/>
     },
     {
       title: 'Wireframe',
-      icon: <BiCog/>
+      // icon: <BiCog/>
     },
     {
       title: 'productivity',
-      icon: <BiBookmarkAlt/>,
+      // icon: <BiBookmarkAlt/>,
     }
   ]
 });
@@ -148,9 +131,9 @@ let tools = createSlice({
       subTitle: 'Donations made easy',
       tag: 'nocode',
       name: 'Jordan Kerr',
-      titleImg: '',
-      shopImg: '',
-      icon: '',
+      titleImg: 'test',
+      shopImg: 'test',
+      icon: 'test',
       bookmark: false
     },
     {
@@ -158,37 +141,38 @@ let tools = createSlice({
       subTitle: 'Free Spreadsheet Powered Database Platform',
       tag: 'productivity',
       name: 'JotForm',
-      titleImg: '',
-      shopImg: '',
-      icon: '',
+      titleImg: 'test',
+      shopImg: 'test',
+      icon: 'test',
       bookmark: false
     },
     {
-      title: 'JotForm Tables',
-      subTitle: 'Free Spreadsheet Powered Database Platform',
+      title: 'Note Bag',
+      subTitle: 'Organize your notes without getting distracted',
       tag: 'productivity',
-      name: 'JotForm',
-      titleImg: '',
-      shopImg: '',
-      icon: '',
+      name: 'pretzelhands',
+      titleImg: 'test',
+      shopImg: 'test',
+      icon: 'test',
       bookmark: false
     },
     {
-      title: 'JotForm Tables',
-      subTitle: 'Free Spreadsheet Powered Database Platform',
-      tag: 'productivity',
-      name: 'JotForm',
-      titleImg: '',
-      shopImg: '',
-      icon: '',
+      title: 'OpenGraph',
+      subTitle: 'Preview and generate open graph meta tags',
+      tag: 'developer tools',
+      name: 'Yuyu',
+      titleImg: 'test',
+      shopImg: 'test',
+      icon: 'test',
       bookmark: false
     }
   ],
   reducers: {
-    addBookmark (state){
-      return (
-        console.log(state)
-      )
+    addBookmark (state, action){
+      let idx = action.payload[0];
+      let isMark = action.payload[1];
+      
+      state[idx].bookmark = isMark;
     },
     removeBookmark(state){
       if(state>0){
@@ -201,7 +185,6 @@ let tools = createSlice({
 
 export default configureStore({
   reducer: {
-    bookmark : bookmark.reducer,
     toolNavs: toolNavs.reducer,
     tools: tools.reducer
   }
