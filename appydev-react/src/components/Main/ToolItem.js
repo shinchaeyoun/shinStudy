@@ -1,20 +1,26 @@
 /* eslint-disable */
-
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBookmark } from './../../store';
+import { addBookmark } from '../../store';
 import './Main.scss';
 import { HiOutlineExternalLink, HiOutlineMinusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 
 function ToolItem() {
   let tools = useSelector((state) => state.tools);
+  let [tool,setTool] = useState(tools);
   
   return(
     <>
       {
         tools.map((item, idx) => { 
           return (
-            <Item item={item} idx={idx} key={idx} title={item.title} subTitle={item.subTitle}/>
+            <Item
+              item={item}
+              idx={idx}
+              key={idx}
+              title={item.title}
+              subTitle={item.subTitle}
+            />
           )
         })
       }
@@ -23,25 +29,12 @@ function ToolItem() {
 };
 
 function Item ({item, idx, title,subTitle}) {
-  // let [itemHover, setHover] = useState(false);
-  
   let tools = useSelector((state) => state.tools);
-  let [tool, setTool] = useState(tools);
-
-
-  // let [testMark, setTestmark] = useState([tools[idx]]);
-  // let [testMarkidx, setTestMarkidx] = useState([testMark.bookmark])
 
   let dispatch = useDispatch();
 
-  // dispatch(addMark(item.bookmark))
-
   return (
-    <div className='temItem'
-      onClick={()=>{
-
-      }}
-    >
+    <div className='temItem'>
       <div className='hoverIcon'>
         <div className='bookmark'
           onClick={()=>{

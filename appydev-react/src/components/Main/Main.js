@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import './Main.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBookmark, removeBookmark } from './../../store';
+import { addBookmark, removeBookmark } from '../../store.js';
 import { PiCirclesFourBold, PiCrownSimpleBold, PiFlyingSaucerBold } from "react-icons/pi";
 
 const MainBlock = styled.div`

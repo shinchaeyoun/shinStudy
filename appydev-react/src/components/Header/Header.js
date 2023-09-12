@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Routes, Route, Link , useNavigate, Outlet} from 'react-router-dom'
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -29,13 +30,11 @@ const NavBtn = styled.div`
 `
 
 function Header () {
+  let navigate = useNavigate();
+
   let tools = useSelector((state) => { return state.tools } );
-
   let findIndex = tools.filter(e => e.bookmark === true);
-  console.log('hearder bookmark length',findIndex, findIndex.length);  
 
-
-  
   let [inputVal, setInputVal] = useState('');
   let [inputFocus, setInputFocus] = useState(false);
 
@@ -60,7 +59,10 @@ function Header () {
     <>
       <header>
         <Container>
-          <NavItem title={'#'} wid={'50px'} fz={'30px'}>#</NavItem>
+          <NavItem title={'#'} wid={'50px'} fz={'30px'}
+            onClick={()=>{navigate('/')}}>
+            #
+          </NavItem>
 
           <div className='logo'>appydev</div>
 
@@ -79,7 +81,14 @@ function Header () {
             }
           </div>
 
-          <NavItem title={'Sponsors'} bgc={'#667eea'}>Sponsors</NavItem>
+          <NavItem title={'Sponsors'} bgc={'#667eea'}
+            onClick={()=>{
+              console.log('?? submit');
+              navigate('/sponsors');
+            }}
+          >
+            Sponsors
+          </NavItem>
           <NavItem title={'Explore'}>
             <NavDropdown title="Explore" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">
@@ -98,11 +107,19 @@ function Header () {
               </NavDropdown.Item>
             </NavDropdown>
           </NavItem>
-          <NavItem title={'Submit'}>
+          <NavItem title={'Submit'}
+            onClick={()=>{
+              console.log('?? submit');
+              navigate('/submit');
+            }}
+          >
             <span className='icon'><BiArrowFromBottom/></span>
             Submit
           </NavItem>
-          <NavItem>
+          <NavItem onClick={()=>{
+            console.log('bookmark click');
+            navigate('/bookmark');
+          }}>
             <span className='icon'><BiBookmark/></span>
             <span className='bookmarkNum'>{findIndex.length}</span>
             Bookmark
@@ -113,9 +130,9 @@ function Header () {
   )
 };
 
-function NavItem ({children, wid, hei, fz, bgc}) {
+function NavItem ({children, wid, hei, fz, bgc, onClick}) {
   return (
-    <NavBtn className='navItem' wid={wid} hei={hei} fz={fz} bgc={bgc}>
+    <NavBtn className='navItem' wid={wid} hei={hei} fz={fz} bgc={bgc} onClick={onClick}>
       <span>
         {children}
       </span>

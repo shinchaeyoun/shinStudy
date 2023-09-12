@@ -1,4 +1,8 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+/* eslint-disable */
+import {
+  configureStore,
+  createSlice
+} from '@reduxjs/toolkit';
 
 // import { BiShoppingBag, BiPieChartAlt2, BiTable, BiAnchor, BiArchive, BiAt, BiBadge, BiBarChartSquare, BiBriefcase, BiBomb, BiBookmarkAlt, BiBookHeart, BiBot, BiBox, BiCake, BiCalendarEdit, BiCar, BiCartAlt, BiCategoryAlt, BiChalkboard, BiChart, BiCast, BiCarousel, BiCctv, BiCheese, BiChild, BiCloset, BiCoffeeTogo, BiCog } from "react-icons/bi";
 
@@ -73,7 +77,7 @@ let toolNavs = createSlice({
       // icon: <BiCartAlt/>
     },
     {
-      // title: 'Icons',
+      title: 'Icons',
       // icon: <BiCategoryAlt/>
     },
     {
