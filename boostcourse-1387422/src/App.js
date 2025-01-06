@@ -40,7 +40,6 @@ class App extends Component {
 
         <header>
           <h1><a href="/" onClick={function (e) {
-            console.log('hi', e);
             // debugger;
             e.preventDefault();
             // this.state.mode = 'welcome';
