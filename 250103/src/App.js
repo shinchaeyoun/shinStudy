@@ -27,17 +27,11 @@ class TOC extends Component {
 }
 
 class Content extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      content: {title:'HTML', desc:"HTML is Hyper Text Makeup Language."}
-    }
-  }
   render() {
     return (
       <article>
-        <h2>{this.props.title}</h2>
-        {this.props.desc}
+        <h2>someone</h2>
+        someone
       </article>
     )
   }
@@ -54,13 +48,20 @@ class Bottom extends Component {
   }
 }
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      subject: { title: 'WEB', sub: 'World Wide Web!' }
+    };
+  }
   render() {
     return (
       <div className="App">
         {/* <Subject title="WEB" desc="world wide web!"></Subject> */}
         <Subject title={this.state.subject.title} sub={this.sate.subject.sub}></Subject>
         <TOC first="HTdML" second="CSS" thrid="JavaScript"></TOC>
-        <Content title={this.state.content.title} desc={this.state.content.desc}></Content>
+        {/* <Content title={this.state.content.title} desc={this.state.content.desc}></Content> */}
+        <Content></Content>
         <Bottom></Bottom>
       </div>
     )
