@@ -49,6 +49,7 @@ class App extends Component {
         </header>
 
         <TOC data={this.state.contents}></TOC>
+        <Content title={this.state.contents[0].title} desc={this.state.contents[0].desc}></Content>
         <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
         <Content title="React" desc="HTML is HyperText Markup Language."></Content>
         <Content title={_title} desc={_desc}></Content>
