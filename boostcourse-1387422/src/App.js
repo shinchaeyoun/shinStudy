@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import Subject from './component/Subject';
 import TOC from './component/TOC';
@@ -38,11 +39,13 @@ class App extends Component {
         <Subject title={this.state.subject.title} sub={this.state.subject.sub}></Subject> */}
 
         <header>
-          <h1><a href="/" onClick={function(e){
-            console.log('hi',e);
+          <h1><a href="/" onClick={function (e) {
+            console.log('hi', e);
             // debugger;
             e.preventDefault();
-          }} >{this.state.subject.title}</a></h1>
+            // this.state.mode = 'welcome';
+            this.setState({ mode: 'welcome' });
+          }.bind(this)} >{this.state.subject.title}</a></h1>
           {this.state.subject.sub}
         </header>
 
