@@ -3,8 +3,6 @@ $(function () {
 });
 
 function calculator() {
-    console.log('dd');
-    
     let active = true;
     let item = $('.calculator .grid-container div');
     let subDis = $('.display span');
@@ -16,11 +14,12 @@ function calculator() {
     let finish = false;
 
     item.off().on('click', function () {
-        console.log('a');
         let type = $(this).data('item');
         let num = $(this).text();
         if (!active) return false;
         type == 'number' ? cal.numberFn(num) : cal.operatorFn($(this).text());
+        if(type == 'reset') cal.reset();
+        if(type == 'delete') cal.delete();
     });
 
     //    $('.on').off().on("click", function () {
@@ -31,12 +30,6 @@ function calculator() {
     //      active = false;
     //      cal.reset();
     //    });
-    //    $('.c').off().on("click", function () {
-    //      cal.delete();
-    //    });
-    $('.ac').off().on("click", function () {
-        cal.reset();
-    });
 
     let cal = {
         result: 0,
@@ -44,30 +37,35 @@ function calculator() {
         nextNum: [],
         op: null,
         preOp: null,
-        setNum: function () {
+        setNum: function (pos) {
+            if(pos == subDis) resultText.pop();
             text = resultText.join('');
-            display.text(text);
+            pos.text(text);
         },
         reset: function () {
             resultText = [];
-            cal.setNum();
+            cal.setNum(display);
             finish = false;
         },
         delete: function () {
+            console.log('delete');
+            
             resultText.pop();
-            cal.setNum();
+            cal.setNum(display);
         },
         numberFn: function (val) {
             if (finish) cal.reset();
             let num = Number(val);
             resultText.push(num);
-            cal.setNum();
+            cal.setNum(display);
         },
         operatorFn: function (op) {
+            console.log('operatorFn',op);
+            
             let lastEle = resultText[resultText.length - 1];
             let prev, next
             cal.op = op;
-
+            
             if (!checkPreNum) {
                 prev = resultText.join('');
                 cal.preNum = Number(prev);
@@ -83,14 +81,19 @@ function calculator() {
 
             if (typeof (lastEle) == 'string') {
                 resultText.pop();
+            } else if (lastEle == 'c' || lastEle == 'ac') {
+                console.log('else if');
+                
             }
             resultText.push(op);
 
             if (op == '=') {
                 checkPreNum = false;
                 cal.resultFn();
+            } else if ( op == 'c') {
+                cal.delete();
             }
-            cal.setNum();
+            cal.setNum(display);
 
             cal.preOp = cal.op;
         },
@@ -110,9 +113,11 @@ function calculator() {
                     break;
             };
 
+            // subDis.text(resultText)
+            cal.setNum(subDis);
             cal.reset();
             resultText = [cal.result];
-            cal.setNum();
+            cal.setNum(display);
             finish = true;
         }
     };
