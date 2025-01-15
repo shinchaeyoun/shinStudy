@@ -8,199 +8,84 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="./audioInfo.js"></script>
     <script src="./audioPlayer.js"></script>
-
-    <style>
-        body {
-            color: #e2e2e275 !important;
-        }
-
-        ul,
-        li,
-        ol {
-            list-style: none;
-        }
-
-        span.btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #d1d1d1b4;
-            display: inline-block;
-        }
-
-        .active {
-            color: #d1d1d1b4;
-        }
-
-
-
-        .slider_bar {
-            margin: 20px 0 10px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider_bar .slider {
-            position: relative;
-            width: 300px;
-            height: 3px;
-            background-color: #d3d3d3;
-            border-radius: 25px;
-            cursor: pointer;
-        }
-
-        .slider_bar .slider #seek-bar {
-            position: relative;
-            height: 3px;
-            border-radius: 25px;
-        }
-
-        .slider_bar .slider #ins-time {
-            position: absolute;
-            top: -26px;
-            color: #fff;
-            font-size: 12px;
-            white-space: pre;
-            padding: 3px 6px;
-            border-radius: 4px;
-            display: none;
-            opacity: 0.6;
-        }
-
-        .slider_bar .slider #s-hover {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            opacity: 0.2;
-            z-index: 2;
-        }
-
-        .slider_bar .slider #ins-time,
-        .slider_bar .slider #s-hover {
-            background-color: #3b3d50;
-        }
-
-        .slider_bar .slider #seek-bar {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            background-color: #d0021b;
-            transition: 0.1s ease-in-out width;
-            z-index: 1;
-        }
-
-        .slider_bar .slider .dot {
-            position: absolute;
-            z-index: 2;
-            top: -1px;
-            left: 0px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background-color: #5a5a5a;
-            transition: 0.1s left;
-        }
-
-        .slider_bar .slider .dot.active {
-            background-color: #d0021b;
-        }
-
-        .slider_bar .slider .bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 3px;
-            width: 0px;
-            background-color: #5a5a5a;
-        }
-
-        .track_time {
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-        }
-
-        .track_time .current_time {
-            display: flex;
-            justify-content: center;
-        }
-
-        .track_time .track_length {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <span class="btn shu ffle">shuffle</span>
-    <span class="btn prev">prev</span>
-    <span class="btn play">play</span>
-    <span class="btn next">next</span>
-    <span class="btn mute">off</span>
 
-    <div class="slider_bar">
-        <div class="slider">
-            <span class="dot"></span>
-            <span class="bar"></span>
-            <div id="ins-time"></div>
-            <div id="s-hover"></div>
-            <div id="seek-bar"></div>
+    <div id="player">
+        <div class="cover">
+            <img src="">
         </div>
+
+        <div class="track_info">
+            <div class="track">22</div>
+            <div class="name">22</div>
+        </div>
+
+        <div class="progress_bar">
+            <div class="progress">
+                <span class="dot"></span>
+                <span class="bar"></span>
+                <div id="ins-time"></div>
+                <div id="s-hover"></div>
+                <div id="seek-bar"></div>
+            </div>
+        </div>
+        <div class="track_time">
+            <div class="current_time">
+                <span>00:00</span>
+            </div>
+
+            <div class="track_length">
+                <span>00:00</span>
+            </div>
+        </div>
+
+        <div class="control">
+            <span class="btn shuffle">shuffle</span>
+            <span class="btn prev">prev</span>
+            <span class="btn play">play</span>
+            <span class="btn next">next</span>
+            <span class="btn mute">off</span>
+        </div>
+
+        <ul id="track_list"></ul>
     </div>
 
+    <div id="player">
+        <span class="btn shuffle">shuffle</span>
+        <span class="btn prev">prev</span>
+        <span class="btn play">play</span>
+        <span class="btn next">next</span>
+        <span class="btn mute">off</span>
 
-    <div class="track_time">
-        <div class="current_time">
-            <span>00:00</span>
+        <div class="slider_bar">
+            <div class="slider">
+                <span class="dot"></span>
+                <span class="bar"></span>
+                <div id="ins-time"></div>
+                <div id="s-hover"></div>
+                <div id="seek-bar"></div>
+            </div>
         </div>
 
-        <div class="track_length">
-            <span>00:00</span>
+
+        <div class="track_time">
+            <div class="current_time">
+                <span>00:00</span>
+            </div>
+
+            <div class="track_length">
+                <span>00:00</span>
+            </div>
         </div>
+
+
+
+        <ul></ul>
     </div>
 
-    <div class="track">22</div>
-    <div class="name">22</div>
-
-    <ul>
-        <!-- js 생성으로 변경 -->
-        <li> 
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-        <li>
-            <p></p> <span></span>
-        </li>
-    </ul>
 
 </body>
 

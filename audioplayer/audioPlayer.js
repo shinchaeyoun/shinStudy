@@ -10,69 +10,51 @@ function playerFn() {
         shuffleBtn = $('.shuffle'),
         track = $('.track'),
         name = $('.name'),
-        list = $('li'),
-        slider = $('.slider'),
-        tProgress = $('.current_time'),
-        trackLength = $('.track_length'),
+        list = $('#track_list'),
+        listItem = list.find('li'),
+        sArea = $('.progress'),
+        dot = $('.dot'),
+        sHover = $('#s-hover'),
         seekBar = $('#seek-bar'),
-        dot = $('.dot');
+        tProgress = $('.current_time'),
+        trackLength = $('.track_length');
+
     let playIdx = 0,
-        isShuffle = false,
         curMin,
         curSec,
         durMin,
         durSec,
-        playProgress;
+        playProgress,
+        item = '';
 
     let aud = {
         init: function () {
-            track.text(audioInfo[playIdx][1]);
-            name.text(audioInfo[playIdx][2]);
-            for (let i = 0; i < list.length; i++) {
-                list.eq(i).find('p').text(audioInfo[i][1]);
+            for (let i = 0; i < audioInfo.length; i++) {
+                item += `<li><span>${audioInfo[i][1]}</span> <span>${audioInfo[i][2]}</span></li>`
             };
+            list.append(item);
+
+            aud.info();
         },
         info: function () {
             track.text(audioInfo[playIdx][1]);
             name.text(audioInfo[playIdx][2]);
 
-            // for (let i = 0; i < list.length; i++) {
-            //     list.eq(i).find('p').text(audioInfo[i][1]);
-            // }
+            for (let i = 0; i < audioInfo.length; i++) {
+                list.find('li').eq(i).find('span:nth-child(1)').text(audioInfo[i][1]);
+                list.find('li').eq(i).find('span:nth-child(2)').text(audioInfo[i][2]);
+            }
         },
         play: function () {
-            let getText = playBtn.text();
-
             $('li').removeClass('active').eq(playIdx).addClass('active');
-            
 
             playBtn.addClass('paused');
             playBtn.text('pause');
 
-
             audio.src = audioInfo[playIdx][0];
             audio.play();
-            console.log(audio.volume);
-            
             aud.info();
             aud.audioEnd();
-            isShuffle = false;
-
-            // switch (getText) {
-            //     case 'play':
-            //         console.log('switch play');
-            //         playBtn.text('pause');
-            //         audio.play();
-            //         break;
-            //     case 'pause':
-            //         console.log('switch pause');
-            //         playBtn.text('play');
-            //         audio.pause();
-            //         break;
-            //     default:
-            //         console.log('?????');
-            //         break;
-            // }
         },
         pause: function () {
             playBtn.removeClass('paused');
@@ -82,27 +64,13 @@ function playerFn() {
         next: function () {
             playIdx < 9 ? playIdx++ : playIdx = 0;
             aud.play();
-            // $('p').text(playIdx);
         },
         prev: function () {
             playIdx >= 1 ? playIdx-- : playIdx = 9;
             aud.play();
-            // $('p').text(playIdx);
         },
         shuffle: function () {
-            isShuffle = true;
-            let shuIdx = Math.floor(Math.random() * audioInfo.length);
-            let shuffleArr = [...audioInfo].sort(() => Math.random() - 0.5);
             audioInfo.sort(() => Math.random() - 0.5);
-            // array shuffle
-
-            console.log('shuffleArr', shuffleArr);
-            console.log('shuIdx', shuIdx);
-
-            for (let i = 0; i < list.length; i++) {
-                list.eq(i).find('p').text(audioInfo[i][1]);
-            }
-
             playIdx = 0;
             aud.play();
         },
@@ -142,9 +110,9 @@ function playerFn() {
                 tProgress.text('00:00');
             };
         },
-        mute: function(){
+        mute: function () {
             muteBtn.toggleClass('on');
-            if(muteBtn.hasClass('on')){
+            if (muteBtn.hasClass('on')) {
                 muteBtn.text('on');
                 audio.volume = 0;
             } else {
@@ -165,18 +133,53 @@ function playerFn() {
         }
     };
 
-    const sliderEvent = function (e) {
-        console.log('slider function', e.type);
+    const progressEvent = function (e) {
+        console.log('progress function', e.type);
 
-        let slider = {
+        let progress = {
             over: function () {
-                console.log('slider over');
+                console.log('progress over');
+                seekBarPos = sArea.offset();
+                seekT = event.clientX - seekBarPos.left;
+                seekLoc = audio.duration * (seekT / sArea.outerWidth());
+
+                sHover.width(seekT);
+
+                cM = seekLoc / 60;
+
+                ctMin = Math.floor(cM);
+                ctSec = Math.floor(seekLoc - ctMin * 60);
+
+                if ((ctMin < 0) || (ctSec < 0))
+                    return;
+
+                if ((ctMin < 0) || (ctSec < 0))
+                    return;
+
+                if (ctMin < 10)
+                    ctMin = '0' + ctMin;
+                if (ctSec < 10)
+                    ctSec = '0' + ctSec;
+
+                if (isNaN(ctMin) || isNaN(ctSec))
+                    $('#insTime').text('--:--');
+                else
+                    $('#insTime').text(ctMin + ':' + ctSec);
+
+                $('#insTime').css({ 'left': seekT, 'margin-left': '-21px' }).fadeIn(0);
             },
             leave: function () {
-                console.log('slider leave');
+                console.log('progress leave');
+                $('#insTime').text('00:00').css({ 'left': '0px', 'margin-left': '0px' }).fadeOut(0);
             },
             click: function () {
-                console.log('slider click');
+                console.log('progress click');
+                audio.currentTime = seekLoc
+                seekBar.width(seekT);
+                dot.css({
+                    left: seekT
+                });
+                progress.leave();
             }
         };
 
@@ -185,16 +188,28 @@ function playerFn() {
                 console.log('click');
                 break;
             case 'mouseover':
-                slider.over();
+                progress.over();
                 break;
             case 'mouseleave':
                 break;
         };
+    };
+
+    const viewType = function () {
+        let type = {
+            vertical: function () {
+
+            },
+            horizontal: function () {
+
+            },
+
+        }
     }
 
     aud.init();
 
-    playBtn.on('click', function(){
+    playBtn.on('click', function () {
         playBtn.hasClass('paused') ? aud.pause() : aud.play();
     });
     nextBtn.on('click', aud.next);
@@ -202,7 +217,10 @@ function playerFn() {
     muteBtn.on('click', aud.mute);
     shuffleBtn.on('click', aud.shuffle);
     $(audio).on('timeupdate', aud.time);
+    sArea.on('click mouseleave mouseover', progressEvent);
 
-    slider.on('click mouseleave mouseover', sliderEvent);
-
+    list.find('li').on('click', function () {
+        playIdx = $(this).index();
+        aud.play();
+    });
 };
