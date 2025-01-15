@@ -12,13 +12,6 @@ ol {
   list-style: none;
 }
 
-span.btn {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(209, 209, 209, 0.7058823529);
-  display: inline-block;
-}
-
 .active {
   color: rgba(209, 209, 209, 0.7058823529);
 }
@@ -122,6 +115,19 @@ span.btn {
 #player .track_time .track_length {
   display: flex;
   justify-content: center;
+}
+#player #control {
+  display: flex;
+  justify-content: center;
+  gap: 0 20px;
+}
+#player #control .btn {
+  width: 60px;
+  height: 40px;
+  border: 1px solid rgba(209, 209, 209, 0.7058823529);
+  display: inline-block;
+  text-align: center;
+  align-content: center;
 }
 #player #track_list li {
   border: 1px solid var(--dlatlcolor);

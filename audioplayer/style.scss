@@ -12,12 +12,6 @@ ol {
     list-style: none;
 }
 
-span.btn {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #d1d1d1b4;
-    display: inline-block;
-}
 
 .active {
     color: #d1d1d1b4;
@@ -125,9 +119,10 @@ span.btn {
                 border-radius: 50%;
                 background-color: #a0a0a0;
                 transition: 0.1s left;
+
                 &.active {
                     background-color: #d0021b;
-                }    
+                }
             }
         }
     }
@@ -137,14 +132,28 @@ span.btn {
             display: flex;
             justify-content: center;
         }
-        
+
         .track_length {
             display: flex;
             justify-content: center;
         }
     }
 
-    #track_list{
+    #control {
+        display: flex;
+        justify-content: center;
+        gap: 0 20px;
+        .btn {
+            width: 60px;
+            height: 40px;
+            border: 1px solid #d1d1d1b4;
+            display: inline-block;
+            text-align: center;
+            align-content: center;
+        }
+    }
+
+    #track_list {
         li {
             border: 1px solid var(--dlatlcolor);
             margin-bottom: 5px;
