@@ -129,6 +129,10 @@ ol {
     }
 
     .track_time {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-bottom: 30px;
         .current_time {
             display: flex;
             justify-content: center;
@@ -156,9 +160,11 @@ ol {
     }
 
     #track_list {
+        margin-top: 20px;
+
         li {
             border: 1px solid var(--dlatlcolor);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
 
             &:hover {
                 color: #d1d1d1b4;

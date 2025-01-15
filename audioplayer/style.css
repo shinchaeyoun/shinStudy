@@ -109,6 +109,12 @@ ol {
 #player .progress_bar .progress .dot.active {
   background-color: #d0021b;
 }
+#player .track_time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 30px;
+}
 #player .track_time .current_time {
   display: flex;
   justify-content: center;
@@ -130,9 +136,12 @@ ol {
   text-align: center;
   align-content: center;
 }
+#player #track_list {
+  margin-top: 20px;
+}
 #player #track_list li {
   border: 1px solid var(--dlatlcolor);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
 #player #track_list li:hover {
