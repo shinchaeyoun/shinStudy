@@ -4,6 +4,7 @@
 
 body {
     color: #e2e2e275 !important;
+    font-family: omni;
 }
 
 ul,
@@ -143,6 +144,7 @@ ol {
         display: flex;
         justify-content: center;
         gap: 0 20px;
+
         .btn {
             width: 60px;
             height: 40px;
