@@ -30,7 +30,7 @@ function playerFn() {
     let aud = {
         init: function () {
             for (let i = 0; i < audioInfo.length; i++) {
-                item += `<li><span>${audioInfo[i][1]}</span> <span>${audioInfo[i][2]}</span></li>`
+                item += `<li><p>${audioInfo[i][1]}</p> <span>${audioInfo[i][2]}</span></li>`
             };
             list.append(item);
 
@@ -41,8 +41,8 @@ function playerFn() {
             name.text(audioInfo[playIdx][2]);
 
             for (let i = 0; i < audioInfo.length; i++) {
-                list.find('li').eq(i).find('span:nth-child(1)').text(audioInfo[i][1]);
-                list.find('li').eq(i).find('span:nth-child(2)').text(audioInfo[i][2]);
+                list.find('li').eq(i).find('p').text(audioInfo[i][1]);
+                list.find('li').eq(i).find('span').text(audioInfo[i][2]);
             }
         },
         play: function () {

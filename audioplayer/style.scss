@@ -1,9 +1,10 @@
 :root {
-    --dlatlcolor: #d1d1d11f;
+    // --dlatlcolor: #d1d1d11f;
+    --dlatlcolor: #222;
 }
 
 body {
-    color: #e2e2e275 !important;
+    // color: #e2e2e275 !important;
     font-family: omni;
 }
 
@@ -13,12 +14,9 @@ ol {
     list-style: none;
 }
 
-
 .active {
     color: #d1d1d1b4;
 }
-
-
 
 #player {
     position: relative;
@@ -156,6 +154,12 @@ ol {
             display: inline-block;
             text-align: center;
             align-content: center;
+
+            transition: .2s;
+            &:hover {
+                color: #757575b4;
+                background: #dadada48;
+            }
         }
     }
 
@@ -163,12 +167,24 @@ ol {
         margin-top: 20px;
 
         li {
-            border: 1px solid var(--dlatlcolor);
+            // border: 1px solid var(--dlatlcolor);
             margin-bottom: 10px;
+            padding: 0 10px;
 
+
+            display: flex;
+            align-content: center;
+            align-items: center;
+            gap: 0 20px;
+
+            height: 30px;
+            transition: .2s;
             &:hover {
-                color: #d1d1d1b4;
+                color: #757575b4;
+                background: #dadada48;
             }
+
+            
 
             cursor: pointer;
         }
