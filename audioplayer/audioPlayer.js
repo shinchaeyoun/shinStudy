@@ -134,7 +134,7 @@ function playerFn() {
     };
 
     const progressEvent = function (e) {
-        console.log('progress function', e.type);
+        // console.log('progress function', e.type);
 
         let progress = {
             over: function () {
@@ -173,7 +173,7 @@ function playerFn() {
                 $('#insTime').text('00:00').css({ 'left': '0px', 'margin-left': '0px' }).fadeOut(0);
             },
             click: function () {
-                console.log('progress click');
+                console.log('progress click',seekLoc);
                 audio.currentTime = seekLoc
                 seekBar.width(seekT);
                 dot.css({
@@ -185,7 +185,8 @@ function playerFn() {
 
         switch (e.type) {
             case 'click':
-                console.log('click');
+                // console.log('click');
+                progress.click();
                 break;
             case 'mouseover':
                 progress.over();

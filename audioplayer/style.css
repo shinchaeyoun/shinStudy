@@ -1,9 +1,8 @@
 :root {
-  --dlatlcolor: #d1d1d11f;
+  --dlatlcolor: #222;
 }
 
 body {
-  color: rgba(226, 226, 226, 0.4588235294) !important;
   font-family: "omni";
 }
 
