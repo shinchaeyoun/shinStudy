@@ -1,8 +1,9 @@
 :root {
-  --dlatlcolor: #222;
+  --dlatlcolor: #d1d1d11f;
 }
 
 body {
+  color: rgba(226, 226, 226, 0.4588235294) !important;
   font-family: "omni";
 }
 
@@ -160,6 +161,5 @@ ol {
   background: rgba(218, 218, 218, 0.2823529412);
 }
 #player #track_list li span {
-  color: #999;
   font-size: 12px;
 }/*# sourceMappingURL=style.css.map */
