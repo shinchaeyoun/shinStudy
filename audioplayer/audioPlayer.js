@@ -12,8 +12,9 @@ function playerFn() {
         name = $('.name'),
         list = $('#track_list'),
         listItem = list.find('li'),
-        sArea = $('.progress'),
+        sArea = $('.progress_bar'),
         dot = $('.dot'),
+        insTime = $('#ins-time'),
         sHover = $('#s-hover'),
         seekBar = $('#seek-bar'),
         tProgress = $('.current_time'),
@@ -34,7 +35,10 @@ function playerFn() {
             };
             list.append(item);
 
+            audio.src = audioInfo[playIdx][0];
+
             aud.info();
+            aud.time();
         },
         info: function () {
             track.text(audioInfo[playIdx][1]);
@@ -55,6 +59,11 @@ function playerFn() {
             audio.play();
             aud.info();
             aud.audioEnd();
+
+
+
+
+
         },
         pause: function () {
             playBtn.removeClass('paused');
@@ -77,7 +86,6 @@ function playerFn() {
         time: function () {
             curMin = Math.floor(audio.currentTime / 60);
             curSec = Math.floor(audio.currentTime - curMin * 60);
-
             durMin = Math.floor(audio.duration / 60);
             durSec = Math.floor(audio.duration - durMin * 60);
 
@@ -85,21 +93,11 @@ function playerFn() {
 
             if (curMin < 10) { curMin = '0' + curMin; };
             if (curSec < 10) { curSec = '0' + curSec; };
-
             if (durMin < 10) { durMin = '0' + durMin; };
             if (durSec < 10) { durSec = '0' + durSec; };
 
-            if (isNaN(curMin) || isNaN(curSec)) {
-                tProgress.text('00:00');
-            } else {
-                tProgress.text(curMin + ':' + curSec);
-            };
-
-            if (isNaN(durMin) || isNaN(durSec)) {
-                trackLength.text('00:00');
-            } else {
-                trackLength.text(durMin + ':' + durSec);
-            }
+            isNaN(curMin) || isNaN(curSec) ? tProgress.text('00:00') : tProgress.text(curMin + ':' + curSec);
+            isNaN(durMin) || isNaN(durSec) ? trackLength.text('00:00') : trackLength.text(durMin + ':' + durSec);
 
             seekBar.width(playProgress + '%');
             dot.css({ left: playProgress + '%' });
@@ -109,6 +107,7 @@ function playerFn() {
                 dot.css({ left: playProgress + '%' });
                 tProgress.text('00:00');
             };
+
         },
         mute: function () {
             muteBtn.toggleClass('on');
@@ -127,6 +126,7 @@ function playerFn() {
 
                 // track info change
 
+
                 // list setting
 
             }
@@ -134,8 +134,6 @@ function playerFn() {
     };
 
     const progressEvent = function (e) {
-        // console.log('progress function', e.type);
-
         let progress = {
             over: function () {
                 console.log('progress over');
@@ -162,18 +160,19 @@ function playerFn() {
                     ctSec = '0' + ctSec;
 
                 if (isNaN(ctMin) || isNaN(ctSec))
-                    $('#insTime').text('--:--');
+                    insTime.text('--:--');
                 else
-                    $('#insTime').text(ctMin + ':' + ctSec);
+                    insTime.text(ctMin + ':' + ctSec);
 
-                $('#insTime').css({ 'left': seekT, 'margin-left': '-21px' }).fadeIn(0);
+                insTime.css({ 'left': seekT, 'margin-left': '-21px' }).fadeIn(0);
             },
             leave: function () {
                 console.log('progress leave');
-                $('#insTime').text('00:00').css({ 'left': '0px', 'margin-left': '0px' }).fadeOut(0);
+                sHover.width(0);
+                insTime.text('00:00').css({ 'left': '0px', 'margin-left': '0px' }).fadeOut(0);
             },
             click: function () {
-                console.log('progress click',seekLoc);
+                console.log('progress click', seekLoc);
                 audio.currentTime = seekLoc
                 seekBar.width(seekT);
                 dot.css({
@@ -189,9 +188,11 @@ function playerFn() {
                 progress.click();
                 break;
             case 'mouseover':
+            case 'mousemove':
                 progress.over();
                 break;
             case 'mouseleave':
+                progress.leave();
                 break;
         };
     };
@@ -218,10 +219,15 @@ function playerFn() {
     muteBtn.on('click', aud.mute);
     shuffleBtn.on('click', aud.shuffle);
     $(audio).on('timeupdate', aud.time);
-    sArea.on('click mouseleave mouseover', progressEvent);
+    sArea.on('click mouseleave mouseover mousemove', progressEvent);
 
     list.find('li').on('click', function () {
         playIdx = $(this).index();
         aud.play();
     });
+};
+
+
+function itostr(np) {
+    return (np < 10) ? String(np) : "0" + np;
 };
