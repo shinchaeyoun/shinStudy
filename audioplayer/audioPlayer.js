@@ -11,7 +11,6 @@ function playerFn() {
         track = $('.track'),
         name = $('.name'),
         list = $('#track_list'),
-        listItem = list.find('li'),
         sArea = $('.progress_bar'),
         dot = $('.dot'),
         insTime = $('#ins-time'),
@@ -59,11 +58,6 @@ function playerFn() {
             audio.play();
             aud.info();
             aud.audioEnd();
-
-
-
-
-
         },
         pause: function () {
             playBtn.removeClass('paused');
@@ -123,12 +117,6 @@ function playerFn() {
             audio.onended = function () {
                 playIdx < 9 ? playIdx++ : playIdx = 0;
                 aud.play();
-
-                // track info change
-
-
-                // list setting
-
             }
         }
     };
@@ -136,7 +124,6 @@ function playerFn() {
     const progressEvent = function (e) {
         let progress = {
             over: function () {
-                console.log('progress over');
                 seekBarPos = sArea.offset();
                 seekT = event.clientX - seekBarPos.left;
                 seekLoc = audio.duration * (seekT / sArea.outerWidth());
@@ -167,12 +154,10 @@ function playerFn() {
                 insTime.css({ 'left': seekT, 'margin-left': '-21px' }).fadeIn(0);
             },
             leave: function () {
-                console.log('progress leave');
                 sHover.width(0);
                 insTime.text('00:00').css({ 'left': '0px', 'margin-left': '0px' }).fadeOut(0);
             },
             click: function () {
-                console.log('progress click', seekLoc);
                 audio.currentTime = seekLoc
                 seekBar.width(seekT);
                 dot.css({
@@ -184,7 +169,6 @@ function playerFn() {
 
         switch (e.type) {
             case 'click':
-                // console.log('click');
                 progress.click();
                 break;
             case 'mouseover':
