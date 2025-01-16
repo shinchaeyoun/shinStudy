@@ -31,8 +31,8 @@ ol {
         width: 200px;
         height: 200px;
         border-radius: 10px;
-        border: 1px solid var(--dlatlcolor);
-        margin: 0 auto;
+        border: 1px solid #d1d1d1b4;
+        margin: 0 auto 30px;
 
         img {}
     }
@@ -42,15 +42,16 @@ ol {
 
         .track {
             font-size: 26px;
+            font-weight: 300;
         }
 
         .name {
-            font-size: 18px;
+            font-size: 16px;
         }
     }
 
     .progress_bar {
-        margin: 20px 0 10px;
+        margin: 30px 0 10px;
         width: 100%;
         display: flex;
         align-items: center;
@@ -131,6 +132,7 @@ ol {
         justify-content: space-between;
         font-size: 12px;
         margin-bottom: 30px;
+
         .current_time {
             display: flex;
             justify-content: center;
@@ -166,17 +168,16 @@ ol {
     #track_list {
         margin-top: 30px;
         padding: 0;
-        li {
-            // border: 1px solid var(--dlatlcolor);
-            margin-bottom: 5px;
-            // margin: 0;
+        cursor: pointer;
 
+        li {
+            
             display: flex;
             align-content: center;
             align-items: center;
             gap: 0 5px;
-
-            // font-size: 12px;
+            
+            margin-bottom: 5px;
             height: 30px;
             transition: .2s;
             &:hover {
@@ -184,11 +185,9 @@ ol {
                 background: #dadada48;
             }
 
-            
-
-            cursor: pointer;
-
-
+            p {
+                // font-size: 14px;
+            }
             span {
                 color: #999;
                 font-size: 12px;

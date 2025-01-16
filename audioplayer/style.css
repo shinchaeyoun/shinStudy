@@ -28,20 +28,21 @@ ol {
   width: 200px;
   height: 200px;
   border-radius: 10px;
-  border: 1px solid var(--dlatlcolor);
-  margin: 0 auto;
+  border: 1px solid rgba(209, 209, 209, 0.7058823529);
+  margin: 0 auto 30px;
 }
 #player .track_info {
   color: var(--dlatlcolor);
 }
 #player .track_info .track {
   font-size: 26px;
+  font-weight: 300;
 }
 #player .track_info .name {
-  font-size: 18px;
+  font-size: 16px;
 }
 #player .progress_bar {
-  margin: 20px 0 10px;
+  margin: 30px 0 10px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -143,16 +144,16 @@ ol {
 #player #track_list {
   margin-top: 30px;
   padding: 0;
+  cursor: pointer;
 }
 #player #track_list li {
-  margin-bottom: 5px;
   display: flex;
   align-content: center;
   align-items: center;
   gap: 0 5px;
+  margin-bottom: 5px;
   height: 30px;
   transition: 0.2s;
-  cursor: pointer;
 }
 #player #track_list li:hover {
   color: rgba(117, 117, 117, 0.7058823529);

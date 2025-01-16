@@ -3,3 +3,13 @@
     src: url(./210Omnigulim020.woff) format('woff');
     font-weight: normal;
 }
+@font-face {
+    font-family: omni;
+    src: url(./210Omnigulim030.woff) format('woff');
+    font-weight: 300;
+}
+@font-face {
+    font-family: omni;
+    src: url(./210Omnigulim050.woff) format('woff');
+    font-weight: 500;
+}
